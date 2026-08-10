@@ -1,123 +1,103 @@
 /* ============================================================================
-   OPPONENT AI
-   Deliberately readable rather than deep: it takes lethal when lethal exists,
-   trades when a trade is profitable, and otherwise pushes damage at the hero.
-   `nextAction` returns one move at a time so the UI can pace the turn.
+   OPPONENT AI — one blind decision per round.
+   Choices are simultaneous and secret, so the AI never sees the player's
+   pending action (nothing in this file reads state.sides.player.pending) —
+   it can only reason about its own hand, its own resources, and what it
+   knows of both hero totals. `skill` (0..1) is the chance it takes its best
+   line at all; otherwise it picks a plausible but weaker option, so low-skill
+   opponents still make legal, sane moves — just not sharp ones.
    ========================================================================= */
 
+import { CARD_BY_ID } from '../data/cards.js';
 import {
-  statsOf, legalTargets, canAttack, canPlay, tauntsOn, other, BOARD_MAX,
+  legalActions, ENCHANT_TABLE, FUSE_COST, MAX_ORBS, HEAL_PER_ORB,
 } from './battle.js';
 
-/** Rough "how much board does this minion represent" score. */
-function threat(state, key, m) {
-  const s = statsOf(state, key, m);
-  let v = s.atk * 1.4 + s.hp;
-  if (m.kw.includes('taunt')) v += 2;
-  if (m.kw.includes('poison')) v += 4;
-  if (m.kw.includes('lifesteal')) v += 2;
-  if (m.kw.includes('shield')) v += 2;
-  if (m.card.aura) v += 5;
-  return v;
+function powerOf(card) {
+  return card.atk + card.def * 0.7;
 }
 
-function cardValue(state, key, handCard) {
-  const c = handCard.card;
-  let v = (c.atk + c.hp) * 1.0 + c.cost * 0.5;
-  if (c.kw.includes('taunt')) v += 2;
-  if (c.kw.includes('rush')) v += 1.5;
-  if (c.kw.includes('lifesteal')) v += 1.5;
-  if (c.battlecry) v += 2;
-  if (c.deathrattle) v += 1.5;
-  if (c.aura) v += 4;
-  // Prefer spending the turn's mana fully.
-  return v;
+/** Rough read on how hard the enemy's hand could hit this round, for risk-sizing a fuse. */
+function handThreat(hand) {
+  if (!hand.length) return 0;
+  return hand.reduce((sum, h) => sum + h.atk, 0) / hand.length;
+}
+
+function scoreAttack(state, key, h, spend) {
+  const side = state.sides[key];
+  let atk = h.atk;
+  let def = h.def;
+  if (side.cls === 'elementalist') atk += side.streak;
+  if (side.cls === 'enchanter' && spend > 0) {
+    const buff = ENCHANT_TABLE[Math.min(5, spend) - 1];
+    atk += buff.a; def += buff.d;
+  }
+  let score = atk * 1.1 + def * 0.6;
+  // A near-lethal hit is worth chasing even off a middling card.
+  const foeHp = state.sides[key === 'player' ? 'enemy' : 'player'].hero.hp;
+  if (atk >= foeHp) score += 50;
+  // Healing has zero effect on atk/def, so it must be scored explicitly or
+  // every spend amount ties and the AI silently never bothers to heal.
+  if (side.cls === 'healer' && spend > 0) {
+    const missing = side.hero.maxHp - side.hero.hp;
+    score += Math.min(spend * HEAL_PER_ORB, missing) * 0.9;
+  }
+  return { score, atk, def };
+}
+
+function scoreFuse(state, key, f) {
+  const side = state.sides[key];
+  const result = CARD_BY_ID[f.resultId];
+  let score = powerOf(result) * (f.mega ? 1.3 : 1.0);
+  // Undefended this round — riskier while low on hp, cheaper while ahead.
+  const foeHand = state.sides[key === 'player' ? 'enemy' : 'player'].hand;
+  const risk = handThreat(foeHand) * (1 - side.hero.hp / side.hero.maxHp) * 1.4;
+  score -= risk;
+  if (!f.mega) score -= FUSE_COST * 0.8; // orb cost has to be worth it
+  return score;
 }
 
 /**
  * @param {object} state
- * @param {number} skill 0..1 — lower skill occasionally skips a good line.
- * @returns {{type:'play'|'attack'|'end', uid?:string, target?:string}}
+ * @param {number} skill 0..1 — chance of taking the strongest available line.
+ * @returns {{type:'attack', uid:string, spendOrbs:number}|{type:'fuse', uidA:string, uidB:string}}
  */
 export function nextAction(state, skill = 1) {
-  const key = state.active;
-  if (state.over) return { type: 'end' };
+  const key = 'enemy';
   const side = state.sides[key];
-  const foeKey = other(key);
-  const foe = state.sides[foeKey];
+  const { attacks, fusions, mustPass } = legalActions(state, key);
+  if (mustPass) return { type: 'pass' };
 
-  /* ---- 1. Lethal check: can the board finish the enemy hero right now? --- */
-  const taunts = tauntsOn(state, foeKey);
-  if (!taunts.length) {
-    let swing = 0;
-    for (const m of side.board) {
-      if (canAttack(state, key, m.uid).ok) swing += statsOf(state, key, m).atk;
-    }
-    if (swing >= foe.hero.hp) {
-      const ready = side.board.find((m) => canAttack(state, key, m.uid).ok);
-      if (ready) return { type: 'attack', uid: ready.uid, target: 'face' };
-    }
-  }
+  const candidates = [];
 
-  /* ---- 2. Develop the board while mana lasts ---------------------------- */
-  if (side.board.length < BOARD_MAX) {
-    const playable = side.hand
-      .filter((h) => canPlay(state, key, h.uid).ok)
-      .sort((a, b) => {
-        const d = b.card.cost - a.card.cost;
-        return d !== 0 ? d : cardValue(state, key, b) - cardValue(state, key, a);
-      });
-    if (playable.length) {
-      // A weaker opponent sometimes plays the wrong card first.
-      const idx = state.rand() > skill && playable.length > 1
-        ? Math.floor(state.rand() * playable.length)
-        : 0;
-      return { type: 'play', uid: playable[idx].uid };
+  for (const uid of attacks) {
+    const h = side.hand.find((x) => x.uid === uid);
+    const spendOptions = side.cls === 'elementalist' ? [0] : range(0, Math.min(side.orbs, MAX_ORBS));
+    for (const spend of spendOptions) {
+      if (side.cls === 'healer' && spend > 0 && side.hero.hp >= side.hero.maxHp) continue; // no point healing at full hp
+      const { score } = scoreAttack(state, key, h, spend);
+      candidates.push({ type: 'attack', uid, spendOrbs: spend, score });
     }
   }
 
-  /* ---- 3. Attack ---------------------------------------------------------*/
-  const attackers = side.board.filter((m) => canAttack(state, key, m.uid).ok);
-  if (attackers.length) {
-    let best = null;
-
-    for (const a of attackers) {
-      const aStats = statsOf(state, key, a);
-      const targets = legalTargets(state, key, a.uid);
-
-      for (const t of targets) {
-        let score;
-        if (t === 'face') {
-          score = aStats.atk * 1.1;
-          // Rushing face is worse while an enemy board is developing.
-          if (foe.board.length >= 3) score -= 2;
-          if (aStats.atk >= foe.hero.hp) score += 100;
-        } else {
-          const d = foe.board.find((m) => m.uid === t);
-          if (!d) continue;
-          const dStats = statsOf(state, foeKey, d);
-          const kills = a.kw.includes('poison') || aStats.atk >= dStats.hp;
-          const dies = dStats.atk >= aStats.hp && !a.shield;
-          score = 0;
-          if (kills) score += threat(state, foeKey, d) * 1.2;
-          else score += Math.min(aStats.atk, dStats.hp) * 0.5;
-          if (dies) score -= threat(state, key, a) * 0.9;
-          if (d.kw.includes('taunt')) score += 1.5;
-        }
-        if (!best || score > best.score) best = { score, uid: a.uid, target: t };
-      }
-    }
-
-    if (best && best.score > -1.5) {
-      return { type: 'attack', uid: best.uid, target: best.target };
-    }
-    // Everything left is a bad trade; if the face is open, hit it anyway.
-    for (const a of attackers) {
-      if (legalTargets(state, key, a.uid).includes('face')) {
-        return { type: 'attack', uid: a.uid, target: 'face' };
-      }
-    }
+  for (const f of fusions) {
+    candidates.push({ type: 'fuse', uidA: f.uidA, uidB: f.uidB, score: scoreFuse(state, key, f) });
   }
 
-  return { type: 'end' };
+  // A non-empty hand always yields at least one attack candidate (one per
+  // card), so `candidates` is never empty here — `mustPass` above is the
+  // only true dead end.
+  candidates.sort((a, b) => b.score - a.score);
+
+  const pick = state.rand() < skill
+    ? candidates[0]
+    : candidates[Math.floor(state.rand() * candidates.length)];
+
+  return pick;
+}
+
+function range(lo, hi) {
+  const out = [];
+  for (let i = lo; i <= hi; i++) out.push(i);
+  return out;
 }

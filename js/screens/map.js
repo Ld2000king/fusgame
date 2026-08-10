@@ -7,9 +7,12 @@ import { sigil } from '../ui/sigil.js';
 import { renderCard } from '../ui/card.js';
 import { CAMPAIGN, gateFor } from '../data/campaign.js';
 import { CARD_BY_ID } from '../data/cards.js';
+import { CLASS_NAMES } from '../core/battle.js';
 import {
-  save, isCleared, stageUnlocked, deckIsLegal, DECK_SIZE, autoDeck, progressPercent,
+  save, isCleared, stageUnlocked, deckIsLegal, DECK_SIZE, autoDeck, progressPercent, setClass,
 } from '../core/state.js';
+
+const CLASSES = ['elementalist', 'enchanter', 'healer'];
 
 export function renderMap(root, ctx) {
   clear(root);
@@ -60,7 +63,7 @@ export function renderMap(root, ctx) {
     }, [
       h('div', { class: 'stage-mark', html: mark }),
       h('div', { style: 'min-width:0' }, [
-        h('p', { class: 'st', text: `${String(i + 1).padStart(2, '0')} · ${st.title}` }),
+        h('p', { class: 'st', text: `${String(i + 1).padStart(2, '0')} · ${st.title} · ${CLASS_NAMES[st.class]}` }),
         h('h3', { text: st.name }),
         h('p', { class: 'sb', text: st.blurb }),
       ]),
@@ -75,11 +78,10 @@ export function renderMap(root, ctx) {
 function openStage(st, index, ctx) {
   const gate = gateFor(index);
   const thin = save.discovered.length < gate;
+  let chosenClass = save.preferredClass;
 
-  modal((api) => [
-    h('p', { class: 'eyebrow', text: st.title }),
-    h('h2', { text: st.name }),
-    h('div', { class: 'modal-body' }, [
+  modal((api) => {
+    const body = h('div', { class: 'modal-body' }, [
       h('div', {
         style: 'width:88px;height:88px;color:var(--el-' + st.el + ')',
         html: sigil({ id: 'stage-' + st.id, el: st.el, tier: Math.min(6, 1 + Math.floor(index / 2)) }, { size: 88 }),
@@ -87,17 +89,16 @@ function openStage(st, index, ctx) {
       h('p', { text: st.blurb }),
       h('div', { class: 'stat-strip' }, [
         h('div', {}, [h('b', { text: String(st.hp) }), h('span', { text: 'חיי גיבור' })]),
-        h('div', {}, [h('b', { text: String(st.deck.length) }), h('span', { text: 'קלפים' })]),
+        h('div', {}, [h('b', { text: CLASS_NAMES[st.class] }), h('span', { text: 'מחלקת היריב' })]),
         h('div', {}, [h('b', { text: String(st.gold) }), h('span', { text: 'זהב בניצחון' })]),
       ]),
 
-      h('p', {
-        class: 'eyebrow',
-        style: 'text-align:center',
-        text: 'יריבים בולטים',
-      }),
+      h('p', { class: 'eyebrow', style: 'text-align:center', text: 'יריבים בולטים' }),
       h('div', { style: 'display:flex;gap:6px;justify-content:center;flex-wrap:wrap' },
         topThreats(st).map((c) => renderCard(c, { size: 'xs', lvl: 0 }))),
+
+      h('p', { class: 'eyebrow', style: 'text-align:center', text: 'המחלקה שלך' }),
+      classPicker(),
 
       thin
         ? h('p', {
@@ -113,20 +114,44 @@ function openStage(st, index, ctx) {
       h('div', { class: 'modal-actions' }, [
         h('button', {
           class: 'btn btn--gold',
+          'data-action': 'launch',
           text: 'צא לקרב',
           disabled: !deckIsLegal(),
-          onclick: () => { api.close(); ctx.startBattle(st); },
+          onclick: () => { setClass(chosenClass); api.close(); ctx.startBattle(st, chosenClass); },
         }),
         h('button', { class: 'btn', text: 'בטל', onclick: api.close }),
       ]),
-    ]),
-  ]);
+    ]);
+
+    function classPicker() {
+      const row = h('div', { style: 'display:flex;gap:6px;justify-content:center;flex-wrap:wrap' },
+        CLASSES.map((cls) => h('button', {
+          type: 'button',
+          class: 'btn btn--sm' + (cls === chosenClass ? ' btn--pick-on' : ' btn--ghost'),
+          text: CLASS_NAMES[cls],
+          onclick: () => { chosenClass = cls; refreshPicker(); },
+        })));
+      row.dataset.role = 'class-picker';
+      return row;
+    }
+
+    function refreshPicker() {
+      const old = body.querySelector('[data-role="class-picker"]');
+      if (old) old.replaceWith(classPicker());
+    }
+
+    return [
+      h('p', { class: 'eyebrow', text: st.title }),
+      h('h2', { text: st.name }),
+      body,
+    ];
+  });
 }
 
 /** The three scariest cards in the opponent's deck, for the briefing. */
 function topThreats(st) {
   const uniq = [...new Set(st.deck)].map((id) => CARD_BY_ID[id]).filter(Boolean);
   return uniq
-    .sort((a, b) => (b.tier * 4 + b.atk + b.hp) - (a.tier * 4 + a.atk + a.hp))
+    .sort((a, b) => (b.tier * 4 + b.atk + b.def) - (a.tier * 4 + a.atk + a.def))
     .slice(0, 3);
 }

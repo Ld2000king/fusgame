@@ -22,11 +22,11 @@ const ctx = {
   go,
   rerender: () => go(route, true),
   refreshPurse,
-  startBattle: (stageDef) => {
+  startBattle: (stageDef, playerClass) => {
     route = 'battle';
     paintTabs();
     tabbar.hidden = true;
-    launchBattle(screenEl, ctx, stageDef);
+    launchBattle(screenEl, ctx, stageDef, playerClass || save.preferredClass);
     window.scrollTo({ top: 0 });
   },
   addToDeckFromUI(id) {
@@ -104,11 +104,11 @@ function intro() {
       h('p', {
         text: 'התחלת עם ארבעה יסודות. במעבדה מצרפים שניים ומקבלים שלישי — ' +
               'כך נבנה אוסף של 81 קלפים. מהאוסף בונים חפיסה של 20, ' +
-              'ובמסע יוצאים איתה לקרבות תורות מול שנים־עשר יריבים.',
+              'ובמסע יוצאים איתה לקרבות מול שנים־עשר יריבים.',
       }),
       h('p', {
         style: 'color:var(--ink-3);font-size:12.5px',
-        text: 'קרב: לוחצים על קלף ביד כדי להזמין אותו, לוחצים על יצור שלך כדי להרים אותו, ואז על המטרה כדי לתקוף.',
+        text: 'קרב: כל סיבוב שני הצדדים בוחרים בסתר קלף לתקיפה — או שני קלפים להיתוך לקלף חזק יותר — ואז נחשפים יחד. מי שמתיך לא מגן על עצמו באותו סיבוב.',
       }),
       h('div', { class: 'modal-actions' }, [
         h('button', {

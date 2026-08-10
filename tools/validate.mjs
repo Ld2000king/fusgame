@@ -20,9 +20,8 @@ for (const k of CARDS) {
   if (k.recipe) {
     for (const p of k.recipe) {
       if (!CARD_BY_ID[p]) fail(`${k.id} references unknown parent "${p}"`);
-      else if (CARD_BY_ID[p].token) fail(`${k.id} uses token "${p}" as a parent`);
     }
-  } else if (!k.token && !BASE_IDS.includes(k.id)) {
+  } else if (!BASE_IDS.includes(k.id)) {
     fail(`${k.id} is craftable but has no recipe`);
   }
 }
@@ -44,65 +43,52 @@ while (grew) {
   grew = false;
   passes++;
   for (const k of CARDS) {
-    if (k.token || known.has(k.id) || !k.recipe) continue;
+    if (known.has(k.id) || !k.recipe) continue;
     if (known.has(k.recipe[0]) && known.has(k.recipe[1])) {
       known.add(k.id);
       grew = true;
     }
   }
 }
-const unreachable = CARDS.filter((k) => !k.token && !known.has(k.id));
+const unreachable = CARDS.filter((k) => !known.has(k.id));
 for (const k of unreachable) {
   fail(`${k.id} (${k.name}) unreachable — needs ${k.recipe.join(' + ')}`);
 }
 
-console.log('── effect targets ──────────────────────────────────');
+console.log('── duel stat sanity ─────────────────────────────────');
 for (const k of CARDS) {
-  for (const e of [k.battlecry, k.deathrattle]) {
-    if (e && e.type === 'summon' && !CARD_BY_ID[e.id]) {
-      fail(`${k.id} summons unknown card "${e.id}"`);
-    }
-  }
-}
-
-console.log('── stat sanity ─────────────────────────────────────');
-for (const k of CARDS) {
-  if (k.hp < 1) fail(`${k.id} has hp ${k.hp}`);
-  if (k.atk < 0) fail(`${k.id} has atk ${k.atk}`);
-  if (k.cost < 1 || k.cost > 10) fail(`${k.id} has cost ${k.cost}`);
-  const stats = k.atk + k.hp;
-  const budget = k.cost * 2 + 2;
-  if (stats > budget + 4) warn(`${k.id} is stat-heavy: ${k.atk}/${k.hp} for ${k.cost} mana`);
+  if (k.def < 1) fail(`${k.id} has def ${k.def}`);
+  if (k.atk < 1) fail(`${k.id} has atk ${k.atk}`);
+  const power = k.atk + k.def;
+  const budget = 3 + k.tier * 3.4;
+  if (power > budget + 6) warn(`${k.id} is stat-heavy for tier ${k.tier}: ${k.atk}/${k.def}`);
+  if (power < budget - 6 && k.tier > 0) warn(`${k.id} is stat-light for tier ${k.tier}: ${k.atk}/${k.def}`);
 }
 
 console.log('── campaign decks ──────────────────────────────────');
 for (const st of CAMPAIGN) {
-  if (st.deck.length < 14) warn(`${st.id} deck has only ${st.deck.length} cards`);
+  if (st.deck.length < 12) warn(`${st.id} deck has only ${st.deck.length} cards`);
   for (const id of st.deck) {
     if (!CARD_BY_ID[id]) fail(`${st.id} deck references unknown card "${id}"`);
   }
   if (!(st.hp > 0)) fail(`${st.id} has no hero hp`);
   if (!(st.skill > 0 && st.skill <= 1)) fail(`${st.id} skill out of range`);
+  if (!['elementalist', 'enchanter', 'healer'].includes(st.class)) {
+    fail(`${st.id} has invalid class "${st.class}"`);
+  }
 }
 
-console.log('── early-game deck feasibility ─────────────────────');
+console.log('── deck-building feasibility ────────────────────────');
 {
-  // With only the four primes plus the ten first fusions, a legal 20-card deck
-  // must still be buildable, or the campaign is unreachable.
-  const early = BASE_IDS.map((id) => CARD_BY_ID[id]);
-  const capacity = early.reduce((n, k) => n + copyLimit(k), 0);
-  if (capacity < 16) warn(`primes alone allow only ${capacity} deck slots`);
-  const withTier1 = CARDS.filter((k) => !k.token && k.tier <= 1)
-    .reduce((n, k) => n + copyLimit(k), 0);
+  const withTier1 = CARDS.filter((k) => k.tier <= 1).reduce((n, k) => n + copyLimit(k), 0);
   if (withTier1 < 20) fail(`tiers 0-1 allow only ${withTier1} deck slots; 20 needed`);
 }
 
-const craftable = CARDS.filter((k) => !k.token).length;
 const tiers = {};
-for (const k of CARDS) if (!k.token) tiers[k.tier] = (tiers[k.tier] || 0) + 1;
+for (const k of CARDS) tiers[k.tier] = (tiers[k.tier] || 0) + 1;
 
 console.log('\n────────────────────────────────────────────────────');
-console.log(`cards: ${CARDS.length} total · ${craftable} craftable · ${CARDS.length - craftable} tokens`);
+console.log(`cards: ${CARDS.length} total`);
 console.log('per tier: ' + Object.entries(tiers).map(([t, n]) => `T${t}=${n}`).join('  '));
 console.log(`recipes: ${Object.keys(RECIPE_INDEX).length} · resolved in ${passes} passes`);
 console.log(`${errors} error(s), ${warnings} warning(s)\n`);

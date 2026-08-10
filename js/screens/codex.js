@@ -15,7 +15,7 @@ export function renderCodex(root) {
   clear(root);
   root.className = 'screen';
 
-  const total = CARDS.filter((k) => !k.token).length;
+  const total = CARDS.length;
   const found = save.discovered.length;
 
   root.append(h('div', { class: 'head' }, [
@@ -37,14 +37,13 @@ export function renderCodex(root) {
 
   const byTier = {};
   for (const card of CARDS) {
-    if (card.token) continue;
     (byTier[card.tier] = byTier[card.tier] || []).push(card);
   }
 
   for (const tier of Object.keys(byTier).sort((a, b) => a - b)) {
     const list = byTier[tier]
       .slice()
-      .sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name, 'he'));
+      .sort((a, b) => (a.atk + a.def) - (b.atk + b.def) || a.name.localeCompare(b.name, 'he'));
     const owned = list.filter((c) => isDiscovered(c.id)).length;
     const visible = showLocked ? list : list.filter((c) => isDiscovered(c.id));
     if (!visible.length) continue;

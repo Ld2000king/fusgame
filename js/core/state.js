@@ -37,6 +37,7 @@ function freshSave() {
     fusionsTried: 0,
     battlesWon: 0,
     seenIntro: false,
+    preferredClass: 'elementalist',
   };
 }
 
@@ -50,7 +51,7 @@ function load() {
     const base = freshSave();
     const merged = { ...base, ...data };
     // Drop anything that no longer exists in the database.
-    merged.discovered = merged.discovered.filter((id) => CARD_BY_ID[id] && !CARD_BY_ID[id].token);
+    merged.discovered = merged.discovered.filter((id) => CARD_BY_ID[id]);
     for (const id of BASE_IDS) if (!merged.discovered.includes(id)) merged.discovered.push(id);
     merged.deck = merged.deck.filter((id) => merged.discovered.includes(id));
     return merged;
@@ -117,6 +118,12 @@ export function addGold(n) {
   persist();
 }
 
+export function setClass(cls) {
+  if (!['elementalist', 'enchanter', 'healer'].includes(cls)) return;
+  save.preferredClass = cls;
+  persist();
+}
+
 /* -------------------------------------------------------------------------
    The Lab
    ------------------------------------------------------------------------- */
@@ -147,7 +154,7 @@ export function attemptFusion(aId, bId) {
 export function availableDiscoveries() {
   const out = [];
   for (const card of CARDS) {
-    if (card.token || !card.recipe) continue;
+    if (!card.recipe) continue;
     if (isDiscovered(card.id)) continue;
     const [a, b] = card.recipe;
     if (isDiscovered(a) && isDiscovered(b)) out.push(card);
@@ -215,31 +222,41 @@ export function clearDeck() {
   persist();
 }
 
-/** Fills the deck with the strongest legal cards the collection allows. */
+/**
+ * Fills the deck with the strongest legal cards the collection allows, while
+ * keeping a spread across tiers — a deck of nothing but legendaries draws
+ * badly (hand of 5 from 20 cards) and starves the in-battle fusion system,
+ * since there is nothing low-tier left in hand to fuse upward.
+ */
 export function autoDeck() {
-  const pool = save.discovered
-    .map((id) => CARD_BY_ID[id])
-    .filter(Boolean)
-    .sort((a, b) => (b.atk + b.hp + b.tier * 2) - (a.atk + a.hp + a.tier * 2));
+  const byTier = {};
+  for (const id of save.discovered) {
+    const card = CARD_BY_ID[id];
+    if (!card) continue;
+    (byTier[card.tier] = byTier[card.tier] || []).push(card);
+  }
+  for (const tier of Object.keys(byTier)) {
+    byTier[tier].sort((a, b) => (b.atk + b.def) - (a.atk + a.def));
+  }
 
+  // Weighted toward low-mid tiers, so a hand still holds fusion material.
+  const tierTarget = { 0: 4, 1: 4, 2: 4, 3: 3, 4: 2, 5: 2, 6: 1 };
   const next = [];
-  // Four one-drops keeps an opening play likely without flattening the deck.
-  const curveTarget = { 1: 4, 2: 4, 3: 4, 4: 3, 5: 2, 6: 1, 7: 1, 8: 1 };
-  const curve = {};
-
   const canTake = (card) => next.filter((x) => x === card.id).length < copyLimit(card);
 
-  // First pass respects a mana curve so the deck is actually playable.
-  for (const card of pool) {
-    if (next.length >= DECK_SIZE) break;
-    const bucket = Math.min(8, card.cost);
-    if ((curve[bucket] || 0) >= (curveTarget[bucket] || 0)) continue;
-    while (canTake(card) && next.length < DECK_SIZE && (curve[bucket] || 0) < (curveTarget[bucket] || 0)) {
-      next.push(card.id);
-      curve[bucket] = (curve[bucket] || 0) + 1;
+  for (const tier of [0, 1, 2, 3, 4, 5, 6]) {
+    const cards = byTier[tier] || [];
+    let taken = 0;
+    for (const card of cards) {
+      while (canTake(card) && taken < (tierTarget[tier] || 0) && next.length < DECK_SIZE) {
+        next.push(card.id);
+        taken++;
+      }
+      if (taken >= (tierTarget[tier] || 0)) break;
     }
   }
-  // Second pass tops up with anything legal.
+  // Top up with anything legal if the tier spread came up short.
+  const pool = Object.values(byTier).flat().sort((a, b) => (b.atk + b.def) - (a.atk + a.def));
   for (const card of pool) {
     while (next.length < DECK_SIZE && canTake(card)) next.push(card.id);
   }
@@ -285,6 +302,5 @@ export function recordWin(stageId) {
 }
 
 export function progressPercent() {
-  const total = CARDS.filter((k) => !k.token).length;
-  return Math.round((save.discovered.length / total) * 100);
+  return Math.round((save.discovered.length / CARDS.length) * 100);
 }

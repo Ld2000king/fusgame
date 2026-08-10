@@ -48,18 +48,18 @@ export function renderDeck(root, ctx) {
       }),
     ]));
 
-    // mana curve
-    const buckets = new Array(8).fill(0);
+    // tier distribution
+    const buckets = new Array(7).fill(0);
     for (const id of save.deck) {
       const c = CARD_BY_ID[id];
-      buckets[Math.min(7, c.cost - 1)]++;
+      buckets[c.tier]++;
     }
     const peak = Math.max(1, ...buckets);
     panel.append(h('div', { class: 'deck-curve' },
       buckets.map((n, i) => h('i', {
         style: `height:${(n / peak) * 100}%`,
-        'data-n': i === 7 ? '8+' : String(i + 1),
-        title: `${n} קלפים בעלות ${i + 1}`,
+        'data-n': String(i),
+        title: `${n} קלפים בדרגה ${i}`,
       }))));
 
     panel.append(h('div', { style: 'height:16px' }));
@@ -69,7 +69,7 @@ export function renderDeck(root, ctx) {
     for (const id of save.deck) counts[id] = (counts[id] || 0) + 1;
     const rows = Object.keys(counts)
       .map((id) => CARD_BY_ID[id])
-      .sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name, 'he'));
+      .sort((a, b) => a.tier - b.tier || a.name.localeCompare(b.name, 'he'));
 
     const list = h('div', { class: 'deck-list' });
     if (!rows.length) {
@@ -83,7 +83,7 @@ export function renderDeck(root, ctx) {
         title: 'הסר עותק אחד',
         onclick: () => { removeFromDeck(card.id); paintPanel(); paintPool(); },
       }, [
-        h('span', { class: 'rc', text: String(card.cost) }),
+        h('span', { class: 'rc', text: String(card.tier), title: 'דרגה' }),
         h('span', { class: 'rn', text: card.name + (levelOf(card.id) ? ` ·${levelOf(card.id)}` : '') }),
         h('span', { class: 'rdot' }),
         h('span', { class: 'rx', text: '×' + counts[card.id] }),
@@ -97,7 +97,7 @@ export function renderDeck(root, ctx) {
         text: 'בנה אוטומטית',
         onclick: () => {
           autoDeck();
-          toast('נבנתה חפיסה לפי עקומת מאנה מהאוסף שלך.', 'good');
+          toast('נבנתה חפיסה מאוזנת בדרגות מהאוסף שלך.', 'good');
           paintPanel(); paintPool();
         },
       }),
@@ -144,7 +144,7 @@ export function renderDeck(root, ctx) {
         .filter(Boolean)
         .filter((k) => (!filter.el || k.el === filter.el))
         .filter((k) => (!filter.q || k.name.includes(filter.q)))
-        .sort((a, b) => a.cost - b.cost || b.tier - a.tier || a.name.localeCompare(b.name, 'he'));
+        .sort((a, b) => a.tier - b.tier || (b.atk + b.def) - (a.atk + a.def) || a.name.localeCompare(b.name, 'he'));
 
       if (!list.length) {
         grid.append(h('p', { class: 'empty-note', text: 'אין קלפים שתואמים לסינון.' }));

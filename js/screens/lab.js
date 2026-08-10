@@ -3,7 +3,7 @@
    ========================================================================= */
 
 import { h, clear, toast, modal, wait } from '../ui/dom.js';
-import { renderCard, cardDetail, recipeLine } from '../ui/card.js';
+import { renderCard, recipeLine } from '../ui/card.js';
 import { CARD_BY_ID, CARDS, TIER_NAMES, ELEMENTS } from '../data/cards.js';
 import {
   save, isDiscovered, attemptFusion, availableDiscoveries,
@@ -79,7 +79,7 @@ export function renderLab(root, ctx) {
       .filter(Boolean)
       .filter((k) => (!filter.el || k.el === filter.el))
       .filter((k) => (!filter.q || k.name.includes(filter.q)))
-      .sort((a, b) => a.tier - b.tier || a.cost - b.cost || a.name.localeCompare(b.name, 'he'));
+      .sort((a, b) => a.tier - b.tier || (a.atk + a.def) - (b.atk + b.def) || a.name.localeCompare(b.name, 'he'));
 
     if (!list.length) {
       trayEl.append(h('p', { class: 'empty-note', text: 'אין קלפים שתואמים לסינון.' }));
@@ -184,7 +184,7 @@ export function renderLab(root, ctx) {
     h('div', { class: 'tier-band' }, [
       h('h2', { text: 'המדף' }),
       h('div', { class: 'bar' }),
-      h('span', { class: 'count', text: `${save.discovered.length} / ${CARDS.filter((k) => !k.token).length}` }),
+      h('span', { class: 'count', text: `${save.discovered.length} / ${CARDS.length}` }),
     ]),
     tools,
     trayEl,
@@ -207,7 +207,6 @@ export function showDiscovery(card, ctx) {
       }),
       h('p', { class: 'eyebrow', text: TIER_NAMES[card.tier] }),
       recipeLine(card),
-      ...cardDetail(card),
       h('div', { class: 'modal-actions' }, [
         h('button', { class: 'btn btn--gold', text: 'המשך', onclick: api.close }),
         h('button', {
@@ -227,7 +226,6 @@ export function showCard(card) {
     h('div', { class: 'modal-body' }, [
       renderCard(card, { size: 'lg' }),
       recipeLine(card, { known: isDiscovered }),
-      ...cardDetail(card),
       levelOf(card.id) > 0
         ? h('p', {
             class: 'eyebrow',
