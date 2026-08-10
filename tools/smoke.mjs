@@ -12,6 +12,11 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SHOTS = process.argv.includes('--shots');
 const SHOT_DIR = process.env.SHOT_DIR || path.join(ROOT, '.shots');
 
+// --entry lets this same walk-through validate the bundled single-file
+// artifact build, not just the multi-file dev version served from index.html.
+const entryArg = process.argv.find((a) => a.startsWith('--entry='));
+const ENTRY = entryArg ? entryArg.slice('--entry='.length) : 'index.html';
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
@@ -22,7 +27,7 @@ const MIME = {
 
 const server = http.createServer((req, res) => {
   const rel = decodeURIComponent(req.url.split('?')[0]);
-  const file = path.join(ROOT, rel === '/' ? 'index.html' : rel);
+  const file = path.join(ROOT, rel === '/' ? ENTRY : rel);
   if (!file.startsWith(ROOT) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
     res.writeHead(404); return res.end('not found');
   }

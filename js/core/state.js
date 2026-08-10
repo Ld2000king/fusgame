@@ -40,7 +40,7 @@ function freshSave() {
   };
 }
 
-export let save = load();
+export const save = load();
 
 function load() {
   try {
@@ -69,7 +69,11 @@ export function persist() {
 }
 
 export function resetSave() {
-  save = freshSave();
+  // `save` is held by reference elsewhere (every screen destructures it once
+  // at import time), so a fresh run must overwrite its contents in place
+  // rather than rebinding the export.
+  for (const key of Object.keys(save)) delete save[key];
+  Object.assign(save, freshSave());
   persist();
 }
 
