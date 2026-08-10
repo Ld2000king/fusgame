@@ -26,11 +26,17 @@ Composition breathes. Cards float on their own gravity, separated by generous ne
 space that gives each object the dignity of a specimen. Nothing crowds. Nothing overlaps.
 The eye is led by alignment, not by decoration.
 
-Form is circular and geometric. The sigil — the central visual unit of this world — is
-built from concentric rings, radial spokes, and regular polygons whose sides are counted,
-never guessed. Repetition is the engine of beauty here: dense accumulations of small marks
-that reward sustained viewing, patterns that resolve into meaning only when the viewer
-slows down.
+*A later amendment*: the central visual unit of this world is now the creature itself, not
+a diagram of it — every card portrait is a small monster, procedurally grown rather than
+drawn, so that no two are ever pixel-identical yet the same card always regrows the same
+beast. The instruments-on-a-tray discipline still governs how each creature is built: a
+body silhouette computed from a seeded harmonic wobble (never raw noise, which reads as a
+scribble rather than a form), horns and spikes rooted in that same silhouette, wings as
+translucent membrane, a face reduced to eyes and a mouth and nothing more. Element still
+decides temperament before color ever needs to speak: water, life and earth grow round and
+placid; fire, arcane and metal grow faceted and sharp. The chest carries a single faint
+rune, the one thing kept from this world's original language of alchemical diagrams — proof
+that these are things alchemically grown, not things merely observed.
 
 ## Color and Material
 
@@ -49,13 +55,13 @@ earned, never sprayed. Master-level execution means knowing which effect to leav
 
 Rhythm comes from the grid: cards in even ranks, stats in fixed corners, the board a stable
 horizon that never shifts underfoot. Against that metronome, scale provides the drama. A
-legendary card is not louder because of effects; it is louder because its sigil is denser,
-its ring count higher, its gold heavier. Power is expressed as *accumulated labour* — the
-rarest objects simply look like they took the longest to draw.
+legendary card is not louder because of effects; it is louder because its creature is
+denser — more horns, more scale-scutes, a crown only the oldest beasts have earned — and
+its gold heavier. Power is expressed as *accumulated labour* — the rarest objects simply
+look like they took the longest to grow.
 
 Motion follows the same discipline. Transitions are short, eased, and few. A card lifts.
-A strike lands. A sigil rotates once, slowly, and stops. Animation exists to confirm
-causality, never to entertain.
+A strike lands. Animation exists to confirm causality, never to entertain.
 
 ## Visual Hierarchy and Type
 
@@ -65,9 +71,9 @@ quickly. Text is sparse — labels, counts, one line of rules — set in small s
 tracking, positioned so that it reads as annotation on a diagram rather than copy on a
 page. Nothing is centered by default; nothing falls off its edge; everything has margin.
 
-The hierarchy is fixed and total: sigil, then name, then numbers, then rules text. A player
-who glances for a quarter of a second sees the sigil and knows the element. A player who
-looks for one second knows the trade. A player who studies finds the craft.
+The hierarchy is fixed and total: creature, then name, then numbers, then rules text. A
+player who glances for a quarter of a second sees the creature and knows the element. A
+player who looks for one second knows the trade. A player who studies finds the craft.
 
 ## The Standard
 
