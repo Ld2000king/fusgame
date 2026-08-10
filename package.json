@@ -1,0 +1,17 @@
+{
+  "name": "fusgame",
+  "version": "1.0.0",
+  "description": "קלפי היסודות — a card-fusion and battle game in the spirit of Little Alchemist",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "validate": "node tools/validate.mjs",
+    "sim": "node tools/sim.mjs 10",
+    "smoke": "node tools/smoke.mjs",
+    "test": "node tools/validate.mjs && node tools/sim.mjs 6"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

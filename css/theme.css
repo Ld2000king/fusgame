@@ -1,0 +1,108 @@
+/* ============================================================================
+   THEME — "Alchemist's Grimoire"
+   Generated for FusGame following the Alchemical Cartography philosophy.
+   Midnight indigo ground · aged parchment ink · antique brass rules ·
+   eight elemental hues permitted to burn.
+   ========================================================================= */
+
+:root {
+  /* ---- Ground ---------------------------------------------------------- */
+  --void:          #070912;
+  --deep:          #0d1020;
+  --panel:         #151a2e;
+  --panel-2:       #1d2440;
+  --raised:        #262e50;
+  --line:          #2e3760;
+  --line-soft:     rgba(212, 162, 76, 0.16);
+
+  /* ---- Ink ------------------------------------------------------------- */
+  --ink:           #ece6d6;
+  --ink-2:         #b9b6ae;
+  --ink-3:         #7d7f96;
+  --ink-faint:     #4d5270;
+
+  /* ---- Brass ----------------------------------------------------------- */
+  --gold:          #d4a24c;
+  --gold-hi:       #f2ce85;
+  --gold-lo:       #8a6a30;
+
+  /* ---- Signals --------------------------------------------------------- */
+  --ember:         #e0603a;
+  --blood:         #c0455a;
+  --verdigris:     #4fb3a2;
+  --arcane:        #9b7fe0;
+
+  /* ---- The eight elements --------------------------------------------- */
+  --el-fire:       #e2603a;
+  --el-water:      #3f8fd6;
+  --el-earth:      #a97c4a;
+  --el-air:        #9fb4c9;
+  --el-life:       #5cb46b;
+  --el-arcane:     #9b7fe0;
+  --el-shadow:     #7160a8;
+  --el-metal:      #a9b2c4;
+
+  /* ---- Rarity (tier bands) -------------------------------------------- */
+  --rar-0:         #7d7f96;
+  --rar-1:         #6f93a8;
+  --rar-2:         #5cb46b;
+  --rar-3:         #3f8fd6;
+  --rar-4:         #9b7fe0;
+  --rar-5:         #d4a24c;
+  --rar-6:         #e2603a;
+
+  /* ---- Type ------------------------------------------------------------ */
+  --font-display: "Frank Ruhl Libre", "Cinzel", "Iowan Old Style", Georgia,
+                  "Times New Roman", serif;
+  --font-body:    "Heebo", "Assistant", -apple-system, BlinkMacSystemFont,
+                  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-num:     "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+
+  --track-wide:   0.14em;
+  --track-mega:   0.34em;
+
+  /* ---- Geometry -------------------------------------------------------- */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --r-xl: 22px;
+
+  --gut:   clamp(10px, 2.4vw, 22px);
+  --gut-s: clamp(6px, 1.4vw, 12px);
+
+  /* ---- Elevation ------------------------------------------------------- */
+  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --sh-2: 0 6px 18px -6px rgba(0, 0, 0, 0.75);
+  --sh-3: 0 18px 44px -14px rgba(0, 0, 0, 0.85);
+  --glow-gold: 0 0 0 1px rgba(212, 162, 76, 0.5),
+               0 0 26px -6px rgba(212, 162, 76, 0.55);
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 130ms;
+  --t-med:  240ms;
+  --t-slow: 460ms;
+}
+
+/* Elemental hue is exposed per-card via [data-el]; every surface that needs
+   the element's colour reads --el rather than re-deciding. */
+[data-el="fire"]   { --el: var(--el-fire); }
+[data-el="water"]  { --el: var(--el-water); }
+[data-el="earth"]  { --el: var(--el-earth); }
+[data-el="air"]    { --el: var(--el-air); }
+[data-el="life"]   { --el: var(--el-life); }
+[data-el="arcane"] { --el: var(--el-arcane); }
+[data-el="shadow"] { --el: var(--el-shadow); }
+[data-el="metal"]  { --el: var(--el-metal); }
+
+[data-tier="0"] { --rar: var(--rar-0); }
+[data-tier="1"] { --rar: var(--rar-1); }
+[data-tier="2"] { --rar: var(--rar-2); }
+[data-tier="3"] { --rar: var(--rar-3); }
+[data-tier="4"] { --rar: var(--rar-4); }
+[data-tier="5"] { --rar: var(--rar-5); }
+[data-tier="6"] { --rar: var(--rar-6); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-med: 0ms; --t-slow: 0ms; }
+}

@@ -1,0 +1,79 @@
+# Alchemical Cartography
+
+*A design philosophy for FusGame — קלפי היסודות*
+
+---
+
+## The Movement
+
+**Alchemical Cartography** treats the act of combination as an act of mapping. Nothing in
+this world is invented; it is *discovered*, and every discovery is recorded with the cold
+patience of a field scientist who happens to be studying the impossible. The aesthetic is
+that of a 17th-century treatise on transmutation redrawn by someone who has spent a decade
+perfecting a single circle — a document that proves something ephemeral can be studied,
+charted, and understood through careful attention.
+
+The work must look meticulously crafted. Every ring, every tick mark, every gap between
+two elements should read as the product of deep expertise and painstaking iteration. There
+is no room here for the cartoonish or the hurried. This is a scientific bible for an
+imaginary discipline, and it carries itself accordingly.
+
+## Space and Form
+
+Space is dark and deep — the void of an unlit laboratory at four in the morning — and into
+that void, forms are placed with the precision of instruments on a felt-lined tray.
+Composition breathes. Cards float on their own gravity, separated by generous negative
+space that gives each object the dignity of a specimen. Nothing crowds. Nothing overlaps.
+The eye is led by alignment, not by decoration.
+
+Form is circular and geometric. The sigil — the central visual unit of this world — is
+built from concentric rings, radial spokes, and regular polygons whose sides are counted,
+never guessed. Repetition is the engine of beauty here: dense accumulations of small marks
+that reward sustained viewing, patterns that resolve into meaning only when the viewer
+slows down.
+
+## Color and Material
+
+The palette is limited and absolute: a midnight-indigo ground, aged parchment for text,
+and antique brass for every line that carries authority. Against that restraint, the eight
+elemental hues are permitted to burn — ember, deep tide, ochre, pale wind, verdant, arcane
+violet, umbral, and cold steel. Each element owns exactly one hue and never borrows
+another's. Color is the primary information system: a player should be able to read an
+elemental affinity across the room, without a single word.
+
+Material is suggested, never simulated. A faint grain over the ground. A hairline gold rule
+where two planes meet. Glow used as evidence of energy, not as ornament — and always
+earned, never sprayed. Master-level execution means knowing which effect to leave out.
+
+## Scale and Rhythm
+
+Rhythm comes from the grid: cards in even ranks, stats in fixed corners, the board a stable
+horizon that never shifts underfoot. Against that metronome, scale provides the drama. A
+legendary card is not louder because of effects; it is louder because its sigil is denser,
+its ring count higher, its gold heavier. Power is expressed as *accumulated labour* — the
+rarest objects simply look like they took the longest to draw.
+
+Motion follows the same discipline. Transitions are short, eased, and few. A card lifts.
+A strike lands. A sigil rotates once, slowly, and stops. Animation exists to confirm
+causality, never to entertain.
+
+## Visual Hierarchy and Type
+
+Typography is quiet and structural. A single display serif carries names and numbers with
+the confidence of engraved plate; a clean sans handles everything a player must read
+quickly. Text is sparse — labels, counts, one line of rules — set in small sizes with wide
+tracking, positioned so that it reads as annotation on a diagram rather than copy on a
+page. Nothing is centered by default; nothing falls off its edge; everything has margin.
+
+The hierarchy is fixed and total: sigil, then name, then numbers, then rules text. A player
+who glances for a quarter of a second sees the sigil and knows the element. A player who
+looks for one second knows the trade. A player who studies finds the craft.
+
+## The Standard
+
+Every screen in this game should survive being printed, framed, and hung. If a choice makes
+the work busier, it is the wrong choice. If the instinct is to add a new shape, the correct
+move is to refine an existing one until it is undeniable. The finished object must look as
+though someone at the absolute top of their field laboured over it for countless hours —
+because the whole premise of the game is that patient combination produces something
+greater than its parts, and the design has no business claiming otherwise.
