@@ -205,7 +205,10 @@ export function showDiscovery(card, ctx) {
         style: 'font-family:var(--font-display);font-size:19px;color:var(--gold-hi)',
         text: card.name,
       }),
-      h('p', { class: 'eyebrow', text: TIER_NAMES[card.tier] }),
+      card.title && card.title !== card.name
+        ? h('p', { class: 'art-title', text: '״' + card.title + '״' })
+        : null,
+      h('p', { class: 'eyebrow eyebrow--he', text: TIER_NAMES[card.tier] }),
       recipeLine(card),
       h('div', { class: 'modal-actions' }, [
         h('button', { class: 'btn btn--gold', text: 'המשך', onclick: api.close }),
@@ -222,7 +225,10 @@ export function showDiscovery(card, ctx) {
 export function showCard(card) {
   modal((api) => [
     h('h2', { text: card.name }),
-    h('p', { class: 'eyebrow', text: `${TIER_NAMES[card.tier]} · ${ELEMENTS[card.el].name}` }),
+    card.title && card.title !== card.name
+      ? h('p', { class: 'art-title', text: '״' + card.title + '״' })
+      : null,
+    h('p', { class: 'eyebrow eyebrow--he', text: `${TIER_NAMES[card.tier]} · ${ELEMENTS[card.el].name}` }),
     h('div', { class: 'modal-body' }, [
       renderCard(card, { size: 'lg' }),
       recipeLine(card, { known: isDiscovered }),

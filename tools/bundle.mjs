@@ -32,6 +32,7 @@ const OUT = path.resolve(process.argv[2] || path.join(ROOT, '.bundle', 'game.htm
 /* Dependency order doesn't actually matter — __require resolves lazily and
    memoizes — but listing leaves-first keeps the generated file readable. */
 const MODULES = [
+  'data/art.js',
   'data/cards.js',
   'data/campaign.js',
   'core/battle.js',
@@ -92,6 +93,33 @@ function transformModule(relPath) {
   return { body: src, exportsList: [...exportsSet] };
 }
 
+/* The published page can make no network requests, so every portrait has to
+   travel inside the file. ART_BASE is rewritten to an empty string and each
+   `img` value is swapped for its data URI, which keeps js/data/art.js free of
+   any build concern. */
+function inlineArt(src) {
+  const artDir = path.join(ROOT, 'art');
+  if (!fs.existsSync(artDir)) {
+    console.warn('! art/ missing — run `node tools/fetch-art.mjs` first; portraits will 404.');
+    return src;
+  }
+  let inlined = 0;
+  let bytes = 0;
+  const out = src.replace(/img:\s*'([\w-]+\.jpg)'/g, (whole, file) => {
+    const abs = path.join(artDir, file);
+    if (!fs.existsSync(abs)) {
+      console.warn(`! art/${file} not found — left as a path`);
+      return whole;
+    }
+    const b64 = fs.readFileSync(abs).toString('base64');
+    inlined++;
+    bytes += b64.length;
+    return `img: 'data:image/jpeg;base64,${b64}'`;
+  });
+  console.log(`inlined ${inlined} portrait(s), ${(bytes / 1024).toFixed(0)} KB base64`);
+  return out.replace(/const ART_BASE = '[^']*';/, "const ART_BASE = '';");
+}
+
 function bundleScript() {
   const parts = [
     '"use strict";',
@@ -109,7 +137,7 @@ function bundleScript() {
   for (const rel of MODULES) {
     const { body, exportsList } = transformModule(rel);
     parts.push(`__modules[${JSON.stringify(rel)}] = function () {`);
-    parts.push(body);
+    parts.push(rel === 'data/art.js' ? inlineArt(body) : body);
     parts.push(`return { ${exportsList.join(', ')} };`);
     parts.push('};');
   }
@@ -146,7 +174,11 @@ function build() {
   const body = extractBodyMarkup();
   const css = readFonts() + '\n\n' + readCss('theme.css') + '\n\n' + readCss('app.css');
 
-  const html = `<title>קלפי היסודות · Opus Alchemicum</title>
+  /* charset first, and before any non-ASCII byte: the page is almost entirely
+     Hebrew, and without this the file renders as mojibake anywhere the host
+     does not happen to send `charset=utf-8` on the response (file:// included). */
+  const html = `<meta charset="utf-8">
+<title>קלפי היסודות · Opus Alchemicum</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307060B'/%3E%3Cg fill='none' stroke='%23D2A03C' stroke-width='1.4'%3E%3Ccircle cx='16' cy='16' r='11'/%3E%3Ccircle cx='16' cy='16' r='7.5' opacity='.5'/%3E%3Cpolygon points='16,9 22,20 10,20'/%3E%3C/g%3E%3C/svg%3E">
 <style>

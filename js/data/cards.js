@@ -10,6 +10,8 @@
    alchemist directly.
    ========================================================================= */
 
+import { ARENA_ART, ART_BASE } from './art.js';
+
 export const ELEMENTS = {
   fire:   { id: 'fire',   name: 'אש',    glyph: 'fire'   },
   water:  { id: 'water',  name: 'מים',   glyph: 'water'  },
@@ -128,6 +130,20 @@ export const CARDS = [
   c('chaos',   'כאוס',    'fire',   6, 15, 8, ['void', 'inferno']),
   c('philosopherStone', 'אבן החכמים', 'arcane', 6, 14, 8, ['crystal', 'genesis']),
 ];
+
+/* --------------------------------------------------------------------------
+   Merge in THE-ARENA's monster portraits. Every matched card gains `img`,
+   `imgPos` and `title`; those flagged `rename` also take the source name as
+   their own. Cards with no match keep their procedurally-drawn creature.
+   -------------------------------------------------------------------------- */
+for (const card of CARDS) {
+  const art = ARENA_ART[card.id];
+  if (!art) continue;
+  card.img = ART_BASE + art.img;
+  card.imgPos = art.imgPos;
+  card.title = art.title;
+  if (art.rename) card.name = art.title;
+}
 
 export const CARD_BY_ID = Object.fromEntries(CARDS.map((k) => [k.id, k]));
 

@@ -11,6 +11,31 @@ import { levelOf } from '../core/state.js';
 const LEVEL_MARK = ['', '·', '··', '···'];
 
 /**
+ * A card's picture: the painted portrait where one exists, otherwise the
+ * procedurally-drawn creature. The drawing stays in the DOM underneath as a
+ * fallback, so a missing or broken image file degrades to it rather than to
+ * an empty frame.
+ */
+function cardArt(card, opt) {
+  const wrap = h('div', { class: 'card-art', html: sigil(card) });
+  if (!card.img || opt.locked) return wrap;
+
+  wrap.classList.add('has-img');
+  const img = h('img', {
+    class: 'mon-img',
+    src: card.img,
+    alt: '',
+    loading: 'lazy',
+    decoding: 'async',
+    draggable: 'false',
+    style: card.imgPos ? `object-position:${card.imgPos}` : null,
+  });
+  img.addEventListener('error', () => wrap.classList.add('img-failed'), { once: true });
+  wrap.append(img);
+  return wrap;
+}
+
+/**
  * @param {object} card   card record
  * @param {object} [opt]
  *   size      'lg' | '' | 'sm' | 'xs'
@@ -43,7 +68,7 @@ export function renderCard(card, opt = {}) {
       ? h('div', { class: 'card-lvl', text: LEVEL_MARK[Math.min(3, lvl)] })
       : null,
     opt.mega ? h('div', { class: 'card-mega', text: 'MEGA' }) : null,
-    h('div', { class: 'card-art', html: sigil(card) }),
+    cardArt(card, opt),
     h('h3', { class: 'card-name', text: opt.locked ? '؟؟؟' : card.name }),
     h('div', { class: 'card-tier', text: opt.locked ? '' : TIER_NAMES[card.tier] }),
     h('div', { class: 'card-stats' }, [
