@@ -1,87 +1,143 @@
 /* ============================================================================
-   THEME — "Alchemist's Grimoire"
-   Generated for FusGame following the Alchemical Cartography philosophy.
-   Midnight indigo ground · aged parchment ink · antique brass rules ·
-   eight elemental hues permitted to burn.
+   THEME — ported from THE-ARENA (Ld2000king/THE-ARENA, styles.css)
+   Matte obsidian with a violet cast, metallic bevels, and seven saturated
+   accents. Surface, text, metal-edge, shadow, glow, radius, spring and font
+   tokens are copied verbatim from that project so both games read as one
+   family. What is added here — and only here — is the mapping of this game's
+   eight elements and seven tiers onto that palette, since THE-ARENA has no
+   equivalent axis.
    ========================================================================= */
 
 :root {
-  /* ---- Ground ---------------------------------------------------------- */
-  --void:          #070912;
-  --deep:          #0d1020;
-  --panel:         #151a2e;
-  --panel-2:       #1d2440;
-  --raised:        #262e50;
-  --line:          #2e3760;
-  --line-soft:     rgba(212, 162, 76, 0.16);
+  /* ---- Accents (verbatim from THE-ARENA) ------------------------------- */
+  --neon-cyan:        #4A79C4;   /* arcane blue */
+  --neon-cyan-deep:   #33578F;
+  --neon-pink:        #B0447A;   /* rose blood */
+  --neon-magenta:     #8E3A80;
+  --neon-lime:        #117B55;   /* verdant */
+  --neon-lime-deep:   #23A876;
+  --neon-orange:      #B14D19;   /* ember */
+  --neon-orange-deep: #8C3A12;
+  --neon-gold:        #D2A03C;   /* antique amber */
+  --neon-gold-deep:   #A87B22;
+  --neon-purple:      #7343C4;   /* abyss violet */
+  --neon-purple-deep: #542D99;
+  --neon-red:         #B02742;   /* crimson */
+  --neon-red-deep:    #7E1A2F;
 
-  /* ---- Ink ------------------------------------------------------------- */
-  --ink:           #ece6d6;
-  --ink-2:         #b9b6ae;
-  --ink-3:         #7d7f96;
-  --ink-faint:     #4d5270;
+  /* ---- Surfaces: obsidian with a violet lean, never generic grey ------- */
+  --bg-deep:     #0E0C14;
+  --bg-deep-2:   #07060B;
+  --panel-light: #16121F;
+  --surface-2:   #201A2C;
+  --surface-3:   #2B2339;
 
-  /* ---- Brass ----------------------------------------------------------- */
-  --gold:          #d4a24c;
-  --gold-hi:       #f2ce85;
-  --gold-lo:       #8a6a30;
+  /* ---- Text ------------------------------------------------------------ */
+  --text-dark:      #F2EFF7;   /* the bright one; goes ON dark and on fills */
+  --text-secondary: #A79EBC;
+  --text-light:     #ffffff;
+  --on-bright:      #140F1C;   /* for text on amber/light fills */
 
-  /* ---- Signals --------------------------------------------------------- */
-  --ember:         #e0603a;
-  --blood:         #c0455a;
-  --verdigris:     #4fb3a2;
-  --arcane:        #9b7fe0;
+  /* ---- Metallic edges: top edge catches light, bottom edge sinks -------- */
+  --metal-edge:        rgba(255, 255, 255, 0.13);
+  --metal-edge-strong: rgba(255, 255, 255, 0.22);
+  --metal-shade:       rgba(0, 0, 0, 0.45);
+  --bevel: inset 0 1px 0 var(--metal-edge-strong),
+           inset 0 -2px 6px var(--metal-shade);
 
-  /* ---- The eight elements --------------------------------------------- */
-  --el-fire:       #e2603a;
-  --el-water:      #3f8fd6;
-  --el-earth:      #a97c4a;
-  --el-air:        #9fb4c9;
-  --el-life:       #5cb46b;
-  --el-arcane:     #9b7fe0;
-  --el-shadow:     #7160a8;
-  --el-metal:      #a9b2c4;
+  --shadow-depth-sm: 0 8px 20px rgba(0, 0, 0, 0.34);
+  --shadow-depth-md: 0 10px 26px rgba(0, 0, 0, 0.42);
+  --shadow-depth-lg: 0 16px 36px rgba(0, 0, 0, 0.52);
+  --shadow-frame:    0 30px 80px rgba(0, 0, 0, 0.7),
+                     0 0 1px rgba(255, 255, 255, 0.07) inset;
 
-  /* ---- Rarity (tier bands) -------------------------------------------- */
-  --rar-0:         #7d7f96;
-  --rar-1:         #6f93a8;
-  --rar-2:         #5cb46b;
-  --rar-3:         #3f8fd6;
-  --rar-4:         #9b7fe0;
-  --rar-5:         #d4a24c;
-  --rar-6:         #e2603a;
+  --glow-cyan:   0 8px 22px rgba(74, 121, 196, 0.30), var(--shadow-depth-sm);
+  --glow-green:  0 8px 22px rgba(35, 168, 118, 0.28), var(--shadow-depth-sm);
+  --glow-gold:   0 8px 24px rgba(210, 160, 60, 0.34), var(--shadow-depth-sm);
+  --glow-orange: 0 8px 22px rgba(180, 80, 28, 0.30), var(--shadow-depth-sm);
+  --glow-purple: 0 8px 22px rgba(115, 67, 196, 0.32), var(--shadow-depth-sm);
+  --glow-red:    0 8px 22px rgba(176, 39, 66, 0.32), var(--shadow-depth-sm);
 
-  /* ---- Type ------------------------------------------------------------ */
-  --font-display: "Frank Ruhl Libre", "Cinzel", "Iowan Old Style", Georgia,
-                  "Times New Roman", serif;
-  --font-body:    "Heebo", "Assistant", -apple-system, BlinkMacSystemFont,
-                  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-num:     "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+  --radius-sm:    14px;
+  --radius-tile:  16px;
+  --radius-btn:   18px;
+  --radius-card:  24px;
+  --radius-frame: 28px;
 
-  --track-wide:   0.14em;
-  --track-mega:   0.34em;
+  --font-display: 'Rubik', 'Poppins', sans-serif;
+  --font-body:    'Poppins', 'Rubik', sans-serif;
+  /* Poppins carries no Hebrew, so Hebrew glyphs fall through to Rubik —
+     which is exactly how THE-ARENA renders its own Hebrew body text. */
+  --font-num:     'Rubik', 'Poppins', sans-serif;
 
-  /* ---- Geometry -------------------------------------------------------- */
-  --r-sm: 4px;
-  --r-md: 8px;
-  --r-lg: 14px;
-  --r-xl: 22px;
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease:   cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 150ms;
+  --t-med:  250ms;
+  --t-slow: 450ms;
+
+  /* ---- Aliases kept so existing rules keep resolving ------------------- */
+  --void:      var(--bg-deep-2);
+  --deep:      var(--bg-deep);
+  --panel:     var(--panel-light);
+  --panel-2:   var(--surface-2);
+  --raised:    var(--surface-3);
+  --line:      rgba(255, 255, 255, 0.07);
+  --line-soft: rgba(255, 255, 255, 0.05);
+
+  --ink:       var(--text-dark);
+  --ink-2:     #C9C2D9;
+  --ink-3:     var(--text-secondary);
+  --ink-faint: #6B6383;
+
+  --gold:      var(--neon-gold);
+  --gold-hi:   #F0BE55;
+  --gold-lo:   var(--neon-gold-deep);
+
+  --ember:     var(--neon-orange);
+  --blood:     var(--neon-red);
+  --verdigris: var(--neon-lime-deep);
+  --arcane:    var(--neon-purple);
+
+  --r-sm: var(--radius-sm);
+  --r-md: var(--radius-tile);
+  --r-lg: var(--radius-card);
+  --r-xl: var(--radius-frame);
+
+  --sh-1: var(--shadow-depth-sm);
+  --sh-2: var(--shadow-depth-md);
+  --sh-3: var(--shadow-depth-lg);
+
+  --track-wide: 0.14em;
+  --track-mega: 0.34em;
 
   --gut:   clamp(10px, 2.4vw, 22px);
   --gut-s: clamp(6px, 1.4vw, 12px);
 
-  /* ---- Elevation ------------------------------------------------------- */
-  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --sh-2: 0 6px 18px -6px rgba(0, 0, 0, 0.75);
-  --sh-3: 0 18px 44px -14px rgba(0, 0, 0, 0.85);
-  --glow-gold: 0 0 0 1px rgba(212, 162, 76, 0.5),
-               0 0 26px -6px rgba(212, 162, 76, 0.55);
+  /* ---- The eight elements, mapped onto THE-ARENA's accents ------------- */
+  /* Six land on an ARENA hue directly. Air and metal have no equivalent
+     there, so they are derived in the same idiom — desaturated, mid-
+     luminance, and distinct from every neighbour at a glance. */
+  --el-fire:   var(--neon-orange);       /* ember */
+  --el-water:  var(--neon-cyan);         /* arcane blue */
+  --el-earth:  var(--neon-gold-deep);    /* ochre */
+  --el-air:    #8FA5C9;                  /* derived: pale wind-steel */
+  --el-life:   var(--neon-lime-deep);    /* verdant */
+  --el-arcane: var(--neon-purple);       /* abyss violet */
+  --el-shadow: var(--neon-magenta);      /* nightshade plum */
+  --el-metal:  #8E93A8;                  /* ARENA's common-rarity steel */
 
-  /* ---- Motion ---------------------------------------------------------- */
-  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --t-fast: 130ms;
-  --t-med:  240ms;
-  --t-slow: 460ms;
+  /* ---- Seven tiers as a rarity ramp ------------------------------------ */
+  /* Anchored on THE-ARENA's five rarity colours, with two intermediate
+     steps derived to stretch the ramp to seven without breaking its
+     grey → blue → violet → amber → crimson progression. */
+  --rar-0: #8E93A8;   /* common   */
+  --rar-1: #6E9BC4;   /* derived  */
+  --rar-2: #4E9FD6;   /* rare     */
+  --rar-3: #A868E8;   /* epic     */
+  --rar-4: #C77BE8;   /* derived  */
+  --rar-5: #E0A93A;   /* legendary*/
+  --rar-6: #E23B6B;   /* ultra    */
 }
 
 /* Elemental hue is exposed per-card via [data-el]; every surface that needs
@@ -104,5 +160,9 @@
 [data-tier="6"] { --rar: var(--rar-6); }
 
 @media (prefers-reduced-motion: reduce) {
-  :root { --t-fast: 0ms; --t-med: 0ms; --t-slow: 0ms; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,7 +1,13 @@
 /* ============================================================================
-   FETCH-FONTS — downloads the two typefaces the theme specifies (Frank Ruhl
-   Libre for display, Heebo for body) and writes a self-contained @font-face
-   stylesheet with the glyph data inlined as base64.
+   FETCH-FONTS — downloads the two typefaces the theme specifies (Rubik for
+   display, Poppins for body — the pairing ported from THE-ARENA) and writes
+   a self-contained @font-face stylesheet with the glyph data inlined as
+   base64.
+
+   Poppins ships no Hebrew, so Hebrew glyphs fall through to Rubik, which
+   does — exactly how THE-ARENA renders its own Hebrew body text. Rubik's
+   hebrew subset is therefore the one that actually carries this game's UI
+   and must not be dropped.
 
    Why: the Artifact CSP blocks requests to font CDNs at view time, so the
    bundled single-file build can't link fonts.googleapis.com the way the dev
@@ -26,7 +32,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE_DIR = path.join(ROOT, 'tools', '.font-cache');
 const OUT = path.join(CACHE_DIR, 'fonts.css');
 
-const FAMILIES = 'family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@400;500;700';
+const FAMILIES = 'family=Rubik:wght@500;600;700;800;900&family=Poppins:wght@300;400;600;700;800';
 const CSS_API = `https://fonts.googleapis.com/css2?${FAMILIES}&display=swap`;
 // A modern desktop UA gets woff2 (smallest) rather than ttf from the CSS2 API.
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';

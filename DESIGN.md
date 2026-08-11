@@ -40,14 +40,32 @@ that these are things alchemically grown, not things merely observed.
 
 ## Color and Material
 
-The palette is limited and absolute: a midnight-indigo ground, aged parchment for text,
-and antique brass for every line that carries authority. Against that restraint, the eight
-elemental hues are permitted to burn — ember, deep tide, ochre, pale wind, verdant, arcane
-violet, umbral, and cold steel. Each element owns exactly one hue and never borrows
-another's. Color is the primary information system: a player should be able to read an
-elemental affinity across the room, without a single word.
+*Superseded — the palette now comes from THE-ARENA.* The colour and material layer of this
+document was replaced wholesale by the system in `Ld2000king/THE-ARENA` (`styles.css`), so
+that both games read as one family. What follows describes the ported system; the paragraph
+after it records what the original called for, since the *reasoning* still governs how the
+new palette is applied.
 
-Material is suggested, never simulated. A faint grain over the ground. A hairline gold rule
+The ground is matte obsidian with a violet cast — never a generic grey — layered as a
+vignette over a violet bloom above and a crimson one below, with two slow-drifting aurora
+orbs behind everything. Raised surfaces are cast metal: a soft top-to-bottom gradient, a
+top edge that catches the light, a bottom edge that sinks into shadow. Buttons compress
+when pressed, the way a physical key does, and a sheen sweeps across them on hover. Corners
+are generous — 14 to 28 pixels — and type is Rubik over Poppins.
+
+Seven saturated accents carry every signal: arcane blue, rose blood, verdant, ember,
+antique amber, abyss violet, and crimson. The game's eight elements map onto them, with
+air and metal derived in the same idiom because THE-ARENA has no equivalent; its five
+rarity colours are stretched to seven tiers along the same grey → blue → violet → amber →
+crimson progression.
+
+*The principle that survived the transplant*: each element owns exactly one hue and never
+borrows another's. Colour is the primary information system — a player should be able to
+read an elemental affinity across the room, without a single word — which is why the eight
+elements were mapped onto the new accents one-to-one rather than collapsed into whichever
+hues happened to be available.
+
+Material is suggested, never simulated. A hairline gold rule
 where two planes meet. Glow used as evidence of energy, not as ornament — and always
 earned, never sprayed. Master-level execution means knowing which effect to leave out.
 
