@@ -9,6 +9,7 @@ import { CARD_BY_ID, BASE_IDS, fuse, copyLimit, CARDS } from '../data/cards.js';
 import { CAMPAIGN } from '../data/campaign.js';
 
 const KEY = 'fusgame:save:v1';
+export const IS_SHOWCASE = new URLSearchParams(location.search).get('showcase') === 'all';
 export const DECK_SIZE = 20;
 export const SHARDS_PER_LEVEL = 3;
 export const MAX_LEVEL = 3;
@@ -46,7 +47,7 @@ export const save = load();
 function load() {
   try {
     const raw = localStorage.getItem(KEY);
-    if (!raw) return freshSave();
+    if (!raw) return withShowcase(freshSave());
     const data = JSON.parse(raw);
     const base = freshSave();
     const merged = { ...base, ...data };
@@ -54,13 +55,25 @@ function load() {
     merged.discovered = merged.discovered.filter((id) => CARD_BY_ID[id]);
     for (const id of BASE_IDS) if (!merged.discovered.includes(id)) merged.discovered.push(id);
     merged.deck = merged.deck.filter((id) => merged.discovered.includes(id));
-    return merged;
+    return withShowcase(merged);
   } catch {
-    return freshSave();
+    return withShowcase(freshSave());
   }
 }
 
+function withShowcase(data) {
+  if (!IS_SHOWCASE) return data;
+  return {
+    ...data,
+    discovered: CARDS.map((card) => card.id),
+    seenIntro: true,
+  };
+}
+
 export function persist() {
+  // Showcase mode is a read-only preview. It must never overwrite the
+  // player's real browser save with an artificially completed collection.
+  if (IS_SHOWCASE) { emit(); return; }
   try {
     localStorage.setItem(KEY, JSON.stringify(save));
   } catch {
