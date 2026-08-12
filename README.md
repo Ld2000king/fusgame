@@ -130,3 +130,16 @@ Poppins. הטוקנים ב־`css/theme.css` הועתקו מילה במילה מ�
 **העיקרון שנשמר:** לכל יסוד גוון אחד משלו — הצבע הוא מערכת המידע הראשית,
 ואפשר לזהות יסוד של קלף מקצה החדר בלי לקרוא מילה. הפילוסופיה המלאה
 ב־[`DESIGN.md`](DESIGN.md).
+
+---
+
+## Free hosting and offline operation
+
+The game is a fully static site: it has no runtime API, paid backend, account,
+database, analytics SDK, or AI service. All game logic and monster artwork are
+served directly from this repository, and progress is stored only in the
+player's browser with `localStorage`.
+
+The included GitHub Pages workflow publishes `main` at
+`https://ld2000king.github.io/fusgame/` using GitHub's free static hosting.
+No secrets or API keys are required.
