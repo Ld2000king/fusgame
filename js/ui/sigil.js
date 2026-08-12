@@ -73,16 +73,18 @@ function elementGlyph(el, cx, cy, s) {
   }
 }
 
-/* -- Per-element temperament: how the body silhouette behaves. ------------- */
+/* -- Per-element temperament: how the body silhouette behaves. -------------
+   Every profile keeps at least one horn and enough jitter to break a perfect
+   round blob — even the "smooth" elements read as scaled/feral, not plush. */
 const PROFILE = {
-  fire:   { smooth: false, jitter: 0.30, spikes: [1, 3], spikeLen: [0.38, 0.6],  wing: 0.10 },
-  water:  { smooth: true,  jitter: 0.14, spikes: [0, 1], spikeLen: [0.16, 0.26], wing: 0.10 },
-  earth:  { smooth: true,  jitter: 0.12, spikes: [0, 2], spikeLen: [0.12, 0.2],  wing: 0.02 },
-  air:    { smooth: false, jitter: 0.18, spikes: [0, 1], spikeLen: [0.14, 0.24], wing: 0.60 },
-  life:   { smooth: true,  jitter: 0.16, spikes: [0, 2], spikeLen: [0.14, 0.28], wing: 0.08 },
-  arcane: { smooth: false, jitter: 0.22, spikes: [1, 3], spikeLen: [0.2, 0.4],   wing: 0.22 },
-  shadow: { smooth: true,  jitter: 0.28, spikes: [1, 3], spikeLen: [0.22, 0.42], wing: 0.24 },
-  metal:  { smooth: false, jitter: 0.09, spikes: [1, 2], spikeLen: [0.12, 0.2],  wing: 0.05 },
+  fire:   { smooth: false, jitter: 0.34, spikes: [2, 4], spikeLen: [0.42, 0.68], wing: 0.10 },
+  water:  { smooth: true,  jitter: 0.18, spikes: [1, 2], spikeLen: [0.22, 0.34], wing: 0.10 },
+  earth:  { smooth: true,  jitter: 0.16, spikes: [1, 3], spikeLen: [0.18, 0.28], wing: 0.02 },
+  air:    { smooth: false, jitter: 0.20, spikes: [1, 2], spikeLen: [0.20, 0.32], wing: 0.60 },
+  life:   { smooth: true,  jitter: 0.18, spikes: [1, 3], spikeLen: [0.20, 0.32], wing: 0.08 },
+  arcane: { smooth: false, jitter: 0.24, spikes: [2, 4], spikeLen: [0.26, 0.46], wing: 0.22 },
+  shadow: { smooth: true,  jitter: 0.30, spikes: [2, 4], spikeLen: [0.28, 0.48], wing: 0.24 },
+  metal:  { smooth: false, jitter: 0.12, spikes: [2, 3], spikeLen: [0.18, 0.28], wing: 0.05 },
 };
 
 /* Organic silhouette: two seeded sine harmonics, not per-point noise, so the
@@ -142,12 +144,24 @@ function wing(cx, cy, R, side, size, droop) {
   return `<path d="${d}" fill="currentColor" opacity="0.5" stroke="var(--deep)" stroke-width="0.6" stroke-opacity="0.4"/>`;
 }
 
-function eye(x, y, r) {
-  const glint = [x - r * 0.32, y - r * 0.32];
-  return (
-    `<circle cx="${fx(x)}" cy="${fx(y)}" r="${fx(r)}" fill="var(--deep)" stroke="none"/>` +
-    `<circle cx="${fx(glint[0])}" cy="${fx(glint[1])}" r="${fx(r * 0.32)}" fill="#fff" opacity="0.85" stroke="none"/>`
-  );
+/* A narrowed, angled predator eye: bright almond socket, a rotated slit
+   pupil (no round doll-eye glint), and a furrowed brow slashing above it —
+   the brow's outer end kicks up and its inner end drops toward the snout,
+   the same asymmetry that reads as a scowl on any face.
+   side: -1 left eye, 1 right eye, 0 centered (cyclops / third eye). */
+function eye(cx, y, r, side = 0) {
+  const w = r * 1.6, h = r;
+  const socket = `M ${fx(cx - w)} ${fx(y)} ` +
+    `Q ${fx(cx - w * 0.15)} ${fx(y - h * 1.15)} ${fx(cx + w * 0.6)} ${fx(y - h * 0.3)} ` +
+    `Q ${fx(cx + w)} ${fx(y + h * 0.05)} ${fx(cx + w * 0.25)} ${fx(y + h * 0.6)} ` +
+    `Q ${fx(cx - w * 0.3)} ${fx(y + h * 0.75)} ${fx(cx - w)} ${fx(y)} Z`;
+  const pupil = `<ellipse cx="${fx(cx + w * 0.05)}" cy="${fx(y)}" rx="${fx(r * 0.16)}" ry="${fx(h * 0.85)}" ` +
+    `fill="var(--deep)" transform="rotate(${fx((side || 1) * 16)} ${fx(cx)} ${fx(y)})"/>`;
+  const bw = fx(Math.max(0.8, h * 0.4));
+  const brow = side === 0
+    ? `<line x1="${fx(cx - w * 0.9)}" y1="${fx(y - h * 1.5)}" x2="${fx(cx + w * 0.9)}" y2="${fx(y - h * 1.9)}" stroke="var(--deep)" stroke-width="${bw}" stroke-linecap="round" opacity="0.85"/>`
+    : `<line x1="${fx(cx + side * w * 1.1)}" y1="${fx(y - h * 2.2)}" x2="${fx(cx - side * w * 0.35)}" y2="${fx(y - h * 1.15)}" stroke="var(--deep)" stroke-width="${bw}" stroke-linecap="round" opacity="0.85"/>`;
+  return `<path d="${socket}" fill="#fff" opacity="0.92" stroke="var(--deep)" stroke-width="0.55"/>${pupil}${brow}`;
 }
 
 /* Jagged-top mouth, filled — reads as a row of teeth at card scale. */
@@ -163,8 +177,13 @@ function toothyMouth(cx, y, halfW, teeth, h) {
   return `<path d="${d}" fill="var(--deep)" stroke="none"/>`;
 }
 
-function calmMouth(cx, y, halfW, curve) {
-  return `<path d="M ${fx(cx - halfW)} ${fx(y)} Q ${fx(cx)} ${fx(y + curve)} ${fx(cx + halfW)} ${fx(y)}" fill="none" stroke="var(--deep)" stroke-width="1.4" opacity="0.75"/>`;
+/* Closed-mouth grimace: a flat, level line (never a curved-up smile) with a
+   fang hanging off each corner. */
+function grimMouth(cx, y, halfW, fangLen) {
+  const line = `<line x1="${fx(cx - halfW)}" y1="${fx(y)}" x2="${fx(cx + halfW)}" y2="${fx(y)}" stroke="var(--deep)" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>`;
+  const fangL = `<polygon points="${fx(cx - halfW * 0.85)},${fx(y)} ${fx(cx - halfW * 0.6)},${fx(y)} ${fx(cx - halfW * 0.72)},${fx(y + fangLen)}" fill="var(--deep)" opacity="0.85"/>`;
+  const fangR = `<polygon points="${fx(cx + halfW * 0.6)},${fx(y)} ${fx(cx + halfW * 0.85)},${fx(y)} ${fx(cx + halfW * 0.72)},${fx(y + fangLen)}" fill="var(--deep)" opacity="0.85"/>`;
+  return line + fangL + fangR;
 }
 
 /**
@@ -203,7 +222,7 @@ export function sigilSVG(card, opt = {}) {
 
   /* body -------------------------------------------------------------------- */
   const bodyPath = prof.smooth ? smoothClosedPath(pts) : facetedClosedPath(pts);
-  out.push(`<path d="${bodyPath}" fill="currentColor" stroke="var(--deep)" stroke-width="1" stroke-opacity="0.5"/>`);
+  out.push(`<path d="${bodyPath}" fill="currentColor" stroke="var(--deep)" stroke-width="1.6" stroke-opacity="0.7"/>`);
 
   /* horns / spikes, rooted in the silhouette -------------------------------- */
   const [spikeMin, spikeMax] = prof.spikes;
@@ -246,23 +265,23 @@ export function sigilSVG(card, opt = {}) {
   const eyeRoll = r();
   const eyeY = c - R * 0.12;
   if (eyeRoll < 0.14) {
-    out.push(eye(c, eyeY, R * 0.17));                                   // cyclops
+    out.push(eye(c, eyeY, R * 0.17, 0));                                // cyclops
   } else if (eyeRoll < 0.86 || tier < 4) {
-    out.push(eye(c - R * 0.24, eyeY, R * 0.115));
-    out.push(eye(c + R * 0.24, eyeY, R * 0.115));                        // standard pair
+    out.push(eye(c - R * 0.24, eyeY, R * 0.115, -1));
+    out.push(eye(c + R * 0.24, eyeY, R * 0.115, 1));                     // standard pair
   } else {
-    out.push(eye(c - R * 0.26, eyeY, R * 0.1));
-    out.push(eye(c + R * 0.26, eyeY, R * 0.1));
-    out.push(eye(c, eyeY - R * 0.32, R * 0.09));                         // third eye
+    out.push(eye(c - R * 0.26, eyeY, R * 0.1, -1));
+    out.push(eye(c + R * 0.26, eyeY, R * 0.1, 1));
+    out.push(eye(c, eyeY - R * 0.32, R * 0.09, 0));                      // third eye
   }
 
   /* face: mouth --------------------------------------------------------------- */
-  const toothy = r() < clamp(0.4 + tier * 0.08, 0, 0.85);
+  const toothy = r() < clamp(0.7 + tier * 0.05, 0, 0.95);
   const mouthY = c + R * 0.24;
   if (toothy) {
     out.push(toothyMouth(c, mouthY, R * between(r, 0.22, 0.34), intBetween(r, 3, 5), R * 0.22));
   } else {
-    out.push(calmMouth(c, mouthY, R * between(r, 0.16, 0.24), R * between(r, 0.08, 0.16)));
+    out.push(grimMouth(c, mouthY, R * between(r, 0.18, 0.26), R * between(r, 0.14, 0.22)));
   }
 
   /* chest rune — the maker's mark ------------------------------------------- */
