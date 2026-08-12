@@ -9,6 +9,7 @@ import { renderCodex } from './screens/codex.js';
 import { renderDeck } from './screens/deck.js';
 import { renderMap } from './screens/map.js';
 import { startBattle as launchBattle, inBattle, exitBattle } from './screens/battle.js';
+import { startTavernBattle, inTavernBattle, exitTavernBattle } from './screens/tavern.js';
 import {
   save, subscribe, addToDeck, autoDeck, deckIsLegal, resetSave, persist, DECK_SIZE,
 } from './core/state.js';
@@ -22,11 +23,12 @@ const ctx = {
   go,
   rerender: () => go(route, true),
   refreshPurse,
-  startBattle: (stageDef, playerClass) => {
+  startBattle: (stageDef, playerClass, mode = 'fusion') => {
     route = 'battle';
     paintTabs();
     tabbar.hidden = true;
-    launchBattle(screenEl, ctx, stageDef, playerClass || save.preferredClass);
+    if (mode === 'mana') startTavernBattle(screenEl, ctx, stageDef);
+    else launchBattle(screenEl, ctx, stageDef, playerClass || save.preferredClass);
     window.scrollTo({ top: 0 });
   },
   addToDeckFromUI(id) {
@@ -36,10 +38,10 @@ const ctx = {
 };
 
 function go(next, silent = false) {
-  if (inBattle() && next !== 'battle' && !silent) {
+  if ((inBattle() || inTavernBattle()) && next !== 'battle' && !silent) {
     return confirmLeaveBattle(next);
   }
-  if (route === 'battle' && next !== 'battle') exitBattle();
+  if (route === 'battle' && next !== 'battle') { exitBattle(); exitTavernBattle(); }
 
   route = next;
   tabbar.hidden = next === 'battle';
@@ -94,8 +96,8 @@ function refreshPurse() {
    ------------------------------------------------------------------------- */
 function intro() {
   modal((api) => [
-    h('p', { class: 'eyebrow', text: 'Opus Alchemicum' }),
-    h('h2', { text: 'קלפי היסודות' }),
+    h('p', { class: 'eyebrow', text: 'Nexus Arena' }),
+    h('h2', { text: 'זירת הלוחמים' }),
     h('div', { class: 'modal-body' }, [
       h('div', {
         style: 'width:96px;height:96px;color:var(--gold)',
@@ -126,7 +128,7 @@ function intro() {
    ------------------------------------------------------------------------- */
 function boot() {
   // brand mark
-  $('#brandMark').innerHTML = sigil({ id: 'fusgame-brand', el: 'arcane', tier: 5 }, { size: 34 });
+  $('#brandMark').innerHTML = '<img src="icons/favicon-32.png" alt="">';
 
   $('#brandBtn').addEventListener('click', () => go('lab'));
   $('#brandBtn').addEventListener('dblclick', openSettings);

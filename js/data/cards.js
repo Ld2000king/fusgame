@@ -142,7 +142,9 @@ for (const card of CARDS) {
   card.img = ART_BASE + art.img;
   card.imgPos = art.imgPos;
   card.title = art.title;
-  if (art.rename) card.name = art.title;
+  // Every card is now a named warrior. Recipes still use stable card ids,
+  // while the UI presents the character identity carried by the artwork.
+  card.name = art.title;
 }
 
 export const CARD_BY_ID = Object.fromEntries(CARDS.map((k) => [k.id, k]));
