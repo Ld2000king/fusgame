@@ -359,12 +359,24 @@ p { margin: 0; }
   color: var(--el, var(--text-secondary));
   min-height: 0;
   padding: 2px;
+  isolation: isolate;
+}
+.card-art::before {
+  content: '';
+  position: absolute;
+  inset: 8% 3% 2%;
+  z-index: -1;
+  border-radius: 50% 50% 42% 42%;
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--el) 25%, transparent), transparent 58%),
+    radial-gradient(ellipse at 50% 92%, rgba(0, 0, 0, .44), transparent 55%);
+  opacity: .9;
 }
 .card-art .creature {
   width: 100%;
   height: 100%;
   max-height: 100%;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .5));
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, .46)) drop-shadow(0 12px 18px rgba(0, 0, 0, .32));
   animation: idleBob 3.4s ease-in-out infinite;
 }
 @keyframes idleBob {
@@ -389,6 +401,8 @@ p { margin: 0; }
   display: block;
   -webkit-user-drag: none;
   user-select: none;
+  filter: saturate(.88) contrast(1.08) brightness(.9);
+  transform: scale(1.025);
 }
 /* with a portrait present the drawing is hidden, and only serves as fallback */
 .card-art.has-img .creature { display: none; }
@@ -401,8 +415,10 @@ p { margin: 0; }
   position: absolute;
   inset-inline: 0;
   bottom: 0;
-  height: 38%;
-  background: linear-gradient(to top, rgba(12, 13, 16, .85), transparent);
+  height: 48%;
+  background:
+    linear-gradient(to top, rgba(10, 8, 14, .94), rgba(10, 8, 14, .24) 66%, transparent),
+    linear-gradient(90deg, rgba(10, 8, 14, .3), transparent 28%, transparent 72%, rgba(10, 8, 14, .3));
   pointer-events: none;
 }
 .card-art.has-img.img-failed::after { display: none; }
