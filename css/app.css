@@ -1244,7 +1244,7 @@ p { margin: 0; }
   .card-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
 }
 
-/* Campaign atlas — a bright, winding level map inspired by candy adventures. */
+/* Campaign atlas — a winding progression trail through a brutal warrior realm. */
 .atlas-map {
   position: relative;
   width: min(100%, 620px);
@@ -1252,54 +1252,54 @@ p { margin: 0; }
   margin: 8px auto 34px;
   overflow: hidden;
   isolation: isolate;
-  border: 1px solid #ffffff20;
+  border: 1px solid #caa65d45;
   border-radius: 34px;
   background:
-    radial-gradient(circle at 16% 11%, #fff8 0 2%, transparent 2.5%),
-    radial-gradient(circle at 78% 26%, #fff7 0 1.5%, transparent 2%),
-    radial-gradient(circle at 25% 62%, #fff6 0 1.3%, transparent 1.8%),
-    linear-gradient(180deg, #81d7ff 0 31%, #b48aff 31% 64%, #ff8bb5 64% 100%);
-  box-shadow: inset 0 0 80px #40266a55, 0 18px 45px #0007;
+    radial-gradient(circle at 18% 12%, #c1673d42 0 1.5%, transparent 2%),
+    radial-gradient(circle at 82% 29%, #8c5a3b42 0 1.2%, transparent 1.8%),
+    radial-gradient(circle at 23% 67%, #b59b7740 0 1%, transparent 1.7%),
+    linear-gradient(180deg, #263342 0 31%, #211d30 31% 64%, #3a1b24 64% 100%);
+  box-shadow: inset 0 0 110px #05070bd9, 0 18px 45px #000b;
 }
 .atlas-map::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(120deg, #fff3, transparent 28% 72%, #38195830);
+  background: linear-gradient(120deg, #b9955720, transparent 28% 72%, #03040780), repeating-linear-gradient(35deg, transparent 0 43px, #ffffff07 44px 45px);
   pointer-events: none;
 }
 .atlas-route { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .atlas-route svg { width: 100%; height: 100%; overflow: visible; }
 .atlas-route polyline { fill: none; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-linecap: round; }
-.route-shadow { stroke: #714f8f80; stroke-width: 18; }
-.route-dashes { stroke: #fff8d9; stroke-width: 8; stroke-dasharray: 2 18; filter: drop-shadow(0 2px 1px #634b6c88); }
+.route-shadow { stroke: #05070bd9; stroke-width: 22; }
+.route-dashes { stroke: #b99a63; stroke-width: 7; stroke-dasharray: 3 19; filter: drop-shadow(0 2px 2px #000); }
 .atlas-land {
   position: absolute;
   z-index: 0;
   width: 230px;
   height: 145px;
   border-radius: 50%;
-  filter: drop-shadow(0 14px 10px #50376a66);
+  filter: drop-shadow(0 16px 12px #0009);
 }
 .atlas-land::after {
   content: '';
   position: absolute;
   inset: 16px 18px;
   border-radius: inherit;
-  border: 5px dotted #ffffff55;
+  border: 5px dashed #d1b27338;
 }
-.land-a { top: 335px; left: -65px; background: linear-gradient(145deg, #8df096, #31a971); transform: rotate(-12deg); }
-.land-b { top: 790px; right: -70px; background: linear-gradient(145deg, #d8a0ff, #7655d5); transform: rotate(9deg); }
-.land-c { top: 1260px; left: -50px; background: linear-gradient(145deg, #ffcf70, #ef6f8f); transform: rotate(-7deg); }
+.land-a { top: 335px; left: -65px; background: linear-gradient(145deg, #45533d, #1f2d29); transform: rotate(-12deg); }
+.land-b { top: 790px; right: -70px; background: linear-gradient(145deg, #3d354d, #201c2a); transform: rotate(9deg); }
+.land-c { top: 1260px; left: -50px; background: linear-gradient(145deg, #623830, #28191e); transform: rotate(-7deg); }
 .atlas-cloud {
   position: absolute;
   z-index: 0;
   width: 120px;
   height: 38px;
   border-radius: 50px;
-  background: #fff9;
-  filter: blur(.2px) drop-shadow(0 8px 9px #755c9a44);
+  background: #9ca8b238;
+  filter: blur(4px) drop-shadow(0 8px 12px #0009);
 }
 .atlas-cloud::before, .atlas-cloud::after { content: ''; position: absolute; border-radius: 50%; background: inherit; }
 .atlas-cloud::before { width: 58px; height: 58px; left: 20px; bottom: 0; }
@@ -1307,19 +1307,24 @@ p { margin: 0; }
 .cloud-a { top: 205px; left: -30px; transform: scale(.72); }
 .cloud-b { top: 685px; right: -34px; transform: scale(.9); }
 .cloud-c { top: 1160px; left: -24px; transform: scale(.62); }
+.atlas-fort { position: absolute; z-index: 2; color: #bca47755; font-size: 86px; line-height: 1; text-shadow: 0 10px 8px #000b; }
+.fort-a { top: 310px; left: 10px; transform: rotate(-8deg); }
+.fort-b { top: 765px; right: 8px; transform: rotate(7deg); }
+.fort-c { top: 1230px; left: 18px; color: #c27b655f; }
 .atlas-zone {
   position: absolute;
   z-index: 3;
   left: 50%;
   transform: translateX(-50%);
   padding: 7px 18px;
-  border: 2px solid #fff8;
-  border-radius: 999px;
-  background: #462b6acc;
-  color: #fff;
+  border: 1px solid #d3b77d80;
+  border-radius: 7px;
+  background: linear-gradient(#30293aee, #17141dee);
+  color: #e6d6b4;
   font-size: 13px;
   white-space: nowrap;
-  box-shadow: 0 5px 14px #43234d66, inset 0 1px #fff6;
+  letter-spacing: .08em;
+  box-shadow: 0 6px 14px #0009, inset 0 1px #fff2;
 }
 .zone-a { top: 18px; }
 .zone-b { top: 540px; }
@@ -1335,11 +1340,11 @@ p { margin: 0; }
   width: var(--node);
   height: var(--node);
   padding: 7px;
-  border: 5px solid #fff8;
+  border: 4px solid #a38a60;
   border-radius: 50%;
-  background: linear-gradient(145deg, color-mix(in srgb, var(--el) 80%, white), color-mix(in srgb, var(--el) 76%, #33224a));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--el) 58%, #51483d), color-mix(in srgb, var(--el) 62%, #100e15));
   color: white;
-  box-shadow: 0 10px 0 color-mix(in srgb, var(--el) 55%, #432958), 0 15px 22px #462e6b70, inset 0 3px 5px #fff8;
+  box-shadow: 0 9px 0 color-mix(in srgb, var(--el) 45%, #16131b), 0 15px 22px #000a, inset 0 2px 4px #fff4;
   cursor: pointer;
   transform: translate(-50%, -50%);
   transition: transform .18s var(--spring), filter .18s ease;
@@ -1347,7 +1352,7 @@ p { margin: 0; }
 .atlas-stage:not(:disabled):hover { transform: translate(-50%, -54%) scale(1.06); }
 .atlas-stage:not(:disabled):active { transform: translate(-50%, -45%) scale(.94); box-shadow: 0 4px 0 color-mix(in srgb, var(--el) 55%, #432958), 0 8px 13px #462e6b70; }
 .atlas-stage.is-open { animation: stagePulse 2s ease-in-out infinite; }
-.atlas-stage.is-clear { border-color: #fffbd0; }
+.atlas-stage.is-clear { border-color: #d7b65d; }
 .atlas-stage.is-lock { filter: grayscale(.8); opacity: .67; cursor: default; box-shadow: 0 7px 0 #5c526e, 0 11px 18px #43295b55; }
 .atlas-portrait { position: relative; display: grid; place-items: center; width: 67px; height: 67px; border-radius: 50%; overflow: hidden; }
 .atlas-portrait .card { --card-w: 68px; pointer-events: none; transform: scale(1.05); }
@@ -1360,10 +1365,10 @@ p { margin: 0; }
   place-items: center;
   width: 26px;
   height: 26px;
-  border: 2px solid #fff9;
+  border: 2px solid #bda373;
   border-radius: 50%;
-  background: #613d82;
-  color: white;
+  background: #211b28;
+  color: #e6d5af;
   font: 900 12px var(--font-num);
   box-shadow: 0 3px 7px #2f1749aa;
 }
@@ -1374,10 +1379,10 @@ p { margin: 0; }
   transform: translateX(-50%);
   min-width: 118px;
   padding: 5px 9px;
-  border: 1px solid #fff5;
-  border-radius: 12px;
-  background: #452861d9;
-  color: white;
+  border: 1px solid #b79e6b70;
+  border-radius: 6px;
+  background: #17141deb;
+  color: #e9dfcc;
   font-size: 11.5px;
   font-weight: 800;
   line-height: 1.2;
@@ -1394,10 +1399,10 @@ p { margin: 0; }
   place-items: center;
   width: 30px;
   height: 30px;
-  border: 2px solid #fff9;
+  border: 2px solid #d2ba84;
   border-radius: 50%;
-  background: #ffcf4b;
-  color: #56325f;
+  background: #332a22;
+  color: #e4bd63;
   font-size: 16px;
   text-shadow: 0 1px #fff;
   box-shadow: 0 4px 8px #51325977;
@@ -1461,9 +1466,43 @@ p { margin: 0; }
   background: transparent;
   color: var(--ink-2);
   font-size: 10px;
+  border-radius: 13px;
+  transition: transform .2s var(--spring), filter .2s ease, background .2s ease;
 }
 .minion .card { max-width: 100%; }
+.minion-name {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  color: #f2e8d5;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.minion-action { color: var(--ink-3); font-size: 8.5px; }
 .minion.is-ready { cursor: pointer; filter: drop-shadow(0 0 8px #e3b76599); }
+.minion.is-selected {
+  z-index: 4;
+  background: #d3a9441a;
+  outline: 2px solid #e7bd57;
+  transform: translateY(-8px) scale(1.04);
+  filter: drop-shadow(0 0 14px #e7bd57aa);
+}
+.minion.is-targetable {
+  cursor: crosshair;
+  outline: 2px solid #c6435d;
+  background: #b027421c;
+  animation: targetPulse .85s ease-in-out infinite alternate;
+}
+.mana-unit-card .card-frame { grid-template-rows: 1fr; padding-bottom: 23px; }
+.mana-unit-card .card-name, .mana-unit-card .card-tier { display: none; }
+.mana-unit-card .card-art.has-img { margin-bottom: -17px; }
+.mana-unit-card .mon-img { filter: saturate(1.06) contrast(1.1) brightness(.98); }
+.mana-hand-card .card-art { min-height: 74%; }
+.mana-hand-card .card-name { font-size: 10px; background: #100d17e8; margin: 0 -3px; padding: 3px 2px; }
 .mana-hand {
   display: flex;
   gap: 5px;
@@ -1497,6 +1536,63 @@ p { margin: 0; }
   box-shadow: 0 3px 9px #000a;
 }
 .end-turn { justify-self: center; min-width: 150px; }
+
+/* Two-step combat: selected attacker lunges into the chosen enemy card. */
+.minion-board.player .minion.is-attacking { z-index: 8; animation: playerStrike .62s cubic-bezier(.2,.9,.25,1) both; }
+.minion-board.enemy .minion.is-attacking { z-index: 8; animation: enemyStrike .62s cubic-bezier(.2,.9,.25,1) both; }
+.minion.is-attacking::after {
+  content: '';
+  position: absolute;
+  z-index: 9;
+  top: 20%;
+  left: 12%;
+  width: 90%;
+  height: 6px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, transparent, #fff, #e0ac51, transparent);
+  box-shadow: 0 0 12px #fff, 0 0 24px #d74c34;
+  transform: rotate(-27deg);
+  animation: slashFlash .62s ease-out both;
+}
+.minion.is-hit { animation: cardHit .62s ease-out both; }
+.minion.is-hit::before {
+  content: '';
+  position: absolute;
+  inset: 13%;
+  z-index: 9;
+  background: radial-gradient(circle, #fff 0 5%, #ffc45e 7%, #d63a34aa 25%, transparent 68%);
+  animation: impactBurst .62s ease-out both;
+  pointer-events: none;
+}
+@keyframes targetPulse { to { filter: brightness(1.24) drop-shadow(0 0 11px #e54a62); } }
+@keyframes playerStrike {
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(18px) scale(.93); }
+  68% { transform: translateY(-72px) scale(1.12) rotate(-3deg); filter: brightness(1.7); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes enemyStrike {
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(-18px) scale(.93); }
+  68% { transform: translateY(72px) scale(1.12) rotate(3deg); filter: brightness(1.7); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes slashFlash {
+  0%, 40% { opacity: 0; transform: translate(-20px,20px) rotate(-27deg) scaleX(.2); }
+  62% { opacity: 1; transform: translate(8px,-6px) rotate(-27deg) scaleX(1.2); }
+  100% { opacity: 0; transform: translate(25px,-22px) rotate(-27deg) scaleX(.5); }
+}
+@keyframes cardHit {
+  0%, 45%, 100% { transform: translateX(0); }
+  55% { transform: translateX(-10px) rotate(-4deg); filter: brightness(2); }
+  68% { transform: translateX(8px) rotate(3deg); filter: brightness(.7) saturate(1.6); }
+  82% { transform: translateX(-4px); }
+}
+@keyframes impactBurst {
+  0%, 42% { opacity: 0; transform: scale(.1) rotate(0); }
+  58% { opacity: 1; transform: scale(1.3) rotate(35deg); }
+  100% { opacity: 0; transform: scale(2) rotate(80deg); }
+}
 
 /* The last feature of this restored snapshot: the card summon effect. */
 .minion.is-summoning {

@@ -61,9 +61,12 @@ export function renderMap(root, ctx) {
     h('span', { class: 'atlas-land land-a', 'aria-hidden': 'true' }),
     h('span', { class: 'atlas-land land-b', 'aria-hidden': 'true' }),
     h('span', { class: 'atlas-land land-c', 'aria-hidden': 'true' }),
-    h('b', { class: 'atlas-zone zone-a', text: 'עמק היסודות' }),
-    h('b', { class: 'atlas-zone zone-b', text: 'ממלכת הכשפים' }),
-    h('b', { class: 'atlas-zone zone-c', text: 'פסגת האגדות' }),
+    h('span', { class: 'atlas-fort fort-a', text: '♜', 'aria-hidden': 'true' }),
+    h('span', { class: 'atlas-fort fort-b', text: '♜', 'aria-hidden': 'true' }),
+    h('span', { class: 'atlas-fort fort-c', text: '♛', 'aria-hidden': 'true' }),
+    h('b', { class: 'atlas-zone zone-a', text: 'חזית היסודות' }),
+    h('b', { class: 'atlas-zone zone-b', text: 'מצודת הכשפים' }),
+    h('b', { class: 'atlas-zone zone-c', text: 'כס האגדות' }),
   ]);
   root.append(list);
 

@@ -1,4 +1,4 @@
-const CACHE = 'nexus-arena-v1';
+const CACHE = 'nexus-arena-v5';
 const SHELL = [
   './', './index.html', './manifest.webmanifest',
   './css/theme.css', './css/app.css',
@@ -20,13 +20,17 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  if (event.request.mode === 'navigate') {
+    event.respondWith(fetch(event.request).catch(() => caches.match('./index.html')));
+    return;
+  }
   event.respondWith(
-    caches.match(event.request).then((hit) => hit || fetch(event.request).then((response) => {
+    fetch(event.request).then((response) => {
       if (response.ok && new URL(event.request.url).origin === location.origin) {
         const copy = response.clone();
         caches.open(CACHE).then((cache) => cache.put(event.request, copy));
       }
       return response;
-    }).catch(() => caches.match('./index.html')))
+    }).catch(() => caches.match(event.request).then((hit) => hit || caches.match('./index.html')))
   );
 });
