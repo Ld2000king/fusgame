@@ -1483,6 +1483,28 @@ p { margin: 0; }
   white-space: nowrap;
 }
 .minion-action { color: var(--ink-3); font-size: 8.5px; }
+.mana-ability {
+  position: absolute;
+  z-index: 7;
+  top: -5px;
+  right: -5px;
+  max-width: calc(100% + 10px);
+  overflow: hidden;
+  padding: 3px 6px;
+  border: 1px solid #b89d6e;
+  border-radius: 8px;
+  background: #17131deb;
+  color: #e8d7b4;
+  font-size: 7.5px;
+  font-weight: 800;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: 0 3px 8px #000b;
+  pointer-events: none;
+}
+.mana-ability.is-active { border-color: #76c9ff; color: #bdeaff; box-shadow: 0 0 10px #4a9ee688; }
+.mana-card .mana-ability { top: -7px; right: -7px; max-width: 78px; }
 .minion.is-ready { cursor: pointer; filter: drop-shadow(0 0 8px #e3b76599); }
 .minion.is-selected {
   z-index: 4;
@@ -1631,4 +1653,5 @@ p { margin: 0; }
   .minion-board .card--sm { --card-w: 58px; }
   .mana-hand .card--sm { --card-w: 72px; }
   .mana-hero { font-size: 12px; padding: 8px 10px; }
+  .mana-ability { max-width: 66px; padding: 3px 4px; font-size: 6.8px; }
 }

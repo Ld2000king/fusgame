@@ -8,12 +8,39 @@ let game = null, host = null, ctxRef = null, stage = null, epoch = 0;
 let unitSeq = 0, summoning = null, selectedUid = null, attackingUid = null, hitUid = null;
 const costOf = (c) => Math.min(7, Math.max(1, c.tier + 1));
 const shuffle = (a) => a.slice().sort(() => Math.random() - .5);
-const unit = (id) => { const c = CARD_BY_ID[id]; return { uid:`m${++unitSeq}`, card:c, hp:c.def + 2, atk:c.atk, ready:false }; };
+
+const ABILITIES = {
+  charge:  { icon:'⚡', name:'הסתערות', text:'יכול לתקוף מיד בתור שבו זומן.' },
+  legion:  { icon:'♟', name:'מפקד לגיון', text:'מזמן שני עוזרים חלשים לצדו.' },
+  barrier: { icon:'⬡', name:'מגן קרב', text:'חוסם לחלוטין את הפגיעה הראשונה.' },
+  mend:    { icon:'✚', name:'ריפוי', text:'מחזיר 3 נקודות חיים לגיבור בזימון.' },
+  rally:   { icon:'▲', name:'קריאת קרב', text:'מעניק 1+ התקפה לכל בעלי הברית האחרים.' },
+  fury:    { icon:'✦', name:'זעם', text:'גורם 2+ נזק בכל פעם שהוא תוקף.' },
+  drain:   { icon:'☾', name:'שאיבת חיים', text:'מרפא את הגיבור לפי הנזק שחדר ליריב.' },
+};
+
+const ABILITY_BY_CARD = {
+  lightning:'charge', warrior:'charge', phoenix:'charge', wolf:'charge', griffin:'charge', thunderbird:'charge',
+  forest:'legion', wizard:'legion', lich:'legion', worldTree:'legion', genesis:'legion',
+  armor:'barrier', golem:'barrier', bear:'barrier', mammoth:'barrier', paladin:'barrier', titan:'barrier',
+  water:'mend', life:'mend', angel:'mend', ocean:'mend',
+  knight:'rally', archmage:'rally', elemental:'rally', sphinx:'rally',
+  dragon:'fury', demon:'fury', chimera:'fury', ancientDragon:'fury', sun:'fury', chaos:'fury',
+  vampire:'drain', ghost:'drain', werewolf:'drain', death:'drain', moon:'drain', void:'drain',
+};
+
+const abilityOf = (card) => ABILITY_BY_CARD[card.id] || null;
+const helperCard = (el) => ({ id:`helper-${el}`, name:'שומר זוטר', el, tier:0, atk:1, def:0, recipe:null });
+const unit = (cardOrId, { helper=false }={}) => {
+  const c=typeof cardOrId==='string'?CARD_BY_ID[cardOrId]:cardOrId;
+  const ability=helper?null:abilityOf(c);
+  return { uid:`m${++unitSeq}`, card:c, hp:helper?2:c.def+2, atk:c.atk, ready:ability==='charge', ability, shield:ability==='barrier' };
+};
 
 export function startTavernBattle(root, ctx, st) {
   epoch++; host=root; ctxRef=ctx; stage=st;
   summoning=null; selectedUid=null; attackingUid=null; hitUid=null;
-  game={ turn:1, playerTurn:true, busy:false, over:false, player:{hp:30,mana:1,max:1,deck:shuffle(save.deck),hand:[],board:[]}, enemy:{hp:st.hp||30,mana:1,max:1,deck:shuffle(st.deck),hand:[],board:[]} };
+  game={ turn:1, playerTurn:true, busy:false, over:false, player:{hp:30,maxHp:30,mana:1,max:1,deck:shuffle(save.deck),hand:[],board:[]}, enemy:{hp:st.hp||30,maxHp:st.hp||30,mana:1,max:1,deck:shuffle(st.deck),hand:[],board:[]} };
   for(let i=0;i<3;i++){ draw(game.player); draw(game.enemy); }
   paint();
 }
@@ -39,14 +66,27 @@ function board(key){const s=game[key];return h('div',{class:'minion-board '+key}
     onclick:()=>key==='player'?selectAttacker(u.uid):attackTarget(i),
   },[
     renderCard(u.card,{size:'sm',atk:u.atk,def:u.hp,lvl:0,className:'mana-unit-card'}),
+    abilityBadge(u.ability, u.shield),
     h('span',{class:'minion-name',text:u.card.name}),
     h('span',{class:'minion-action',text:key==='enemy'&&selectedUid?'בחר כמטרה':selectedUid===u.uid?'נבחר':u.ready?'בחר לתקיפה':'ממתין'})
   ])),...Array.from({length:Math.max(0,5-s.board.length)},()=>h('i',{class:'board-slot'}))
 ]);}
 function hand(){return h('div',{class:'mana-hand'},game.player.hand.map((id,i)=>{const c=CARD_BY_ID[id],cost=costOf(c);return h('button',{class:'mana-card',disabled:!game.playerTurn||game.busy||cost>game.player.mana||game.player.board.length>=5,onclick:()=>playCard(i)},[
-  h('b',{class:'mana-cost',text:String(cost)}),renderCard(c,{size:'sm',lvl:0,className:'mana-hand-card'})
+  h('b',{class:'mana-cost',text:String(cost)}),abilityBadge(abilityOf(c)),renderCard(c,{size:'sm',lvl:0,className:'mana-hand-card'})
 ]);}));}
-async function playCard(i){const id=game.player.hand[i],c=CARD_BY_ID[id],cost=costOf(c);if(cost>game.player.mana||game.player.board.length>=5||game.busy)return;game.busy=true;game.player.mana-=cost;game.player.hand.splice(i,1);const u=unit(id);game.player.board.push(u);summoning=u.uid;paint();await wait(900);summoning=null;game.busy=false;paint();}
+function abilityBadge(id, shieldActive=false){
+  if(!id)return null;const a=ABILITIES[id];
+  return h('span',{class:'mana-ability '+(shieldActive?'is-active':''),title:`${a.name}: ${a.text}`,text:`${a.icon} ${a.name}`});
+}
+function applySummon(side,u){
+  if(u.ability==='mend')side.hp=Math.min(side.maxHp,side.hp+3);
+  if(u.ability==='rally')side.board.forEach(x=>{if(x.uid!==u.uid)x.atk+=1;});
+  if(u.ability==='legion'){
+    const spaces=Math.max(0,5-side.board.length);
+    for(let n=0;n<Math.min(2,spaces);n++)side.board.push(unit(helperCard(u.card.el),{helper:true}));
+  }
+}
+async function playCard(i){const id=game.player.hand[i],c=CARD_BY_ID[id],cost=costOf(c);if(cost>game.player.mana||game.player.board.length>=5||game.busy)return;game.busy=true;game.player.mana-=cost;game.player.hand.splice(i,1);const u=unit(id);game.player.board.push(u);applySummon(game.player,u);summoning=u.uid;paint();await wait(900);summoning=null;game.busy=false;paint();}
 function selectAttacker(uid){
   const u=game.player.board.find(x=>x.uid===uid);
   if(!u?.ready||game.busy)return;
@@ -58,9 +98,12 @@ async function attackTarget(targetIndex){
   if(!attacker?.ready||!target||game.busy)return;
   game.busy=true;attacker.ready=false;attackingUid=attacker.uid;hitUid=target.uid;paint();
   await wait(620);if(!game)return;
-  const overflow=Math.max(0,attacker.atk-target.hp);
-  target.hp-=attacker.atk;
+  const attack=attacker.atk+(attacker.ability==='fury'?2:0);
+  const blocked=target.shield;target.shield=false;
+  const overflow=blocked?0:Math.max(0,attack-target.hp);
+  if(!blocked)target.hp-=attack;
   if(overflow)game.enemy.hp-=overflow;
+  if(overflow&&attacker.ability==='drain')game.player.hp=Math.min(game.player.maxHp,game.player.hp+overflow);
   if(target.hp<=0)game.enemy.board.splice(targetIndex,1);
   selectedUid=null;attackingUid=null;hitUid=null;game.busy=false;
   if(checkOver())return;paint();
@@ -68,20 +111,22 @@ async function attackTarget(targetIndex){
 async function endTurn(){
   if(!game.playerTurn||game.busy)return;const mine=epoch;selectedUid=null;game.busy=true;game.playerTurn=false;paint();await wait(850);if(mine!==epoch)return;
   game.enemy.max=Math.min(10,game.turn);game.enemy.mana=game.enemy.max;draw(game.enemy);
-  while(game.enemy.board.length<5){const i=game.enemy.hand.findIndex(id=>costOf(CARD_BY_ID[id])<=game.enemy.mana);if(i<0)break;const id=game.enemy.hand.splice(i,1)[0];game.enemy.mana-=costOf(CARD_BY_ID[id]);const u=unit(id);game.enemy.board.push(u);summoning=u.uid;paint();await wait(760);if(mine!==epoch)return;summoning=null;paint();}
+  while(game.enemy.board.length<5){const i=game.enemy.hand.findIndex(id=>costOf(CARD_BY_ID[id])<=game.enemy.mana);if(i<0)break;const id=game.enemy.hand.splice(i,1)[0];game.enemy.mana-=costOf(CARD_BY_ID[id]);const u=unit(id);game.enemy.board.push(u);applySummon(game.enemy,u);summoning=u.uid;paint();await wait(760);if(mine!==epoch)return;summoning=null;paint();}
   await wait(700);if(mine!==epoch)return;
-  for(const u of [...game.enemy.board]){
+  for(const u of [...game.enemy.board].filter(x=>x.ready)){
     if(mine!==epoch)return;
     const targets=game.player.board;
     if(targets.length){
       const targetIndex=targets.reduce((best,x,i,a)=>x.hp<a[best].hp?i:best,0),target=targets[targetIndex];
       attackingUid=u.uid;hitUid=target.uid;paint();await wait(620);if(mine!==epoch)return;
-      const overflow=Math.max(0,u.atk-target.hp);target.hp-=u.atk;if(overflow)game.player.hp-=overflow;
+      const attack=u.atk+(u.ability==='fury'?2:0),blocked=target.shield;target.shield=false;
+      const overflow=blocked?0:Math.max(0,attack-target.hp);if(!blocked)target.hp-=attack;if(overflow)game.player.hp-=overflow;
+      if(overflow&&u.ability==='drain')game.enemy.hp=Math.min(game.enemy.maxHp,game.enemy.hp+overflow);
       if(target.hp<=0)targets.splice(targetIndex,1);
     }else{
-      attackingUid=u.uid;paint();await wait(420);if(mine!==epoch)return;game.player.hp-=u.atk;
+      attackingUid=u.uid;paint();await wait(420);if(mine!==epoch)return;const attack=u.atk+(u.ability==='fury'?2:0);game.player.hp-=attack;if(u.ability==='drain')game.enemy.hp=Math.min(game.enemy.maxHp,game.enemy.hp+attack);
     }
-    attackingUid=null;hitUid=null;if(checkOver())return;paint();
+    u.ready=false;attackingUid=null;hitUid=null;if(checkOver())return;paint();
   }
   game.turn++;game.player.max=Math.min(10,game.turn);game.player.mana=game.player.max;draw(game.player);game.player.board.forEach(u=>u.ready=true);game.enemy.board.forEach(u=>u.ready=true);game.playerTurn=true;game.busy=false;paint();
 }

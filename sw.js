@@ -1,4 +1,4 @@
-const CACHE = 'nexus-arena-v5';
+const CACHE = 'nexus-arena-v6';
 const SHELL = [
   './', './index.html', './manifest.webmanifest',
   './css/theme.css', './css/app.css',
