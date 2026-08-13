@@ -13,6 +13,8 @@ import {
 } from '../core/state.js';
 
 const CLASSES = ['elementalist', 'enchanter', 'healer'];
+const STAGE_X = [50, 76, 69, 36, 22, 40, 70, 79, 56, 27, 31, 59];
+const STAGE_Y = STAGE_X.map((_, i) => 112 + i * 128);
 
 export function renderMap(root, ctx) {
   clear(root);
@@ -46,7 +48,23 @@ export function renderMap(root, ctx) {
     ]));
   }
 
-  const list = h('div', { class: 'atlas-map', role: 'list', 'aria-label': 'מפת המסע' });
+  const routePoints = STAGE_X.map((x, i) => `${x},${STAGE_Y[i]}`).join(' ');
+  const list = h('div', { class: 'atlas-map', role: 'list', 'aria-label': 'מפת המסע' }, [
+    h('div', {
+      class: 'atlas-route',
+      'aria-hidden': 'true',
+      html: `<svg viewBox="0 0 100 1650" preserveAspectRatio="none"><polyline class="route-shadow" points="${routePoints}"/><polyline class="route-dashes" points="${routePoints}"/></svg>`,
+    }),
+    h('span', { class: 'atlas-cloud cloud-a', 'aria-hidden': 'true' }),
+    h('span', { class: 'atlas-cloud cloud-b', 'aria-hidden': 'true' }),
+    h('span', { class: 'atlas-cloud cloud-c', 'aria-hidden': 'true' }),
+    h('span', { class: 'atlas-land land-a', 'aria-hidden': 'true' }),
+    h('span', { class: 'atlas-land land-b', 'aria-hidden': 'true' }),
+    h('span', { class: 'atlas-land land-c', 'aria-hidden': 'true' }),
+    h('b', { class: 'atlas-zone zone-a', text: 'עמק היסודות' }),
+    h('b', { class: 'atlas-zone zone-b', text: 'ממלכת הכשפים' }),
+    h('b', { class: 'atlas-zone zone-c', text: 'פסגת האגדות' }),
+  ]);
   root.append(list);
 
   CAMPAIGN.forEach((st, i) => {
@@ -59,7 +77,7 @@ export function renderMap(root, ctx) {
       type: 'button',
       role: 'listitem',
       'data-el': st.el,
-      style: `--stage-i:${i}`,
+      style: `--stage-i:${i};--stage-x:${STAGE_X[i]};--stage-y:${STAGE_Y[i]}`,
       disabled: !unlocked,
       onclick: () => openStage(st, i, ctx),
     }, [
@@ -68,7 +86,7 @@ export function renderMap(root, ctx) {
         h('b', { class: 'atlas-number', text: String(i + 1) }),
       ]),
       h('span', { class: 'atlas-label', text: st.name }),
-      h('span', { class: 'atlas-state', text: cleared ? '✓' : unlocked ? '⚔' : '🔒' }),
+      h('span', { class: 'atlas-state', text: cleared ? '★' : unlocked ? '⚔' : '🔒' }),
     ]));
   });
 }
