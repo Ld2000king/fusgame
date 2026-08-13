@@ -5,6 +5,7 @@
 import { h, clear, toast, modal, wait } from '../ui/dom.js';
 import { renderCard, recipeLine } from '../ui/card.js';
 import { CARD_BY_ID, CARDS, TIER_NAMES, ELEMENTS } from '../data/cards.js';
+import { abilityFor, characterDescription } from '../data/abilities.js';
 import {
   save, isDiscovered, attemptFusion, availableDiscoveries,
   buyHint, buyShardPack, HINT_COST, SHARD_PACK_COST, levelOf, shardsOf,
@@ -88,11 +89,17 @@ export function renderLab(root, ctx) {
 
     for (const card of list) {
       const onBench = bench.includes(card.id);
-      trayEl.append(renderCard(card, {
-        size: 'sm',
-        dim: onBench,
-        onClick: () => place(card.id),
-      }));
+      trayEl.append(h('div',{class:'lab-card-wrap'},[
+        renderCard(card, {
+          size: 'sm',
+          dim: onBench,
+          onClick: () => place(card.id),
+        }),
+        h('button',{
+          class:'card-info-btn',type:'button',title:'מידע על הדמות','aria-label':`מידע על ${card.name}`,
+          text:'ⓘ',onclick:(e)=>{e.stopPropagation();showCard(card);},
+        }),
+      ]));
     }
   }
 
@@ -209,6 +216,7 @@ export function showDiscovery(card, ctx) {
         ? h('p', { class: 'art-title', text: '״' + card.title + '״' })
         : null,
       h('p', { class: 'eyebrow eyebrow--he', text: TIER_NAMES[card.tier] }),
+      characterProfile(card),
       recipeLine(card),
       h('div', { class: 'modal-actions' }, [
         h('button', { class: 'btn btn--gold', text: 'המשך', onclick: api.close }),
@@ -231,6 +239,7 @@ export function showCard(card) {
     h('p', { class: 'eyebrow eyebrow--he', text: `${TIER_NAMES[card.tier]} · ${ELEMENTS[card.el].name}` }),
     h('div', { class: 'modal-body' }, [
       renderCard(card, { size: 'lg' }),
+      characterProfile(card),
       recipeLine(card, { known: isDiscovered }),
       levelOf(card.id) > 0
         ? h('p', {
@@ -242,6 +251,22 @@ export function showCard(card) {
         h('button', { class: 'btn', text: 'סגור', onclick: api.close }),
       ]),
     ]),
+  ]);
+}
+
+function characterProfile(card) {
+  const ability=abilityFor(card);
+  return h('section',{class:'character-profile'},[
+    h('p',{class:'character-lore',text:characterDescription(card)}),
+    ability
+      ? h('div',{class:'character-ability'},[
+          h('b',{text:`${ability.icon} ${ability.name}`}),
+          h('span',{text:ability.text}),
+        ])
+      : h('div',{class:'character-ability is-none'},[
+          h('b',{text:'ללא יכולת מיוחדת'}),
+          h('span',{text:'הדמות נלחמת באמצעות נתוני ההתקפה וההגנה שלה.'}),
+        ]),
   ]);
 }
 

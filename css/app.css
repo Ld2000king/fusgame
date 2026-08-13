@@ -1433,6 +1433,12 @@ p { margin: 0; }
   box-shadow: var(--bevel);
 }
 .mana-hero.enemy { border-color: #8b3f55; }
+.mana-hero.is-targetable {
+  cursor: crosshair;
+  outline: 2px solid #d84b61;
+  animation: heroTargetPulse .8s ease-in-out infinite alternate;
+}
+.mana-hero.is-hit { animation: heroImpact .62s ease-out both; }
 .mana-crystals { color: #74bfff; font-family: var(--font-num); }
 .mana-hero small { color: var(--ink-3); }
 .turn-ribbon {
@@ -1587,6 +1593,13 @@ p { margin: 0; }
   pointer-events: none;
 }
 @keyframes targetPulse { to { filter: brightness(1.24) drop-shadow(0 0 11px #e54a62); } }
+@keyframes heroTargetPulse { to { filter: brightness(1.25); box-shadow: 0 0 20px #d84b6199, var(--bevel); } }
+@keyframes heroImpact {
+  0%, 42%, 100% { transform: translateX(0); }
+  56% { transform: translateX(-13px); filter: brightness(2); }
+  70% { transform: translateX(10px); background: #5a1c29; }
+  84% { transform: translateX(-4px); }
+}
 @keyframes playerStrike {
   0% { transform: translateY(0) scale(1); }
   35% { transform: translateY(18px) scale(.93); }
@@ -1655,3 +1668,51 @@ p { margin: 0; }
   .mana-hero { font-size: 12px; padding: 8px 10px; }
   .mana-ability { max-width: 66px; padding: 3px 4px; font-size: 6.8px; }
 }
+
+/* Character information in the lab and codex. */
+.lab-card-wrap { position: relative; display: grid; place-items: center; }
+.card-info-btn {
+  position: absolute;
+  z-index: 8;
+  top: -5px;
+  left: -2px;
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  border: 1px solid #d0b478;
+  border-radius: 50%;
+  background: #17131ef2;
+  color: #e6ca8d;
+  font-size: 15px;
+  box-shadow: 0 4px 9px #000b;
+  cursor: pointer;
+}
+.card-info-btn:active { transform: scale(.9); }
+.character-profile {
+  width: min(100%, 470px);
+  display: grid;
+  gap: 9px;
+  padding: 12px 14px;
+  border: 1px solid var(--metal-edge);
+  border-radius: 15px;
+  background: linear-gradient(150deg, #201a2c, #121019);
+  text-align: right;
+  box-shadow: var(--bevel);
+}
+.character-lore { color: var(--ink-2); font-size: 12.5px; line-height: 1.65; }
+.character-ability {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 10px;
+  align-items: center;
+  padding: 9px 10px;
+  border-right: 3px solid var(--gold-hi);
+  border-radius: 8px;
+  background: #d3a94412;
+}
+.character-ability b { color: var(--gold-hi); font-size: 12px; }
+.character-ability span { color: var(--ink-2); font-size: 11.5px; line-height: 1.45; }
+.character-ability.is-none { border-right-color: var(--ink-faint); background: #ffffff05; }
+.character-ability.is-none b { color: var(--ink-3); }

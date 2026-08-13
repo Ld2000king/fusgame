@@ -11,8 +11,8 @@
 <meta name="apple-mobile-web-app-title" content="Nexus Arena">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Nexus Arena · זירת הלוחמים</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest?v=7">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png?v=7">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +63,7 @@
 <script type="module" src="js/main.js"></script>
 <script>
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-    addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=6'));
+    addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=7'));
   }
 </script>
 <noscript>
