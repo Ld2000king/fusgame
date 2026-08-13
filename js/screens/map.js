@@ -46,29 +46,31 @@ export function renderMap(root, ctx) {
     ]));
   }
 
-  const list = h('div', { class: 'atlas-map', role: 'list', 'aria-label': 'מפת המסע' });
+  const list = h('div', { class: 'map-list' });
   root.append(list);
 
   CAMPAIGN.forEach((st, i) => {
     const unlocked = stageUnlocked(i);
     const cleared = isCleared(st.id);
-    const threat = topThreats(st)[0];
+    const mark = sigil({ id: 'stage-' + st.id, el: st.el, tier: Math.min(6, 1 + Math.floor(i / 2)) }, { size: 54 });
 
     list.append(h('button', {
-      class: 'atlas-stage' + (cleared ? ' is-clear' : unlocked ? ' is-open' : ' is-lock'),
+      class: 'stage',
       type: 'button',
-      role: 'listitem',
       'data-el': st.el,
-      style: `--stage-i:${i}`,
       disabled: !unlocked,
       onclick: () => openStage(st, i, ctx),
     }, [
-      h('span', { class: 'atlas-portrait' }, [
-        renderCard(threat, { size: 'xs', lvl: 0 }),
-        h('b', { class: 'atlas-number', text: String(i + 1) }),
+      h('div', { class: 'stage-mark', html: mark }),
+      h('div', { style: 'min-width:0' }, [
+        h('p', { class: 'st', text: `${String(i + 1).padStart(2, '0')} · ${st.title} · ${CLASS_NAMES[st.class]}` }),
+        h('h3', { text: st.name }),
+        h('p', { class: 'sb', text: st.blurb }),
       ]),
-      h('span', { class: 'atlas-label', text: st.name }),
-      h('span', { class: 'atlas-state', text: cleared ? '✓' : unlocked ? '⚔' : '🔒' }),
+      h('span', {
+        class: 'stage-flag ' + (cleared ? 'is-clear' : unlocked ? '' : 'is-lock'),
+        text: cleared ? 'הובס' : unlocked ? `${st.gold} ◈` : 'נעול',
+      }),
     ]));
   });
 }
@@ -77,7 +79,6 @@ function openStage(st, index, ctx) {
   const gate = gateFor(index);
   const thin = save.discovered.length < gate;
   let chosenClass = save.preferredClass;
-  let chosenMode = 'fusion';
 
   modal((api) => {
     const body = h('div', { class: 'modal-body' }, [
@@ -98,8 +99,6 @@ function openStage(st, index, ctx) {
 
       h('p', { class: 'eyebrow', style: 'text-align:center', text: 'המחלקה שלך' }),
       classPicker(),
-      h('p', { class: 'eyebrow', style: 'text-align:center', text: 'מצב הקרב' }),
-      modePicker(),
 
       thin
         ? h('p', {
@@ -116,9 +115,9 @@ function openStage(st, index, ctx) {
         h('button', {
           class: 'btn btn--gold',
           'data-action': 'launch',
-          text: chosenMode === 'mana' ? 'פתח קרב מאנה' : 'צא לקרב היתוך',
+          text: 'צא לקרב',
           disabled: !deckIsLegal(),
-          onclick: () => { setClass(chosenClass); api.close(); ctx.startBattle(st, chosenClass, chosenMode); },
+          onclick: () => { setClass(chosenClass); api.close(); ctx.startBattle(st, chosenClass); },
         }),
         h('button', { class: 'btn', text: 'בטל', onclick: api.close }),
       ]),
@@ -140,13 +139,6 @@ function openStage(st, index, ctx) {
       const old = body.querySelector('[data-role="class-picker"]');
       if (old) old.replaceWith(classPicker());
     }
-    function modePicker() {
-      const row=h('div',{class:'mode-picker'},[
-        h('button',{type:'button',class:'btn btn--sm '+(chosenMode==='fusion'?'btn--pick-on':'btn--ghost'),text:'היתוך סימולטני',onclick:()=>{chosenMode='fusion';refreshMode();}}),
-        h('button',{type:'button',class:'btn btn--sm '+(chosenMode==='mana'?'btn--pick-on':'btn--ghost'),text:'לוח ומאנה',onclick:()=>{chosenMode='mana';refreshMode();}}),
-      ]);row.dataset.role='mode-picker';return row;
-    }
-    function refreshMode(){const old=body.querySelector('[data-role="mode-picker"]');if(old)old.replaceWith(modePicker());}
 
     return [
       h('p', { class: 'eyebrow', text: st.title }),

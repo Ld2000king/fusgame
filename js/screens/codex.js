@@ -7,7 +7,7 @@ import { h, clear } from '../ui/dom.js';
 import { renderCard } from '../ui/card.js';
 import { showCard } from './lab.js';
 import { CARDS, TIER_NAMES } from '../data/cards.js';
-import { save, isDiscovered, progressPercent, IS_SHOWCASE } from '../core/state.js';
+import { save, isDiscovered, progressPercent } from '../core/state.js';
 
 let showLocked = true;
 
@@ -22,12 +22,7 @@ export function renderCodex(root) {
     h('div', {}, [
       h('p', { class: 'eyebrow', text: 'Codex Elementorum' }),
       h('h1', { text: 'הקודקס' }),
-      h('p', {
-        class: 'sub',
-        text: IS_SHOWCASE
-          ? `${found} מתוך ${total} · מצב תצוגה — ההתקדמות הרגילה נשמרת`
-          : `${found} מתוך ${total} · ${progressPercent()}% מהמלאכה`,
-      }),
+      h('p', { class: 'sub', text: `${found} מתוך ${total} · ${progressPercent()}% מהמלאכה` }),
     ]),
     h('button', {
       class: 'btn btn--sm btn--ghost',

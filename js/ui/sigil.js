@@ -202,22 +202,8 @@ export function sigilSVG(card, opt = {}) {
   const R = size * 0.29;
   const detail = 8 + tier;                      // silhouette point count
   const pts = bodyPoints(r, c, c, R, prof.jitter, detail);
-  const paintId = `creature-paint-${[...card.id].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7)}`;
 
   const out = [];
-
-  /* A restrained material pass keeps generated creatures in the same visual
-     family as the painted portraits: dimensional colour, a grounded shadow,
-     and a thin light-catching edge. Everything remains inline and offline. */
-  out.push(
-    `<defs><radialGradient id="${paintId}" cx="34%" cy="24%" r="78%">` +
-    `<stop offset="0" stop-color="#fff" stop-opacity="0.38"/>` +
-    `<stop offset="0.24" stop-color="currentColor" stop-opacity="1"/>` +
-    `<stop offset="0.72" stop-color="currentColor" stop-opacity="0.82"/>` +
-    `<stop offset="1" stop-color="#050407" stop-opacity="0.72"/>` +
-    `</radialGradient></defs>`
-  );
-  out.push(`<ellipse cx="${fx(c)}" cy="${fx(c + R * 1.02)}" rx="${fx(R * 0.88)}" ry="${fx(R * 0.18)}" fill="var(--deep)" opacity="0.58"/>`);
 
   /* aura ring for well-grown creatures ------------------------------------ */
   if (tier >= 4) {
@@ -236,8 +222,7 @@ export function sigilSVG(card, opt = {}) {
 
   /* body -------------------------------------------------------------------- */
   const bodyPath = prof.smooth ? smoothClosedPath(pts) : facetedClosedPath(pts);
-  out.push(`<path d="${bodyPath}" fill="url(#${paintId})" stroke="var(--deep)" stroke-width="1.8" stroke-opacity="0.86"/>`);
-  out.push(`<path d="${bodyPath}" fill="none" stroke="#fff" stroke-width="0.75" stroke-opacity="0.13" transform="translate(-0.7 -0.8)"/>`);
+  out.push(`<path d="${bodyPath}" fill="currentColor" stroke="var(--deep)" stroke-width="1.6" stroke-opacity="0.7"/>`);
 
   /* horns / spikes, rooted in the silhouette -------------------------------- */
   const [spikeMin, spikeMax] = prof.spikes;

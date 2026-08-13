@@ -25,7 +25,6 @@ let busy = false;
 let host = null;
 let ctxRef = null;
 let lastReveal = null;  // {player:{...}|null, enemy:{...}|null} for the duel row
-let verdict = '';
 
 /* Every battle gets an epoch; async steps bail out the moment the epoch the
    UI left changes (leaving the screen, or starting a fresh battle). */
@@ -41,7 +40,6 @@ export function startBattle(root, ctx, stageDef, playerClass) {
   spend = 0;
   busy = false;
   lastReveal = null;
-  verdict = '';
   finished = false;
 
   const levels = {};
@@ -159,7 +157,7 @@ function actionPanel() {
   const side = state.sides.player;
 
   if (state.over || busy) {
-    panel.append(h('p', { class: 'action-hint battle-verdict', text: verdict || (state.over ? 'הקרב הסתיים.' : 'מיישב סיבוב…') }));
+    panel.append(h('p', { class: 'action-hint', text: state.over ? 'הקרב הסתיים.' : 'מיישב סיבוב…' }));
     return panel;
   }
 
@@ -359,12 +357,11 @@ async function runRound(action) {
   const before = state.log.length;
   resolveRound(state);
   lastReveal = extractReveal(state.log.slice(before));
-  verdict = roundVerdict(state.log.slice(before));
 
   paint();
   replay(state.log.slice(before));
 
-  await wait(state.over ? 3200 : 2400);
+  await wait(1500);
   if (stale(mine)) return;
 
   lastReveal = null;
@@ -372,20 +369,11 @@ async function runRound(action) {
 
   if (state.over) {
     paint();
-    await wait(1200);
+    await wait(500);
     if (!stale(mine)) finish();
     return;
   }
   paint();
-}
-
-function roundVerdict(events) {
-  const playerHit = events.filter((e) => e.t === 'heroDamage' && e.side === 'enemy').reduce((n, e) => n + e.n, 0);
-  const enemyHit = events.filter((e) => e.t === 'heroDamage' && e.side === 'player').reduce((n, e) => n + e.n, 0);
-  if (playerHit > enemyHit) return `הסיבוב שלך · גרמת ${playerHit} נזק`;
-  if (enemyHit > playerHit) return `היריב ניצח בסיבוב · ספגת ${enemyHit} נזק`;
-  if (playerHit || enemyHit) return `שוויון בסיבוב · ${playerHit} נזק לכל צד`;
-  return 'שני הלוחמים עצרו זה את זה';
 }
 
 /** Reads the round's log slice into {player, enemy} for the duel row. */
@@ -486,6 +474,5 @@ export function exitBattle() {
   spend = 0;
   busy = false;
   lastReveal = null;
-  verdict = '';
   finished = false;
 }

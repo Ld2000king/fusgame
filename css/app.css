@@ -112,7 +112,6 @@ p { margin: 0; }
   padding: 2px;
   cursor: pointer;
   text-align: start;
-  min-width: 0;
 }
 .brand-mark {
   width: 34px;
@@ -122,14 +121,12 @@ p { margin: 0; }
   display: block;
 }
 .brand-mark svg { width: 100%; height: 100%; display: block; }
-.brand-mark img { width:100%; height:100%; display:block; border-radius:9px; box-shadow:var(--shadow-depth-sm); }
-.brand-text { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand-text b {
   font-family: var(--font-display);
   font-size: 15px;
   letter-spacing: 0.02em;
   color: var(--ink);
-  white-space: nowrap;
 }
 .brand-text i {
   font-style: normal;
@@ -486,4 +483,747 @@ p { margin: 0; }
 .card--xs .card-frame { padding-block-end: 19px; border-radius: calc(var(--radius-tile) - 1px); }
 .card--xs { border-radius: var(--radius-tile); }
 .card--xs .card-name { font-size: 8.5px; }
-.card--xs .card-stats span { min-width: 18px; height: 17px; font-size: 10px; padding: 0 3px; borçM´¶‰žËkºwµç`´µ•…Í”¤°‰½É‘•Èµ½±½ÈÙ…È ´µÐµ™…ÍÐ¤Ù…È ´µ•…Í”¤ì4)ô4(¹ÍÑ…”é¡½Ù•Èé¹½Ð é‘¥Í…‰±•¤ìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•d ´ÉÁà¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ½±µ±¼¤ìô4(¹ÍÑ…”é‘¥Í…‰±•ì½Á…¥Ñäè€À¸ÐÈìÕÉÍ½Èè¹½Ðµ…±±½Ý•ìô4(¹ÍÑ…”µµ…É¬ìÝ¥‘Ñ è€ÔÑÁàì¡•¥¡Ðè€ÔÑÁàì½±½ÈèÙ…È ´µ•°°Ù…È ´µ½±µ±¼¤¤ìô4(¹ÍÑ…”µµ…É¬ÍÙœìÝ¥‘Ñ è€ÄÀÀ”ì¡•¥¡Ðè€ÄÀÀ”ìô4(¹ÍÑ…” Ìì™½¹ÐµÍ¥é”è€ÄÕÁàìô4(¹ÍÑ…”€¹ÍÐì™½¹ÐµÍ¥é”è€ÄÁÁàì±•ÑÑ•ÈµÍÁ…¥¹œèÙ…È ´µÑÉ…¬µÝ¥‘”¤ì½±½ÈèÙ…È ´µ½±µ±¼¤ìô4(¹ÍÑ…”€¹Íˆì™½¹ÐµÍ¥é”è€ÄÄ¸ÕÁàì½±½ÈèÙ…È ´µ¥¹¬´Ì¤ìµ…É¥¸µÑ½Àè€ÍÁàìô4(¹ÍÑ…”µ™±…œì4(€™½¹ÐµÍ¥é”è€ä¸ÕÁàì4(€±•ÑÑ•ÈµÍÁ…¥¹œèÙ…È ´µÑÉ…¬µÝ¥‘”¤ì4(€Á…‘‘¥¹œè€ÑÁà€åÁàì4(€‰½É‘•ÈµÉ…‘¥ÕÌè€ääåÁàì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ±¥¹”¤ì4(€½±½ÈèÙ…È ´µ¥¹¬´Ì¤ì4(€Ý¡¥Ñ”µÍÁ…”è¹½ÝÉ…Àì4)ô4(¹ÍÑ…”µ™±…œ¹¥Ìµ±•…Èì½±½ÈèÙ…È ´µÙ•É‘¥É¥Ì¤ì‰½É‘•Èµ½±½ÈèÉ‰„ Üä°€ÄÜä°€ÄØÈ°€À¸Ð¤ìô4(¹ÍÑ…”µ™±…œ¹¥Ìµ±½¬ì½±½ÈèÙ…È ´µ¥¹¬µ™…¥¹Ð¤ìô4(4(¼¨€ôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôô4(€€	…ÑÑ±”ƒŠPÍ¥µÕ±Ñ…¹•½ÕÌÍ•É•Ð‘Õ•±Ì4(€€€ôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôô€¨¼4(¹…É•¹„ì4(€‘¥ÍÁ±…äèÉ¥ì4(€É¥µÑ•µÁ±…Ñ”µÉ½ÝÌè…ÕÑ¼€Å™È…ÕÑ¼…ÕÑ¼…ÕÑ¼ì4(€…Àè€áÁàì4(€µ¥¸µ¡•¥¡Ðè…±Œ ÄÀÁ‘Ù €´€ÄÄáÁà¤ì4)ô4(4(¹¡•É¼µ‰…Èì4(€‘¥ÍÁ±…äèÉ¥ì4(€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè…ÕÑ¼€Å™È…ÕÑ¼ì4(€…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì4(€…Àè€ÄÁÁàì4(€Á…‘‘¥¹œè€áÁà€ÄÅÁàì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ±¥¹”¤ì4(€‰½É‘•ÈµÑ½Àµ½±½ÈèÙ…È ´µµ•Ñ…°µ•‘”¤ì4(€‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÉ…‘¥ÕÌµ…É¤ì4(€‰…­É½Õ¹è±¥¹•…ÈµÉ…‘¥•¹Ð ÄàÁ‘•œ°€ŒÅÄÜÈä°Ù…È ´µÁ…¹•°µ±¥¡Ð¤€ÔÔ”°€ŒÄÈÁÅ¤ì4(€‰½àµÍ¡…‘½ÜèÙ…È ´µÍ¡…‘½Üµ‘•ÁÑ µµ¤ì4)ô4(¹¡•É¼µ‰…È¹¥Ìµ…Ñ¥Ù”ì‰½É‘•Èµ½±½ÈèÙ…È ´µ½±µ±¼¤ì‰½àµÍ¡…‘½ÜèÙ…È ´µ±½Üµ½±¤ìô4(4(¹¡•É¼µÍ¥¥°ìÝ¥‘Ñ è€ÐÁÁàì¡•¥¡Ðè€ÐÁÁàì½±½ÈèÙ…È ´µ•°°Ù…È ´µ½±µ±¼¤¤ìô4(¹¡•É¼µÍ¥¥°ÍÙœìÝ¥‘Ñ è€ÄÀÀ”ì¡•¥¡Ðè€ÄÀÀ”ìô4(¹¡•É¼µµ•Ñ„ìµ¥¸µÝ¥‘Ñ è€Àìô4(¹¡•É¼µµ•Ñ„ˆì™½¹Ðµ™…µ¥±äèÙ…È ´µ™½¹Ðµ‘¥ÍÁ±…ä¤ì™½¹ÐµÍ¥é”è€ÄÑÁàì‘¥ÍÁ±…äè‰±½¬ìô4(¹¡•É¼µµ•Ñ„€¹¡¥¹Ðì4(€‘¥ÍÁ±…äè™±•àì4(€…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì4(€…Àè€ÕÁàì4(€™½¹ÐµÍ¥é”è€ä¸ÕÁàì4(€½±½ÈèÙ…È ´µ¥¹¬´Ì¤ì4(€±•ÑÑ•ÈµÍÁ…¥¹œè€À¸ÀÍ•´ì4(€µ…É¥¸µÑ½Àè€ÉÁàì4)ô4(¹±…ÍÌµ‰…‘”ì4(€‘¥ÍÁ±…äè¥¹±¥¹”µ‰±½¬ì4(€Á…‘‘¥¹œè€ÅÁà€ÝÁàì4(€‰½É‘•ÈµÉ…‘¥ÕÌè€ääåÁàì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ½±µ±¼¤ì4(€½±½ÈèÙ…È ´µ½±µ¡¤¤ì4(€™½¹ÐµÍ¥é”è€à¸ÕÁàì4(€±•ÑÑ•ÈµÍÁ…¥¹œè€À¸ÀÑ•´ì4)ô4(4(¹¡•É¼µ¡Àì4(€‘¥ÍÁ±…äè™±•àì4(€…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì4(€…Àè€ÑÁàì4(€™½¹Ðµ™…µ¥±äèÙ…È ´µ™½¹Ðµ¹Õ´¤ì4(€™½¹ÐµÍ¥é”è€ÄåÁàì4(€™½¹ÐµÙ…É¥…¹Ðµ¹Õµ•É¥ŒèÑ…‰Õ±…Èµ¹ÕµÌì4(€½±½Èè€˜Í„Í…”ì4)ô4(¹¡•É¼µ¡À€¹¥Œì™½¹ÐµÍ¥é”è€ÄÉÁàì½Á…¥Ñäè€À¸Üìô4(4(¹µ•Ñ•ÉÌì‘¥ÍÁ±…äèÉ¥ì©ÕÍÑ¥™äµ¥Ñ•µÌè•¹ì…Àè€ÑÁàìµ…É¥¸µÑ½Àè€ÑÁàìô4(¹µ•Ñ•Èì‘¥ÍÁ±…äè™±•àì…Àè€ÍÁàìô4(¹µ•Ñ•È¤ì4(€Ý¥‘Ñ è€áÁàì¡•¥¡Ðè€áÁàì4(€‰½É‘•ÈµÉ…‘¥ÕÌè€ÔÀ”ì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ±¥¹”¤ì4(€‰…­É½Õ¹èÑÉ…¹ÍÁ…É•¹Ðì4(€ÑÉ…¹Í¥Ñ¥½¸è‰…­É½Õ¹Ù…È ´µÐµ™…ÍÐ¤Ù…È ´µ•…Í”¤°‰½É‘•Èµ½±½ÈÙ…È ´µÐµ™…ÍÐ¤Ù…È ´µ•…Í”¤ì4)ô4(¹µ•Ñ•È´µ½Éˆ¤ì‰½É‘•Èµ½±½Èè€ŒÍÙäÐìô4(¹µ•Ñ•È´µ½Éˆ¤¹½¸ì‰…­É½Õ¹èÉ…‘¥…°µÉ…‘¥•¹Ð¡¥É±”…Ð€ÌÔ”€ÌÀ”°€„áá™˜°€ŒÍÙäÐ¤ì‰½É‘•Èµ½±½Èè€„áá™˜ìô4(¹µ•Ñ•È´µÍÑÉ•…¬¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ½±µ±¼¤ìô4(¹µ•Ñ•È´µÍÑÉ•…¬¤¹½¸ì‰…­É½Õ¹èÉ…‘¥…°µÉ…‘¥•¹Ð¡¥É±”…Ð€ÌÔ”€ÌÀ”°Ù…È ´µ½±µ¡¤¤°Ù…È ´µ½±µ±¼¤¤ì‰½É‘•Èµ½±½ÈèÙ…È ´µ½±µ¡¤¤ìô4(4(¼¨€´´‘Õ•°…É•¹„èÑ¡”ÑÝ¼½µµ¥ÑÑ•…É‘Ì°É•Ù•…±•Ñ½•Ñ¡•È€´´´´´´´´´´´´´´€¨¼4(¹‘Õ•°µÉ½Üì4(€‘¥ÍÁ±…äèÉ¥ì4(€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È…ÕÑ¼€Å™Èì4(€…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì4(€…Àè€ÄÁÁàì4(€Á…‘‘¥¹œè€ÄÁÁàì4)ô4(¹‘Õ•°µÙÌì4(€Ý¥‘Ñ è€ÌÑÁàì4(€¡•¥¡Ðè€ÌÑÁàì4(€‘¥ÍÁ±…äèÉ¥ì4(€Á±…”µ¥Ñ•µÌè•¹Ñ•Èì4(€‰½É‘•ÈµÉ…‘¥ÕÌè€ÔÀ”ì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ±¥¹”µÍ½™Ð¤ì4(€½±½ÈèÙ…È ´µ½±µ±¼¤ì4(€™½¹Ðµ™…µ¥±äèÙ…È ´µ™½¹Ðµ‘¥ÍÁ±…ä¤ì4(€™½¹ÐµÍ¥é”è€ÄÉÁàì4)ô4(¹‘Õ•°µÍ±½Ðì4(€©ÕÍÑ¥™äµÍ•±˜è•¹Ñ•Èì4(€Ý¥‘Ñ è€ÄÄáÁàì4(€…ÍÁ•ÐµÉ…Ñ¥¼è€Ô€¼€Üì4(€‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÈµ±œ¤ì4(€‰½É‘•Èè€ÅÁà‘…Í¡•Ù…È ´µ±¥¹”¤ì4(€‘¥ÍÁ±…äèÉ¥ì4(€Á±…”µ¥Ñ•µÌè•¹Ñ•Èì4(€‰…­É½Õ¹èÉ‰„ ÄÌ°€ÄØ°€ÌÈ°€À¸Ô¤ì4(€Á½Í¥Ñ¥½¸èÉ•±…Ñ¥Ù”ì4(€ÑÉ…¹Í¥Ñ¥½¸è‰½É‘•Èµ½±½ÈÙ…È ´µÐµµ•¤Ù…È ´µ•…Í”¤°ÑÉ…¹Í™½É´Ù…È ´µÐµµ•¤Ù…È ´µ•…Í”¤ì4)ô4(¹‘Õ•°µÍ±½Ð€¹¡¥¹Ðì4(€™½¹ÐµÍ¥é”è€ÄÁÁàì4(€±•ÑÑ•ÈµÍÁ…¥¹œèÙ…È ´µÑÉ…¬µÝ¥‘”¤ì4(€½±½ÈèÙ…È ´µ¥¹¬µ™…¥¹Ð¤ì4(€Ñ•áÐµ…±¥¸è•¹Ñ•Èì4(€Á…‘‘¥¹œè€À€ÄÁÁàì4)ô4(¹‘Õ•°µÍ±½Ð¹¥Ìµ±½­•ì‰½É‘•ÈµÍÑå±”èÍ½±¥ì‰½É‘•Èµ½±½ÈèÙ…È ´µ½±µ±¼¤ìô4(¹‘Õ•°µÍ±½Ð¹¥Ìµ±½­•€¹¡¥¹Ðì½±½ÈèÙ…È ´µ½±µ¡¤¤ìô4(¹‘Õ•°µÍ±½Ð¹¥ÌµÕ¹‘•™•¹‘•ì4(€‰½É‘•ÈµÍÑå±”èÍ½±¥ì4(€‰½É‘•Èµ½±½ÈèÙ…È ´µ‰±½½¤ì4(€‰…­É½Õ¹èÉ‰„ ÄäÈ°€Øä°€äÀ°€À¸ÀÜ¤ì4)ô4(¹‘Õ•°µÍ±½Ð¹¥ÌµÕ¹‘•™•¹‘•€¹¡¥¹Ðì½±½Èè€”á„Í…”ìô4(¹‘Õ•°µÍ±½Ð¹¥ÌµÉ•Ù•…±•ì‰½É‘•ÈµÍÑå±”èÍ½±¥ì‰½É‘•Èµ½±½ÈèÙ…È ´µ±¥¹”µÍ½™Ð¤ì…¹¥µ…Ñ¥½¸è±…Í¡%¸Ù…È ´µÐµÍ±½Ü¤Ù…È ´µ•…Í”¤‰½Ñ ìô4)­•å™É…µ•Ì±…Í¡%¸ì4(€™É½´ì½Á…¥Ñäè€ÀìÑÉ…¹Í™½É´èÍ…±” À¸àÈ¤ìô4(€Ñ¼€€ì½Á…¥Ñäè€ÄìÑÉ…¹Í™½É´è¹½¹”ìô4)ô4(4(¹¡…¹µÉ…¥°ì4(€‘¥ÍÁ±…äèÉ¥ì4(€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹ÌèÉ•Á•…Ð Ô°€Å™È¤ì4(€…Àè€ÕÁàì4(€Á…‘‘¥¹œè€ÄÉÁà€ÑÁà€áÁàì4(€…±¥¸µ¥Ñ•µÌè•¹ì4(€©ÕÍÑ¥™äµ¥Ñ•µÌè•¹Ñ•Èì4)ô4(¹¡…¹µÉ…¥°€¹…Éì€´µ…ÉµÜè€ÄÀÀ”ìµ…àµÝ¥‘Ñ è€ÄÄáÁàìô4(¼¨™¥Ù”Ñ¼„É½Ü±•…Ù•Ì•… …ÉÑ½¼¹…ÉÉ½Ü™½È„…ÁÑ¥½¸‰•ÑÝ••¸Ñ¡”µ•‘…±±¥½¹Ì€¨¼4(¹¡…¹µÉ…¥°€¹…ÉµÑ¥•Èì‘¥ÍÁ±…äè¹½¹”ìô4(¹¡…¹µÉ…¥°€¹…É‘m‘…Ñ„µ±¥­…‰±”ôˆÄ‰té¡½Ù•ÈìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•d ´åÁà¤ìô4(¹¡…¹µÉ…¥°€¹…É¹¥ÌµÁ¥­•ì4(€‰½àµÍ¡…‘½ÜèÙ…È ´µ±½Üµ½±¤°Ù…È ´µÍ ´Ì¤ì4(€ÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•d ´ÄÁÁà¤ì4)ô4(¹¡…¹µÉ…¥°€¹…É¹¥Ìµ™ÕÍ¥‰±”ì‰½àµÍ¡…‘½Üè€À€À€À€ÅÁàÙ…È ´µÙ•É‘¥É¥Ì¤°€À€À€ÄÙÁà€´ÙÁàÙ…È ´µÙ•É‘¥É¥Ì¤ìô4(4(¹…Ñ¥½¸µÁ…¹•°ì4(€‘¥ÍÁ±…äèÉ¥ì4(€…Àè€áÁàì4(€Á…‘‘¥¹œè€ÄÁÁà€ÄÉÁàì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ±¥¹”¤ì4(€‰½É‘•ÈµÑ½Àµ½±½ÈèÙ…È ´µµ•Ñ…°µ•‘”¤ì4(€‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÉ…‘¥ÕÌµ…É¤ì4(€‰…­É½Õ¹è±¥¹•…ÈµÉ…‘¥•¹Ð ÄàÁ‘•œ°€ŒÅÄÜÈä°Ù…È ´µÁ…¹•°µ±¥¡Ð¤€ÔÔ”°€ŒÄÈÁÅ¤ì4(€‰½àµÍ¡…‘½ÜèÙ…È ´µÍ¡…‘½Üµ‘•ÁÑ µµ¤ì4(€µ¥¸µ¡•¥¡Ðè€ÔÉÁàì4)ô4(¹…Ñ¥½¸µÉ½Üì4(€‘¥ÍÁ±…äè™±•àì4(€…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì4(€…Àè€áÁàì4(€™±•àµÝÉ…ÀèÝÉ…Àì4)ô4(¹…Ñ¥½¸µ¡¥¹Ðì™½¹ÐµÍ¥é”è€ÄÉÁàì½±½ÈèÙ…È ´µ¥¹¬´Ì¤ì™±•àè€Ä€Ä€ÄÐÁÁàìô4(¹ÍÁ•¹µÍÑ•ÁÁ•Èì4(€‘¥ÍÁ±…äè™±•àì4(€…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì4(€…Àè€ÙÁàì4(€Á…‘‘¥¹œè€ÑÁà€áÁàì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ±¥¹”¤ì4(€‰½É‘•ÈµÉ…‘¥ÕÌè€ääåÁàì4(€‰…­É½Õ¹èÙ…È ´µ‘••À¤ì4)ô4(¹ÍÁ•¹µÍÑ•ÁÁ•È‰ÕÑÑ½¸ì4(€Ý¥‘Ñ è€ÈÉÁàì¡•¥¡Ðè€ÈÉÁàì4(€‰½É‘•ÈµÉ…‘¥ÕÌè€ÔÀ”ì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ±¥¹”¤ì4(€‰…­É½Õ¹èÙ…È ´µÁ…¹•°´È¤ì4(€½±½ÈèÙ…È ´µ¥¹¬¤ì4(€‘¥ÍÁ±…äèÉ¥ì4(€Á±…”µ¥Ñ•µÌè•¹Ñ•Èì4(€™½¹ÐµÍ¥é”è€ÄÍÁàì4(€ÕÉÍ½ÈèÁ½¥¹Ñ•Èì4)ô4(¹ÍÁ•¹µÍÑ•ÁÁ•È‰ÕÑÑ½¸é‘¥Í…‰±•ì½Á…¥Ñäè€À¸ÌÔìÕÉÍ½Èè¹½Ðµ…±±½Ý•ìô4(¹ÍÁ•¹µÍÑ•ÁÁ•Èˆì4(€µ¥¸µÝ¥‘Ñ è€ÌÑÁàì4(€Ñ•áÐµ…±¥¸è•¹Ñ•Èì4(€™½¹Ðµ™…µ¥±äèÙ…È ´µ™½¹Ðµ¹Õ´¤ì4(€™½¹ÐµÍ¥é”è€ÄÈ¸ÕÁàì4(€½±½ÈèÙ…È ´µ½±µ¡¤¤ì4)ô4(4(¹‰…ÑÑ±”µ‰…Èì4(€‘¥ÍÁ±…äèÉ¥ì4(€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È…ÕÑ¼ì4(€…Àè€áÁàì4(€…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì4(€Á…‘‘¥¹œµ‰±½¬è€ÉÁàì4)ô4(¹‰…ÑÑ±”µ™••ì4(€™½¹ÐµÍ¥é”è€ÄÄ¸ÕÁàì4(€½±½ÈèÙ…È ´µ¥¹¬´Ì¤ì4(€µ¥¸µ¡•¥¡Ðè€ÄÝÁàì4(€½Ù•É™±½Üè¡¥‘‘•¸ì4(€Ñ•áÐµ½Ù•É™±½Üè•±±¥ÁÍ¥Ìì4(€Ý¡¥Ñ”µÍÁ…”è¹½ÝÉ…Àì4)ô4(¹‰…ÑÑ±”µ™••€¹½½ì½±½ÈèÙ…È ´µÙ•É‘¥É¥Ì¤ìô4(¹‰…ÑÑ±”µ™••€¹‰…€ì½±½Èè€”Àá„äàìô4(4(¼¨™±½…Ñ¥¹œ½µ‰…Ð¹Õµ‰•ÉÌ€¨¼4(¹™±½…Ðì4(€Á½Í¥Ñ¥½¸è™¥á•ì4(€èµ¥¹‘•àè€àÀÀì4(€Á½¥¹Ñ•Èµ•Ù•¹ÑÌè¹½¹”ì4(€™½¹Ðµ™…µ¥±äèÙ…È ´µ™½¹Ðµ¹Õ´¤ì4(€™½¹ÐµÝ•¥¡Ðè€ÜÀÀì4(€™½¹ÐµÍ¥é”è€ÈÅÁàì4(€Ñ•áÐµÍ¡…‘½Üè€À€ÉÁà€áÁà€ŒÀÀÀì4(€…¹¥µ…Ñ¥½¸è™±½…ÑUÀ€äÀÁµÌÙ…È ´µ•…Í”¤™½ÉÝ…É‘Ìì4)ô4(¹™±½…Ð¹‘µœ€ì½±½Èè€™˜á˜å˜ìô4(¹™±½…Ð¹¡•…°ì½±½Èè€Œá•‘”á˜ìô4)­•å™É…µ•Ì™±½…ÑUÀì4(€€À”€€ì½Á…¥Ñäè€ÀìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ” ´ÔÀ”°€ÑÁà¤Í…±” À¸Ü¤ìô4(€€ÈÈ”€ì½Á…¥Ñäè€ÄìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ” ´ÔÀ”°€´áÁà¤Í…±” Ä¸Ä¤ìô4(€€ÄÀÀ”ì½Á…¥Ñäè€ÀìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ” ´ÔÀ”°€´ÐÉÁà¤Í…±” Ä¤ìô4)ô4(4(¹Í¡…­”ì…¹¥µ…Ñ¥½¸èÍ¡…­”€ÈØÁµÌÙ…È ´µ•…Í”¤ìô4)­•å™É…µ•ÌÍ¡…­”ì4(€€À”°ÄÀÀ”ìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•` À¤ìô4(€€ÈÔ”ìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•` ´ÕÁà¤ìô4(€€ÜÔ”ìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•` ÕÁà¤ìô4)ô4(4(¼¨€ôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôô4(€€Q…ˆ‰…È4(€€€ôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôô€¨¼4(¹Ñ…‰‰…Èì4(€Á½Í¥Ñ¥½¸è™¥á•ì4(€¥¹Í•Ðµ¥¹±¥¹”è€Àì(€¥¹Í•Ðµ‰±½¬µ•¹è€Àì4(€èµ¥¹‘•àè€ÜÀì4(€‘¥ÍÁ±…äè™±•àì4(€©ÕÍÑ¥™äµ½¹Ñ•¹Ðè•¹Ñ•Èì4(€…Àè€ÉÁàì4(€Á…‘‘¥¹œè€ÙÁàµ…à ÙÁà°•¹Ø¡Í…™”µ…É•„µ¥¹Í•Ðµ±•™Ð¤¤…±Œ ÙÁà€¬•¹Ø¡Í…™”µ…É•„µ¥¹Í•Ðµ‰½ÑÑ½´¤¤ì4(€‰…­É½Õ¹è±¥¹•…ÈµÉ…‘¥•¹Ð Á‘•œ°É‰„ Ü°€Ø°€ÄÄ°€À¸äà¤°É‰„ Ü°€Ø°€ÄÄ°€À¸àÈ¤¤ì4(€‰…­‘É½Àµ™¥±Ñ•Èè‰±ÕÈ ÄÉÁà¤ì4(€‰½É‘•ÈµÑ½Àè€ÅÁàÍ½±¥Ù…È ´µµ•Ñ…°µ•‘”¤ì4)ô4(¹Ñ…‰‰…Ém¡¥‘‘•¹tì‘¥ÍÁ±…äè¹½¹”ìô4(¹Ñ…‰‰…È‰ÕÑÑ½¸ì4(€™±•àè€Äì4(€µ…àµÝ¥‘Ñ è€ÄÌÁÁàì4(€‘¥ÍÁ±…äèÉ¥ì4(€©ÕÍÑ¥™äµ¥Ñ•µÌè•¹Ñ•Èì4(€…Àè€ÉÁàì4(€Á…‘‘¥¹œè€ÝÁà€ÑÁàì4(€µ¥¸µ¡•¥¡Ðè€ÔÁÁàì4(€‰½É‘•Èè€Àì4(€‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÈµµ¤ì4(€‰…­É½Õ¹è¹½¹”ì4(€½±½ÈèÙ…È ´µ¥¹¬´Ì¤ì4(€™½¹ÐµÍ¥é”è€ÄÀ¸ÕÁàì4(€±•ÑÑ•ÈµÍÁ…¥¹œè€À¸ÀÕ•´ì4(€ÕÉÍ½ÈèÁ½¥¹Ñ•Èì4(€ÑÉ…¹Í¥Ñ¥½¸è½±½ÈÙ…È ´µÐµ™…ÍÐ¤Ù…È ´µ•…Í”¤°‰…­É½Õ¹Ù…È ´µÐµ™…ÍÐ¤Ù…È ´µ•…Í”¤ì4)ô4(¹Ñ…‰‰…È‰ÕÑÑ½¸€¹Ðµ¥¼ì™½¹ÐµÍ¥é”è€ÄÝÁàì±¥¹”µ¡•¥¡Ðè€Äìô4(¹Ñ…‰‰…È‰ÕÑÑ½¸é¡½Ù•Èì½±½ÈèÙ…È ´µ¥¹¬´È¤ìô4(¹Ñ…‰‰…È‰ÕÑÑ½¸¹¥Ìµ½¸ì4(€½±½Èè€ÜàÀì4(€‰…­É½Õ¹è±¥¹•…ÈµÉ…‘¥•¹Ð ÄÜÕ‘•œ°É‰„ ÈÈÐ°€ÄØä°€Ôà°€¸ÄØ¤°É‰„ ÄÔà°€ÄÄä°€ÐÐ°€¸Àà¤¤ì4(€‰½àµÍ¡…‘½Üè¥¹Í•Ð€À€ÅÁà€ÀÙ…È ´µµ•Ñ…°µ•‘”¤ì4)ô4(4(¼¨€ôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôô4(€€Q½…ÍÐ€¬µ½‘…°4(€€€ôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôô€¨¼4(¹Ñ½…ÍÐµ¡½ÍÐì4(€Á½Í¥Ñ¥½¸è™¥á•ì4(€¥¹Í•Ðµ‰±½¬µÍÑ…ÉÐè…±Œ ÜÉÁà€¬•¹Ø¡Í…™”µ…É•„µ¥¹Í•ÐµÑ½À¤¤ì4(€¥¹Í•Ðµ¥¹±¥¹”è€Àì4(€èµ¥¹‘•àè€àÔÀì4(€‘¥ÍÁ±…äèÉ¥ì4(€©ÕÍÑ¥™äµ¥Ñ•µÌè•¹Ñ•Èì4(€…Àè€ÙÁàì4(€Á…‘‘¥¹œè€ÀÙ…È ´µÕÐ¤ì4(€Á½¥¹Ñ•Èµ•Ù•¹ÑÌè¹½¹”ì4)ô4(¹Ñ½…ÍÐì4(€µ…àµÝ¥‘Ñ è€ÐØÁÁàì4(€Á…‘‘¥¹œè€ÄÅÁà€ÄáÁàì4(€‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÉ…‘¥ÕÌµÍ´¤ì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µµ•Ñ…°µ•‘”¤ì4(€‰½É‘•ÈµÑ½Àµ½±½ÈèÙ…È ´µµ•Ñ…°µ•‘”µÍÑÉ½¹œ¤ì4(€‰…­É½Õ¹è±¥¹•…ÈµÉ…‘¥•¹Ð ÄÜÕ‘•œ°Ù…È ´µÍÕÉ™…”´È¤°€ŒÅÄÔÈØ¤ì4(€½±½ÈèÙ…È ´µÑ•áÐµ‘…É¬¤ì4(€™½¹ÐµÍ¥é”è€ÄÌ¸ÕÁàì4(€™½¹ÐµÝ•¥¡Ðè€ÔÀÀì4(€‰½àµÍ¡…‘½ÜèÙ…È ´µ‰•Ù•°¤°Ù…È ´µÍ¡…‘½Üµ‘•ÁÑ µ±œ¤ì4(€…¹¥µ…Ñ¥½¸èÑ½…ÍÑ%¸Ù…È ´µÐµµ•¤Ù…È ´µÍÁÉ¥¹œ¤‰½Ñ ì4)ô4(¹Ñ½…ÍÐ¹½½ì‰½É‘•Èµ½±½ÈèÉ‰„ ÌÔ°€ÄØà°€ÄÄà°€À¸ÐÔ¤ì½±½Èè€ŒÙ	ÙÀìô4(¹Ñ½…ÍÐ¹‰…€ì‰½É‘•Èµ½±½ÈèÉ‰„ ÄÜØ°€Ìä°€ØØ°€À¸ÐÔ¤ì½±½Èè€åäÈìô4(¹Ñ½…ÍÐ¹½±ì‰½É‘•Èµ½±½ÈèÉ‰„ ÈÈÐ°€ÄØä°€Ôà°€À¸ÐÔ¤ì½±½Èè€ÜàÀìô4(¹Ñ½…ÍÐ¹¥Ìµ½ÕÐì…¹¥µ…Ñ¥½¸èÑ½…ÍÑ=ÕÐÙ…È ´µÐµµ•¤Ù…È ´µ•…Í”¤‰½Ñ ìô4)­•å™É…µ•ÌÑ½…ÍÑ%¸€ì™É½´ì½Á…¥Ñäè€ÀìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•d ´ÄÁÁà¤ìôô4)­•å™É…µ•ÌÑ½…ÍÑ=ÕÐìÑ¼€€ì½Á…¥Ñäè€ÀìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•d ´áÁà¤ìôô4(4(¹µ½‘…°µ¡½ÍÐì4(€Á½Í¥Ñ¥½¸è™¥á•ì4(€¥¹Í•Ðè€Àì4(€èµ¥¹‘•àè€ààÀì4(€‘¥ÍÁ±…äèÉ¥ì4(€Á±…”µ¥Ñ•µÌè•¹Ñ•Èì4(€Á…‘‘¥¹œèÙ…È ´µÕÐ¤ì4(€‰…­É½Õ¹èÉ‰„ Ð°€Ì°€à°€À¸Üà¤ì4(€‰…­‘É½Àµ™¥±Ñ•Èè‰±ÕÈ ÙÁà¤ì4(€…¹¥µ…Ñ¥½¸è™…‘”Ù…È ´µÐµµ•¤Ù…È ´µ•…Í”¤‰½Ñ ì4)ô4(¹µ½‘…°µ¡½ÍÑm¡¥‘‘•¹tì‘¥ÍÁ±…äè¹½¹”ìô4)­•å™É…µ•Ì™…‘”ì™É½´ì½Á…¥Ñäè€Àìôô4(4(¹µ½‘…°ì4(€Ý¥‘Ñ èµ¥¸ ÔÈÁÁà°€ÄÀÀ”¤ì4(€µ…àµ¡•¥¡Ðè€àÙ‘Ù ì4(€½Ù•É™±½Üµäè…ÕÑ¼ì4(€Á…‘‘¥¹œè€ÈÑÁà€ÈÁÁàì4(€‰½É‘•Èè€ÅÁàÍ½±¥É‰„ ÄÔÔ°€ÄÈÜ°€ÈÄØ°€À¸ÄØ¤ì4(€‰½É‘•ÈµÑ½Àµ½±½ÈèÉ‰„ ÄàÀ°€ÄÔÀ°€ÈÌÔ°€À¸ÌÈ¤ì4(€‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÉ…‘¥ÕÌµ…É¤ì4(€‰…­É½Õ¹è±¥¹•…ÈµÉ…‘¥•¹Ð ÄàÁ‘•œ°€ŒÅÄàÌÀ°Ù…È ´µÁ…¹•°µ±¥¡Ð¤€ÐÀ”°€ŒÄÈÁÅ¤ì4(€‰½àµÍ¡…‘½ÜèÙ…È ´µÍ¡…‘½Üµ‘•ÁÑ µ±œ¤°¥¹Í•Ð€À€À€ÐÁÁàÉ‰„ À°€À°€À°€¸ÌÔ¤ì4(€…¹¥µ…Ñ¥½¸èÍ¡••Ñ%¸Ù…È ´µÐµµ•¤Ù…È ´µÍÁÉ¥¹œ¤‰½Ñ ì4(€Ñ•áÐµ…±¥¸è•¹Ñ•Èì4)ô4)­•å™É…µ•ÌÍ¡••Ñ%¸ì4(€™É½´ìÑÉ…¹Í™½É´èÑÉ…¹Í±…Ñ•d ÈÑÁà¤Í…±” ¸äØ¤ì½Á…¥Ñäè€Àìô4)ô4(¹µ½‘…° Èì4(€™½¹Ðµ™…µ¥±äèÙ…È ´µ™½¹Ðµ‘¥ÍÁ±…ä¤ì4(€™½¹ÐµÍ¥é”è€ÈÑÁàì4(€™½¹ÐµÝ•¥¡Ðè€àÀÀì4(€µ…É¥¸µ‰½ÑÑ½´è€ÙÁàì4(€Ñ•áÐµÍ¡…‘½Üè€À€ÅÁà€ÍÁàÉ‰„ À°€À°€À°€¸Ð¤ì4)ô4(¹µ½‘…°Àì™½¹ÐµÍ¥é”è€ÄÑÁàì½±½ÈèÙ…È ´µÑ•áÐµÍ•½¹‘…Éä¤ì±¥¹”µ¡•¥¡Ðè€Ä¸Ôìô4(¹µ½‘…°€¹µ½‘…°µ‰½‘äì‘¥ÍÁ±…äèÉ¥ì…Àè€ÄÉÁàì©ÕÍÑ¥™äµ¥Ñ•µÌè•¹Ñ•Èìô4(¹µ½‘…°€¹µ½‘…°µ…Ñ¥½¹Ìì‘¥ÍÁ±…äè™±•àì…Àè€áÁàì©ÕÍÑ¥™äµ½¹Ñ•¹Ðè•¹Ñ•Èì™±•àµÝÉ…ÀèÝÉ…Àìµ…É¥¸µÑ½Àè€ÙÁàìô4(4(¹‘•Ñ…¥°µ­Üì‘¥ÍÁ±…äè™±•àì…Àè€ÙÁàì©ÕÍÑ¥™äµ½¹Ñ•¹Ðè•¹Ñ•Èì™±•àµÝÉ…ÀèÝÉ…Àìô4(¹­Üµ¡¥Àì4(€™½¹ÐµÍ¥é”è€ÄÀ¸ÕÁàì4(€Á…‘‘¥¹œè€ÑÁà€ÄÁÁàì4(€‰½É‘•ÈµÉ…‘¥ÕÌè€ääåÁàì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µ½±µ±¼¤ì4(€½±½ÈèÙ…È ´µ½±µ¡¤¤ì4)ô4(¼¨Q!µI9Ì½Ý¸¹…µ”™½È„Á½ÉÑÉ…¥Ð°½¸…É‘ÌÑ¡…Ð­•ÁÐÑ¡•¥È™Õ¹Ñ¥½¹…°4(€€¹…µ”‰•…ÕÍ”Ñ¡”™ÕÍ¥½¸ÑÉ•”É•…‘Ì¥Ð¸€¨¼4(¹•å•‰É½Ü´µ¡”ì4(€‘¥É•Ñ¥½¸èÉÑ°ì4(€Ñ•áÐµ…±¥¸è•¹Ñ•Èì4(€±•ÑÑ•ÈµÍÁ…¥¹œè€À¸ÄÉ•´ì4(€Ñ•áÐµÑÉ…¹Í™½É´è¹½¹”ì4(€™½¹ÐµÍ¥é”è€ÄÀ¸ÕÁàì4)ô4(4(¹…ÉÐµÑ¥Ñ±”ì4(€™½¹Ðµ™…µ¥±äèÙ…È ´µ™½¹Ðµ‘¥ÍÁ±…ä¤ì4(€™½¹ÐµÍ¥é”è€ÄÍÁàì4(€™½¹ÐµÝ•¥¡Ðè€ÔÀÀì4(€½±½ÈèÙ…È ´µ¹•½¸µ½±¤ì4(€µ…É¥¸µÑ½Àè€ÉÁàì4)ô4(4(¹É•¥Á”µ±¥¹”ì4(€‘¥ÍÁ±…äè™±•àì4(€…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì4(€…Àè€áÁàì4(€©ÕÍÑ¥™äµ½¹Ñ•¹Ðè•¹Ñ•Èì4(€™±•àµÝÉ…ÀèÝÉ…Àì4(€™½¹ÐµÍ¥é”è€ÄÍÁàì4(€½±½ÈèÙ…È ´µ¥¹¬´È¤ì4)ô4(¹É•¥Á”µ±¥¹”€¹½Àì½±½ÈèÙ…È ´µ½±µ±¼¤ì™½¹Ðµ™…µ¥±äèÙ…È ´µ™½¹Ðµ¹Õ´¤ìô4(4(¹ÍÑ…ÐµÍÑÉ¥Àì4(€‘¥ÍÁ±…äè™±•àì4(€…Àè€ÄÙÁàì4(€©ÕÍÑ¥™äµ½¹Ñ•¹Ðè•¹Ñ•Èì4(€™±•àµÝÉ…ÀèÝÉ…Àì4(€Á…‘‘¥¹œè€ÄÁÁà€Àì4)ô4(¹ÍÑ…ÐµÍÑÉ¥À‘¥ØìÑ•áÐµ…±¥¸è•¹Ñ•Èìô4(¹ÍÑ…ÐµÍÑÉ¥Àˆì4(€‘¥ÍÁ±…äè‰±½¬ì4(€™½¹Ðµ™…µ¥±äèÙ…È ´µ™½¹Ðµ‘¥ÍÁ±…ä¤ì4(€™½¹ÐµÝ•¥¡Ðè€äÀÀì4(€™½¹ÐµÍ¥é”è€ÈÑÁàì4(€½±½ÈèÙ…È ´µÑ•áÐµ‘…É¬¤ì4(€™½¹ÐµÙ…É¥…¹Ðµ¹Õµ•É¥ŒèÑ…‰Õ±…Èµ¹ÕµÌì4)ô4(¹ÍÑ…ÐµÍÑÉ¥ÀÍÁ…¸ì4(€™½¹ÐµÍ¥é”è€ä¸ÕÁàì4(€±•ÑÑ•ÈµÍÁ…¥¹œèÙ…È ´µÑÉ…¬µÝ¥‘”¤ì4(€½±½ÈèÙ…È ´µ¥¹¬´Ì¤ì4)ô4(4(¹•µÁÑäµ¹½Ñ”ì4(€Á…‘‘¥¹œè€ÌÑÁàÙ…È ´µÕÐ¤ì4(€Ñ•áÐµ…±¥¸è•¹Ñ•Èì4(€½±½ÈèÙ…È ´µ¥¹¬´Ì¤ì4(€™½¹ÐµÍ¥é”è€ÄÍÁàì4(€±¥¹”µ¡•¥¡Ðè€Ä¸Øì4(€‰½É‘•Èè€ÅÁà‘…Í¡•Ù…È ´µ±¥¹”¤ì4(€‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÈµ±œ¤ì4)ô4(4(¹Í¡½ÀµÉ½Üì4(€‘¥ÍÁ±…äèÉ¥ì4(€É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È…ÕÑ¼ì4(€…Àè€ÄÁÁàì4(€…±¥¸µ¥Ñ•µÌè•¹Ñ•Èì4(€Á…‘‘¥¹œè€ÄÉÁà€ÄÑÁàì4(€‰½É‘•Èè€ÅÁàÍ½±¥Ù…È ´µµ•Ñ…°µ•‘”¤ì4(€‰½É‘•ÈµÉ…‘¥ÕÌèÙ…È ´µÉ…‘¥ÕÌµÍ´¤ì4(€‰…­É½Õ¹è±¥¹•…ÈµÉ…‘¥•¹Ð ÄÜÕ‘•œ°Ù…È ´µÍÕÉ™…”´È¤°€ŒÅÄÔÈØ¤ì4(€‰½àµÍ¡…‘½ÜèÙ…È ´µ‰•Ù•°¤ì4(€µ…É¥¸µ‰½ÑÑ½´è€áÁàì4)ô4(¹Í¡½ÀµÉ½Ü Ðì™½¹ÐµÍ¥é”è€ÄÌ¸ÕÁàìô4(¹Í¡½ÀµÉ½ÜÀì™½¹ÐµÍ¥é”è€ÄÄ¸ÕÁàì½±½ÈèÙ…È ´µ¥¹¬´Ì¤ìµ…É¥¸µÑ½Àè€ÉÁàìô4(4)µ•‘¥„€¡µ¥¸µÝ¥‘Ñ è€ØÐÁÁà¤ì(€€¹…Éì€´µ…ÉµÜè€ÄÄáÁàìô(€€¹…É´µáÌì€´µ…ÉµÜè€ÜÙÁàìô(€€¹Í±½ÐìÝ¥‘Ñ è€ÄÄáÁàìô(€€¹…ÉµÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹ÌèÉ•Á•…Ð¡…ÕÑ¼µ™¥±°°µ¥¹µ…à ÄÀÑÁà°€Å™È¤¤ìô)ô)µ•‘¥„€¡µ…àµÝ¥‘Ñ èÌäÁÁà¥ì(€€¹Ñ½Á‰…Éí…ÀèÙÁàíÁ…‘‘¥¹œµ¥¹±¥¹”èÄÁÁáô¹‰É…¹‘í…ÀèÝÁáô¹‰É…¹µµ…É­íÝ¥‘Ñ èÌÁÁàí¡•¥¡ÐèÌÁÁáô(€€¹‰É…¹µÑ•áÐ‰í™½¹ÐµÍ¥é”èÄÍÁáô¹‰É…¹µÑ•áÐ¥í™½¹ÐµÍ¥é”èÝÁàí±•ÑÑ•ÈµÍÁ…¥¹œè¸ÄÉ•µô(€€¹ÁÕÉÍ•í…ÀèÍÁáô¹ÁÕÉÍ”µ¥Ñ•µíÁ…‘‘¥¹œèÕÁà€ÝÁàí™½¹ÐµÍ¥é”èÄÅÁáô¹ÍÉ••¹íÁ…‘‘¥¹œµ¥¹±¥¹”èÄÁÁáô(€€¹µ…¹„µ¡•É½íÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìéµ¥¹µ…à À°Å™È¤…ÕÑ¼…ÕÑ¼í…ÀèÙÁàíÁ…‘‘¥¹œèáÁáô¹µ…¹„µ¡•É¼Íµ…±±í‘¥ÍÁ±…äé¹½¹•ô(€€¹µ¥¹¥½¸µ‰½…É‘í…ÀèÍÁàíµ¥¸µ¡•¥¡ÐèÄÄÉÁàíÁ…‘‘¥¹œèÕÁáô¹µ…¹„µ¡…¹‘í…ÀèÍÁáô(€€¹µ…¹„µ½ÍÑíÝ¥‘Ñ èÈÅÁàí¡•¥¡ÐèÈÅÁàí™½¹ÐµÍ¥é”èÄÅÁáô¹…Ñ±…Ìµ±…‰•±íÝ¥‘Ñ èàáÁàí½Ù•É™±½Üé¡¥‘‘•¸íÑ•áÐµ½Ù•É™±½Üé•±±¥ÁÍ¥Íô)ô()µ•‘¥„€¡µ…àµÝ¥‘Ñ è€ØÌåÁà¤ì(€€¹ÍÉ••¸ìµ…àµÝ¥‘Ñ è¹½¹”ìô(€€¹¡•…ì…±¥¸µ¥Ñ•µÌè™±•àµÍÑ…ÉÐìô(€€¹±…ˆµ‰•¹ ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È…ÕÑ¼€Å™ÈìÁ…‘‘¥¹œè€ÄÉÁà€áÁàìô(€€¹±…ˆµ‰•¹ èé‰•™½É”ìÝ¥‘Ñ è€ÈÈÁÁàì¡•¥¡Ðè€ÈÈÁÁàì¥¹Í•Ðµ‰±½¬µÍÑ…ÉÐè€´Ôà”ìô(€€¹Í±½ÐìÝ¥‘Ñ èµ¥¸ ÄÀÀ”°€ÄÀÉÁà¤ìô(€€¹™ÕÍ”µ½°ì…Àè€ÙÁàìô(€€¹…ÉµÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹ÌèÉ•Á•…Ð Ì°µ¥¹µ…à À°€Å™È¤¤ì…Àè€áÁàìô(€€¹…ÉµÉ¥€ø€¨ìµ¥¸µÝ¥‘Ñ è€Àìµ…àµÝ¥‘Ñ è€ÄÀÀ”ìô(€€¹ÑÉ…äµÑ½½±Ìì‘¥ÍÁ±…äèÉ¥ìÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìè€Å™È€Å™Èì…Àè€áÁàìô(€€¹ÑÉ…äµÑ½½±Ì€¹™¥•±ìµ¥¸µÝ¥‘Ñ è€ÀìÝ¥‘Ñ è€ÄÀÀ”ìô(€€¹ÑÉ…äµÑ½½±Ì€¹™¥•±é™¥ÉÍÐµ¡¥±ìÉ¥µ½±Õµ¸è€Ä€¼€´Äìô(€€¹ÑÉ…äµÑ½½±Ì€ø€¹‰Ñ¸ìÝ¥‘Ñ è€ÄÀÀ”ìµ¥¸µÝ¥‘Ñ è€Àìô(€€¹…Ñ±…Ìµµ…ÀìÝ¥‘Ñ èµ¥¸ ÄÀÀ”°€ÐÌÁÁà¤ìô)ô(
+.card--xs .card-stats span { min-width: 18px; height: 17px; font-size: 10px; padding: 0 3px; border-radius: 6px; }
+.card--xs .card-mega { font-size: 6px; padding: 1px 4px; }
+.card--sm .card-stats span { min-width: 20px; height: 19px; font-size: 11px; padding: 0 4px; border-radius: 7px; }
+/* the medallions leave no room for a caption at these sizes */
+.card--sm .card-tier, .card--xs .card-tier { display: none; }
+
+/* card states */
+.card[data-clickable="1"] { cursor: pointer; }
+@media (hover: hover) and (pointer: fine) {
+  .card[data-clickable="1"]:hover { transform: translateY(-5px); box-shadow: var(--shadow-depth-lg); }
+}
+.card[data-clickable="1"]:active { transform: scale(.96) translateY(1px); filter: brightness(.9); }
+.card.is-selected {
+  box-shadow: var(--glow-gold), var(--shadow-depth-lg);
+  transform: translateY(-6px);
+}
+.card.is-locked { filter: grayscale(1) brightness(0.42); opacity: 0.75; }
+.card.is-locked .card-name { color: var(--ink-faint); }
+.card.is-dim { opacity: 0.34; }
+.card.is-playable { box-shadow: var(--glow-green); }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.94); }
+  to   { opacity: 1; transform: none; }
+}
+.card.anim-in { animation: cardIn var(--t-med) var(--ease) both; }
+
+/* ==========================================================================
+   Lab
+   ========================================================================== */
+.lab-bench {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--gut-s);
+  padding: var(--gut) var(--gut-s);
+  margin-bottom: var(--gut);
+  border: 1px solid var(--line);
+  border-top-color: var(--metal-edge);
+  border-radius: var(--radius-frame);
+  background:
+    radial-gradient(75% 120% at 50% 0%, rgba(115, 67, 196, 0.16), transparent 65%),
+    linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+  box-shadow: var(--shadow-depth-md);
+  position: relative;
+  overflow: hidden;
+}
+.lab-bench::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -46%;
+  inset-inline-start: 50%;
+  transform: translateX(50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 1px solid var(--line-soft);
+  pointer-events: none;
+}
+
+.slot {
+  justify-self: center;
+  width: 108px;
+  aspect-ratio: 5 / 7;
+  border-radius: var(--r-lg);
+  border: 1px dashed var(--line);
+  display: grid;
+  place-items: center;
+  background: rgba(13, 16, 32, 0.5);
+  cursor: pointer;
+  transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.slot:hover { border-color: var(--gold-lo); }
+.slot-hint {
+  font-size: 10px;
+  letter-spacing: var(--track-wide);
+  color: var(--ink-faint);
+  text-align: center;
+  padding: 0 8px;
+}
+.slot .card { cursor: pointer; }
+
+.fuse-col { display: grid; justify-items: center; gap: 10px; }
+.fuse-glyph {
+  width: 30px;
+  height: 30px;
+  color: var(--gold-lo);
+  transition: color var(--t-med) var(--ease), transform var(--t-slow) var(--ease);
+}
+.fuse-col.is-ready .fuse-glyph { color: var(--gold-hi); transform: rotate(180deg); }
+
+.lab-result {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: var(--gut) 0 4px;
+  min-height: 40px;
+  text-align: center;
+}
+.lab-msg { font-size: 13px; color: var(--ink-2); }
+.lab-msg.is-new { color: var(--gold-hi); font-family: var(--font-display); font-size: 16px; }
+.lab-msg.is-fail { color: var(--ink-3); }
+.lab-msg.is-dupe { color: var(--verdigris); }
+
+.tray-tools {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.field {
+  flex: 1 1 150px;
+  min-width: 130px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+  min-height: 40px;
+  border: 1px solid var(--metal-edge);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(175deg, var(--surface-2), #17121F);
+  box-shadow: var(--bevel);
+}
+.field input, .field select {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: 0;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13.5px;
+  padding: 8px 0;
+}
+.field input:focus, .field select:focus { outline: none; }
+.field select option { background: var(--panel); color: var(--ink); }
+.field-ico { color: var(--ink-faint); font-size: 12px; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: var(--gut-s);
+  justify-items: center;
+}
+.card-grid .card { --card-w: 100%; }
+
+/* ==========================================================================
+   Codex
+   ========================================================================== */
+.tier-band {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: var(--gut) 0 10px;
+}
+.tier-band .bar { flex: 1; height: 1px; background: var(--line-soft); }
+.tier-band h2 {
+  font-size: 12px;
+  letter-spacing: var(--track-wide);
+  color: var(--rar, var(--ink-3));
+  font-weight: 500;
+}
+.tier-band .count {
+  font-family: var(--font-num);
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-rail {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--panel-2);
+  overflow: hidden;
+}
+.progress-rail > i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-lo), var(--gold-hi));
+  transition: width var(--t-slow) var(--ease);
+}
+
+/* ==========================================================================
+   Deck builder
+   ========================================================================== */
+.deck-layout { display: grid; gap: var(--gut); }
+@media (min-width: 900px) {
+  .deck-layout { grid-template-columns: 330px 1fr; align-items: start; }
+  .deck-panel { position: sticky; top: 82px; }
+}
+
+.deck-panel {
+  border: 1px solid var(--line);
+  border-top-color: var(--metal-edge);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+  box-shadow: var(--shadow-depth-md);
+  padding: var(--gut-s);
+}
+.deck-count {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 4px 4px 10px;
+}
+.deck-count b {
+  font-family: var(--font-num);
+  font-size: 24px;
+  color: var(--gold-hi);
+  font-variant-numeric: tabular-nums;
+}
+.deck-count.is-full b { color: var(--verdigris); }
+
+.deck-list { display: grid; gap: 4px; max-height: 46vh; overflow-y: auto; padding-inline-end: 3px; }
+@media (min-width: 900px) { .deck-list { max-height: 54vh; } }
+
+.deck-row {
+  display: grid;
+  grid-template-columns: 26px 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 7px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  background: rgba(29, 36, 64, 0.5);
+  cursor: pointer;
+  text-align: start;
+  width: 100%;
+}
+.deck-row:hover { border-color: var(--line); background: var(--panel-2); }
+.deck-row .rc {
+  width: 22px; height: 22px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--gold-lo);
+  color: var(--gold-hi);
+  font-family: var(--font-num);
+  font-size: 11px;
+}
+.deck-row .rn { font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.deck-row .rx { font-family: var(--font-num); font-size: 11px; color: var(--ink-3); }
+.deck-row .rdot { width: 7px; height: 7px; border-radius: 50%; background: var(--el, var(--ink-faint)); }
+
+.deck-curve { display: flex; align-items: flex-end; gap: 3px; height: 40px; padding: 8px 4px 0; }
+.deck-curve i {
+  flex: 1;
+  background: linear-gradient(180deg, var(--gold-lo), rgba(138, 106, 48, 0.2));
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  position: relative;
+}
+.deck-curve i::after {
+  content: attr(data-n);
+  position: absolute;
+  inset-block-end: -14px;
+  inset-inline-start: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 8px;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   Campaign map
+   ========================================================================== */
+.map-list { display: grid; gap: 10px; }
+@media (min-width: 720px) { .map-list { grid-template-columns: 1fr 1fr; } }
+
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-top-color: var(--metal-edge);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+  box-shadow: var(--shadow-depth-md);
+  text-align: start;
+  width: 100%;
+  cursor: pointer;
+  transition: transform var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.stage:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--gold-lo); }
+.stage:disabled { opacity: 0.42; cursor: not-allowed; }
+.stage-mark { width: 54px; height: 54px; color: var(--el, var(--gold-lo)); }
+.stage-mark svg { width: 100%; height: 100%; }
+.stage h3 { font-size: 15px; }
+.stage .st { font-size: 10px; letter-spacing: var(--track-wide); color: var(--gold-lo); }
+.stage .sb { font-size: 11.5px; color: var(--ink-3); margin-top: 3px; }
+.stage-flag {
+  font-size: 9.5px;
+  letter-spacing: var(--track-wide);
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.stage-flag.is-clear { color: var(--verdigris); border-color: rgba(79, 179, 162, 0.4); }
+.stage-flag.is-lock { color: var(--ink-faint); }
+
+/* ==========================================================================
+   Battle â€” simultaneous secret duels
+   ========================================================================== */
+.arena {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto auto;
+  gap: 8px;
+  min-height: calc(100dvh - 118px);
+}
+
+.hero-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-top-color: var(--metal-edge);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+  box-shadow: var(--shadow-depth-md);
+}
+.hero-bar.is-active { border-color: var(--gold-lo); box-shadow: var(--glow-gold); }
+
+.hero-sigil { width: 40px; height: 40px; color: var(--el, var(--gold-lo)); }
+.hero-sigil svg { width: 100%; height: 100%; }
+.hero-meta { min-width: 0; }
+.hero-meta b { font-family: var(--font-display); font-size: 14px; display: block; }
+.hero-meta .hint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.03em;
+  margin-top: 2px;
+}
+.class-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--gold-lo);
+  color: var(--gold-hi);
+  font-size: 8.5px;
+  letter-spacing: 0.04em;
+}
+
+.hero-hp {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-num);
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+  color: #f3a3ae;
+}
+.hero-hp .ic { font-size: 12px; opacity: 0.7; }
+
+.meters { display: grid; justify-items: end; gap: 4px; margin-top: 4px; }
+.meter { display: flex; gap: 3px; }
+.meter i {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.meter--orb i { border-color: #3d6d94; }
+.meter--orb i.on { background: radial-gradient(circle at 35% 30%, #a8d8ff, #3d6d94); border-color: #a8d8ff; }
+.meter--streak i { border-color: var(--gold-lo); }
+.meter--streak i.on { background: radial-gradient(circle at 35% 30%, var(--gold-hi), var(--gold-lo)); border-color: var(--gold-hi); }
+
+/* -- duel arena: the two committed cards, revealed together -------------- */
+.duel-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+.duel-vs {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line-soft);
+  color: var(--gold-lo);
+  font-family: var(--font-display);
+  font-size: 12px;
+}
+.duel-slot {
+  justify-self: center;
+  width: 118px;
+  aspect-ratio: 5 / 7;
+  border-radius: var(--r-lg);
+  border: 1px dashed var(--line);
+  display: grid;
+  place-items: center;
+  background: rgba(13, 16, 32, 0.5);
+  position: relative;
+  transition: border-color var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+}
+.duel-slot .hint {
+  font-size: 10px;
+  letter-spacing: var(--track-wide);
+  color: var(--ink-faint);
+  text-align: center;
+  padding: 0 10px;
+}
+.duel-slot.is-locked { border-style: solid; border-color: var(--gold-lo); }
+.duel-slot.is-locked .hint { color: var(--gold-hi); }
+.duel-slot.is-undefended {
+  border-style: solid;
+  border-color: var(--blood);
+  background: rgba(192, 69, 90, 0.07);
+}
+.duel-slot.is-undefended .hint { color: #e8a3ae; }
+.duel-slot.is-revealed { border-style: solid; border-color: var(--line-soft); animation: clashIn var(--t-slow) var(--ease) both; }
+@keyframes clashIn {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hand-rail {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  padding: 12px 4px 8px;
+  align-items: end;
+  justify-items: center;
+}
+.hand-rail .card { --card-w: 100%; max-width: 118px; }
+/* five to a row leaves each card too narrow for a caption between the medallions */
+.hand-rail .card-tier { display: none; }
+.hand-rail .card[data-clickable="1"]:hover { transform: translateY(-9px); }
+.hand-rail .card.is-picked {
+  box-shadow: var(--glow-gold), var(--sh-3);
+  transform: translateY(-10px);
+}
+.hand-rail .card.is-fusible { box-shadow: 0 0 0 1px var(--verdigris), 0 0 16px -6px var(--verdigris); }
+
+.action-panel {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-top-color: var(--metal-edge);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+  box-shadow: var(--shadow-depth-md);
+  min-height: 52px;
+}
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.action-hint { font-size: 12px; color: var(--ink-3); flex: 1 1 140px; }
+.spend-stepper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--deep);
+}
+.spend-stepper button {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  cursor: pointer;
+}
+.spend-stepper button:disabled { opacity: 0.35; cursor: not-allowed; }
+.spend-stepper b {
+  min-width: 34px;
+  text-align: center;
+  font-family: var(--font-num);
+  font-size: 12.5px;
+  color: var(--gold-hi);
+}
+
+.battle-bar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding-block: 2px;
+}
+.battle-feed {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  min-height: 17px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.battle-feed .good { color: var(--verdigris); }
+.battle-feed .bad  { color: #e08a98; }
+
+/* floating combat numbers */
+.float {
+  position: fixed;
+  z-index: 800;
+  pointer-events: none;
+  font-family: var(--font-num);
+  font-weight: 700;
+  font-size: 21px;
+  text-shadow: 0 2px 8px #000;
+  animation: floatUp 900ms var(--ease) forwards;
+}
+.float.dmg  { color: #ff8f9f; }
+.float.heal { color: #8ede8f; }
+@keyframes floatUp {
+  0%   { opacity: 0; transform: translate(-50%, 4px) scale(0.7); }
+  22%  { opacity: 1; transform: translate(-50%, -8px) scale(1.1); }
+  100% { opacity: 0; transform: translate(-50%, -42px) scale(1); }
+}
+
+.shake { animation: shake 260ms var(--ease); }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* ==========================================================================
+   Tab bar
+   ========================================================================== */
+.tabbar {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 70;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px max(6px, env(safe-area-inset-left)) calc(6px + env(safe-area-inset-bottom));
+  background: linear-gradient(0deg, rgba(7, 6, 11, 0.98), rgba(7, 6, 11, 0.82));
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--metal-edge);
+}
+.tabbar[hidden] { display: none; }
+.tabbar button {
+  flex: 1;
+  max-width: 130px;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 7px 4px;
+  min-height: 50px;
+  border: 0;
+  border-radius: var(--r-md);
+  background: none;
+  color: var(--ink-3);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.tabbar button .t-ico { font-size: 17px; line-height: 1; }
+.tabbar button:hover { color: var(--ink-2); }
+.tabbar button.is-on {
+  color: #FFD780;
+  background: linear-gradient(175deg, rgba(224, 169, 58, .16), rgba(158, 119, 44, .08));
+  box-shadow: inset 0 1px 0 var(--metal-edge);
+}
+
+/* ==========================================================================
+   Toast + modal
+   ========================================================================== */
+.toast-host {
+  position: fixed;
+  inset-block-start: calc(72px + env(safe-area-inset-top));
+  inset-inline: 0;
+  z-index: 850;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 0 var(--gut);
+  pointer-events: none;
+}
+.toast {
+  max-width: 460px;
+  padding: 11px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--metal-edge);
+  border-top-color: var(--metal-edge-strong);
+  background: linear-gradient(175deg, var(--surface-2), #1A1526);
+  color: var(--text-dark);
+  font-size: 13.5px;
+  font-weight: 500;
+  box-shadow: var(--bevel), var(--shadow-depth-lg);
+  animation: toastIn var(--t-med) var(--spring) both;
+}
+.toast.good { border-color: rgba(35, 168, 118, 0.45); color: #6BD6A0; }
+.toast.bad  { border-color: rgba(176, 39, 66, 0.45); color: #EE9A92; }
+.toast.gold { border-color: rgba(224, 169, 58, 0.45); color: #FFD780; }
+.toast.is-out { animation: toastOut var(--t-med) var(--ease) both; }
+@keyframes toastIn  { from { opacity: 0; transform: translateY(-10px); } }
+@keyframes toastOut { to   { opacity: 0; transform: translateY(-8px); } }
+
+.modal-host {
+  position: fixed;
+  inset: 0;
+  z-index: 880;
+  display: grid;
+  place-items: center;
+  padding: var(--gut);
+  background: rgba(4, 3, 8, 0.78);
+  backdrop-filter: blur(6px);
+  animation: fade var(--t-med) var(--ease) both;
+}
+.modal-host[hidden] { display: none; }
+@keyframes fade { from { opacity: 0; } }
+
+.modal {
+  width: min(520px, 100%);
+  max-height: 86dvh;
+  overflow-y: auto;
+  padding: 24px 20px;
+  border: 1px solid rgba(155, 127, 216, 0.16);
+  border-top-color: rgba(180, 150, 235, 0.32);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, #1E1830, var(--panel-light) 40%, #120E1B);
+  box-shadow: var(--shadow-depth-lg), inset 0 0 40px rgba(0, 0, 0, .35);
+  animation: sheetIn var(--t-med) var(--spring) both;
+  text-align: center;
+}
+@keyframes sheetIn {
+  from { transform: translateY(24px) scale(.96); opacity: 0; }
+}
+.modal h2 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
+.modal p { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+.modal .modal-body { display: grid; gap: 12px; justify-items: center; }
+.modal .modal-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+
+.detail-kw { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+.kw-chip {
+  font-size: 10.5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--gold-lo);
+  color: var(--gold-hi);
+}
+/* THE-ARENA's own name for a portrait, on cards that kept their functional
+   name because the fusion tree reads it. */
+.eyebrow--he {
+  direction: rtl;
+  text-align: center;
+  letter-spacing: 0.12em;
+  text-transform: none;
+  font-size: 10.5px;
+}
+
+.art-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--neon-gold);
+  margin-top: 2px;
+}
+
+.recipe-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.recipe-line .op { color: var(--gold-lo); font-family: var(--font-num); }
+
+.stat-strip {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+.stat-strip div { text-align: center; }
+.stat-strip b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--text-dark);
+  font-variant-numeric: tabular-nums;
+}
+.stat-strip span {
+  font-size: 9.5px;
+  letter-spacing: var(--track-wide);
+  color: var(--ink-3);
+}
+
+.empty-note {
+  padding: 34px var(--gut);
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.6;
+  border: 1px dashed var(--line);
+  border-radius: var(--r-lg);
+}
+
+.shop-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--metal-edge);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(175deg, var(--surface-2), #1A1526);
+  box-shadow: var(--bevel);
+  margin-bottom: 8px;
+}
+.shop-row h4 { font-size: 13.5px; }
+.shop-row p { font-size: 11.5px; color: var(--ink-3); margin-top: 2px; }
+
+@media (min-width: 640px) {
+  .card { --card-w: 118px; }
+  .card--xs { --card-w: 76px; }
+  .slot { width: 118px; }
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+}
