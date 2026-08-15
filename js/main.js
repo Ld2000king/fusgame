@@ -71,7 +71,7 @@ function confirmLeaveBattle(next) {
         h('button', {
           class: 'btn btn--danger',
           text: 'נטוש',
-          onclick: () => { api.close(); exitBattle(); go(next); },
+          onclick: () => { api.close(); exitBattle(); exitTavernBattle(); go(next); },
         }),
         h('button', { class: 'btn btn--gold', text: 'הישאר', onclick: api.close }),
       ]),
