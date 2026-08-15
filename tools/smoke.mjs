@@ -162,9 +162,9 @@ async function run(label, viewport) {
 
   /* -- battle -------------------------------------------------------------- */
   await page.click('[data-nav="map"]');
-  await page.waitForSelector('.stage');
+  await page.waitForSelector('.atlas-stage');
   await shot(page, `${label}-map`);
-  await page.click('.stage');
+  await page.click('.atlas-stage:not(:disabled)');
   await page.waitForSelector('.modal');
   await page.click('.modal [data-action="launch"]');
   await page.waitForSelector('.arena', { timeout: 5000 });
@@ -224,7 +224,14 @@ async function run(label, viewport) {
 
     const cards = await page.$$('.hand-rail .card');
     if (!cards.length) { await page.waitForTimeout(300); continue; }
-    await cards[0].click();
+    try {
+      await cards[0].click();
+    } catch {
+      // a round resolved and re-rendered the hand between the query and the
+      // click — just retry on the next loop iteration.
+      await page.waitForTimeout(150);
+      continue;
+    }
     await page.waitForTimeout(150);
     const goBtn = await page.$('.action-panel .btn--gold:not([disabled])');
     if (goBtn) { await goBtn.click(); await page.waitForTimeout(2400); }

@@ -492,10 +492,11 @@ p { margin: 0; }
   z-index: 3;
 }
 
-/* card sizes */
-.card--lg  { --card-w: 156px; }
-.card--sm  { --card-w: 84px; }
-.card--xs  { --card-w: 62px; }
+/* card sizes — doubled class beats the bare .card rule in the ≥640px media
+   query below regardless of source order, so "small" stays small on desktop */
+.card.card--lg  { --card-w: 156px; }
+.card.card--sm  { --card-w: 84px; }
+.card.card--xs  { --card-w: 62px; }
 .card--xs .card-frame { padding-block-end: 19px; border-radius: calc(var(--radius-tile) - 1px); }
 .card--xs { border-radius: var(--radius-tile); }
 .card--xs .card-name { font-size: 8.5px; }
@@ -534,8 +535,9 @@ p { margin: 0; }
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: var(--gut-s);
+  max-width: 640px;
   padding: var(--gut) var(--gut-s);
-  margin-bottom: var(--gut);
+  margin: 0 auto var(--gut);
   border: 1px solid var(--line);
   border-top-color: var(--metal-edge);
   border-radius: var(--radius-frame);
@@ -564,14 +566,15 @@ p { margin: 0; }
   width: 108px;
   aspect-ratio: 5 / 7;
   border-radius: var(--r-lg);
-  border: 1px dashed var(--line);
+  border: 1.5px dashed var(--metal-edge-strong);
   display: grid;
   place-items: center;
   background: rgba(13, 16, 32, 0.5);
+  box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
 }
-.slot:hover { border-color: var(--gold-lo); }
+.slot:hover { border-color: var(--gold-lo); background: rgba(210, 160, 60, 0.06); }
 .slot-hint {
   font-size: 10px;
   letter-spacing: var(--track-wide);
@@ -637,13 +640,15 @@ p { margin: 0; }
 .field select option { background: var(--panel); color: var(--ink); }
 .field-ico { color: var(--ink-faint); font-size: 12px; }
 
+/* Flex, not grid: a sparse collection (early game, a filtered search) packs
+   into a centered cluster at its natural card size instead of stretching
+   across empty grid tracks it doesn't have enough cards to fill. */
 .card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--gut-s);
-  justify-items: center;
 }
-.card-grid .card { --card-w: 100%; }
 
 /* ==========================================================================
    Codex
@@ -881,6 +886,8 @@ p { margin: 0; }
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 10px;
+  max-width: 620px;
+  margin: 0 auto;
   padding: 10px;
 }
 .duel-vs {
@@ -899,10 +906,11 @@ p { margin: 0; }
   width: 118px;
   aspect-ratio: 5 / 7;
   border-radius: var(--r-lg);
-  border: 1px dashed var(--line);
+  border: 1.5px dashed var(--metal-edge-strong);
   display: grid;
   place-items: center;
   background: rgba(13, 16, 32, 0.5);
+  box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.4);
   position: relative;
   transition: border-color var(--t-med) var(--ease), transform var(--t-med) var(--ease);
 }
@@ -1239,9 +1247,8 @@ p { margin: 0; }
 
 @media (min-width: 640px) {
   .card { --card-w: 118px; }
-  .card--xs { --card-w: 76px; }
+  .card.card--xs { --card-w: 76px; }
   .slot { width: 118px; }
-  .card-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
 }
 
 /* Campaign atlas — a winding progression trail through a brutal warrior realm. */
