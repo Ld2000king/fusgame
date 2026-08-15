@@ -1655,6 +1655,155 @@ p { margin: 0; }
   100% { opacity: 0; transform: scale(1.45) rotate(120deg); }
 }
 
+/* --------------------------------------------------------------------------
+   Elemental summon & attack variety — every card's element picks one of five
+   looks (the base cardSummon/summonPortal/slashFlash/impactBurst above is
+   the fifth, used by shadow), so units entering and striking the board don't
+   all read the same.
+   -------------------------------------------------------------------------- */
+
+/* --- Fire (fire): the card ignites up out of rising flame. --- */
+.minion[data-el="fire"].is-summoning { animation: cardSummonFire .9s cubic-bezier(.16,.84,.24,1) both; }
+.minion[data-el="fire"].is-summoning::before {
+  background: radial-gradient(circle, #fff6d8 0 4%, #ffcf6bcc 10%, #ff7a34aa 32%, #c81f1f66 55%, transparent 72%);
+  animation: summonFire .9s ease-out both;
+}
+@keyframes cardSummonFire {
+  0% { opacity: 0; transform: translateY(46px) scale(.35); filter: brightness(2.6) saturate(1.6) hue-rotate(-8deg); }
+  46% { opacity: 1; transform: translateY(-12px) scale(1.16); filter: brightness(1.9) saturate(1.3); }
+  74% { transform: translateY(3px) scale(.97); filter: brightness(1.1); }
+  100% { transform: none; filter: none; }
+}
+@keyframes summonFire {
+  0% { opacity: 0; transform: scale(.2) translateY(20px); }
+  40% { opacity: 1; transform: scale(1) translateY(-4px); }
+  100% { opacity: 0; transform: scale(1.5) translateY(-30px); }
+}
+.minion[data-el="fire"].is-attacking::after {
+  background: linear-gradient(90deg, transparent, #fff6d8, #ff9a3c, #d3311a, transparent);
+  box-shadow: 0 0 12px #ffcf6b, 0 0 26px #ff5a1f;
+  animation: slashFlashFire .62s ease-out both;
+}
+@keyframes slashFlashFire {
+  0%, 38% { opacity: 0; transform: translate(-22px,22px) rotate(-30deg) scaleX(.2); }
+  60% { opacity: 1; transform: translate(6px,-4px) rotate(-30deg) scaleX(1.3); filter: brightness(1.4); }
+  100% { opacity: 0; transform: translate(28px,-24px) rotate(-30deg) scaleX(.4); }
+}
+.minion[data-el="fire"].is-hit::before {
+  background: radial-gradient(circle, #fff 0 5%, #ffcf6b 8%, #ff5a1faa 28%, transparent 68%);
+}
+
+/* --- Nature (earth, life): the card takes root and grows into place. --- */
+.minion[data-el="earth"].is-summoning,
+.minion[data-el="life"].is-summoning { animation: cardSummonNature .9s cubic-bezier(.2,.85,.3,1.1) both; }
+.minion[data-el="earth"].is-summoning::before,
+.minion[data-el="life"].is-summoning::before {
+  background: radial-gradient(circle, #f2ffe0 0 4%, #9be36bcc 12%, #4c9a3d99 32%, #1f5c2a55 55%, transparent 72%);
+  animation: summonNature .9s ease-out both;
+}
+@keyframes cardSummonNature {
+  0% { opacity: 0; transform: translateY(0) scaleY(.15) scaleX(.7); transform-origin: bottom; filter: brightness(1.4) saturate(1.3); }
+  55% { opacity: 1; transform: translateY(-6px) scaleY(1.12) scaleX(1.03); }
+  78% { transform: translateY(2px) scaleY(.97) scaleX(.99) rotate(-2deg); }
+  92% { transform: rotate(1.5deg); }
+  100% { transform: none; filter: none; }
+}
+@keyframes summonNature {
+  0% { opacity: 0; transform: scale(.3) rotate(-15deg); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.4) rotate(25deg); }
+}
+.minion[data-el="earth"].is-attacking::after,
+.minion[data-el="life"].is-attacking::after {
+  background: linear-gradient(90deg, transparent, #f2ffe0, #8fd15c, #35662a, transparent);
+  box-shadow: 0 0 12px #b6f08a, 0 0 22px #3f7a2e;
+  animation: slashFlashNature .68s ease-out both;
+}
+@keyframes slashFlashNature {
+  0%, 35% { opacity: 0; transform: translate(-20px,18px) rotate(-20deg) skewX(-8deg) scaleX(.2); }
+  62% { opacity: 1; transform: translate(6px,-4px) rotate(4deg) skewX(4deg) scaleX(1.25); }
+  100% { opacity: 0; transform: translate(26px,-18px) rotate(20deg) skewX(10deg) scaleX(.4); }
+}
+.minion[data-el="earth"].is-hit::before,
+.minion[data-el="life"].is-hit::before {
+  background: radial-gradient(circle, #f2ffe0 0 5%, #9be36b 8%, #3f7a2eaa 28%, transparent 68%);
+}
+
+/* --- Storm (air, water): a vortex spins the card in from the wind. --- */
+.minion[data-el="air"].is-summoning,
+.minion[data-el="water"].is-summoning { animation: cardSummonStorm .9s cubic-bezier(.16,.84,.24,1) both; }
+.minion[data-el="air"].is-summoning::before,
+.minion[data-el="water"].is-summoning::before {
+  background: conic-gradient(from 0deg, transparent 0 8%, #eaf6ffcc 18%, transparent 34%, #7fa8d9aa 52%, transparent 68%, #cfe9ffcc 86%, transparent 100%);
+  animation: summonStorm .9s ease-out both;
+}
+@keyframes cardSummonStorm {
+  0% { opacity: 0; transform: translateY(16px) scale(.4) rotate(-160deg); filter: brightness(2.2); }
+  50% { opacity: 1; transform: translateY(-9px) scale(1.14) rotate(18deg); filter: brightness(1.5); }
+  76% { transform: translateY(2px) scale(.97) rotate(-6deg); }
+  100% { transform: none; filter: none; }
+}
+@keyframes summonStorm {
+  0% { opacity: 0; transform: scale(.2) rotate(0); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.6) rotate(-280deg); }
+}
+.minion[data-el="air"].is-attacking::after,
+.minion[data-el="water"].is-attacking::after {
+  background: linear-gradient(90deg, transparent, #eaf6ff, #8fbede, transparent);
+  box-shadow: 0 0 12px #cfe9ff, 0 0 22px #6fa0c9;
+  filter: blur(.3px);
+  animation: slashFlashStorm .56s ease-out both;
+}
+@keyframes slashFlashStorm {
+  0%, 30% { opacity: 0; transform: translate(-26px,8px) rotate(-14deg) scaleX(.2); }
+  55% { opacity: 1; transform: translate(6px,-3px) rotate(10deg) scaleX(1.35); }
+  100% { opacity: 0; transform: translate(32px,-14px) rotate(34deg) scaleX(.4); }
+}
+.minion[data-el="air"].is-hit::before,
+.minion[data-el="water"].is-hit::before {
+  background: radial-gradient(circle, #fff 0 5%, #cfe9ff 8%, #6fa0c9aa 28%, transparent 68%);
+}
+
+/* --- Lightning (arcane, metal): the card flickers awake in a bolt flash. --- */
+.minion[data-el="arcane"].is-summoning,
+.minion[data-el="metal"].is-summoning { animation: cardSummonLightning .7s steps(1,end) both; }
+.minion[data-el="arcane"].is-summoning::before,
+.minion[data-el="metal"].is-summoning::before {
+  background: radial-gradient(circle, #fff 0 5%, #fff6a8dd 10%, #d6e6ffaa 30%, transparent 65%);
+  animation: summonLightning .7s ease-out both;
+}
+@keyframes cardSummonLightning {
+  0% { opacity: 0; transform: scale(.5); filter: brightness(3.4); }
+  12% { opacity: 1; transform: scale(1.1) translateX(-6px); }
+  24% { opacity: .3; transform: scale(.95) translateX(4px); }
+  36% { opacity: 1; transform: scale(1.05) translateX(-3px); filter: brightness(2.2); }
+  50% { opacity: .55; transform: scale(1); }
+  64% { opacity: 1; filter: brightness(1.4); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
+@keyframes summonLightning {
+  0%, 100% { opacity: 0; }
+  10%, 34%, 62% { opacity: 1; transform: scale(1.2); }
+  20%, 45%, 80% { opacity: 0; transform: scale(.6); }
+}
+.minion[data-el="arcane"].is-attacking::after,
+.minion[data-el="metal"].is-attacking::after {
+  background: linear-gradient(90deg, transparent, #fff, #fff6a8, #7fa8ff, transparent);
+  box-shadow: 0 0 14px #fff, 0 0 26px #fff08a;
+  animation: slashFlashLightning .4s steps(2,end) both;
+}
+@keyframes slashFlashLightning {
+  0% { opacity: 0; transform: translate(-24px,0) rotate(-33deg) scaleX(.2); }
+  30% { opacity: 1; transform: translate(-6px,4px) rotate(-15deg) scaleX(1); }
+  55% { opacity: .4; transform: translate(4px,-6px) rotate(-40deg) scaleX(1.2); }
+  100% { opacity: 0; transform: translate(26px,-12px) rotate(-24deg) scaleX(.5); }
+}
+.minion[data-el="arcane"].is-hit::before,
+.minion[data-el="metal"].is-hit::before {
+  background: radial-gradient(circle, #fff 0 6%, #fff6a8 10%, #7fa8ffaa 26%, transparent 62%);
+}
+
 @media (max-width: 520px) {
   .atlas-map { height: 1600px; border-radius: 25px; }
   .atlas-stage { --node: 82px; }
