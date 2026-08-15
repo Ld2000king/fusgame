@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><defs>
+<radialGradient id="bg" cx="50%" cy="42%" r="72%">
+  <stop offset="0" stop-color="#191225"/>
+  <stop offset="0.55" stop-color="#0E0C16"/>
+  <stop offset="1" stop-color="#07060B"/>
+</radialGradient>
+
+<linearGradient id="grad-fire" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0" stop-color="#F7B37A"/>
+  <stop offset="0.5" stop-color="#B14D19"/>
+  <stop offset="1" stop-color="#5A2409"/>
+</linearGradient>
+<radialGradient id="glow-fire" cx="50%" cy="50%" r="50%">
+  <stop offset="0" stop-color="#B14D19" stop-opacity="0.55"/>
+  <stop offset="1" stop-color="#B14D19" stop-opacity="0"/>
+</radialGradient>
+
+<linearGradient id="grad-water" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0" stop-color="#AEDCFF"/>
+  <stop offset="0.5" stop-color="#4A79C4"/>
+  <stop offset="1" stop-color="#22385C"/>
+</linearGradient>
+<radialGradient id="glow-water" cx="50%" cy="50%" r="50%">
+  <stop offset="0" stop-color="#4A79C4" stop-opacity="0.55"/>
+  <stop offset="1" stop-color="#4A79C4" stop-opacity="0"/>
+</radialGradient>
+
+<linearGradient id="grad-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0" stop-color="#F6E1A6"/>
+  <stop offset="0.5" stop-color="#D2A03C"/>
+  <stop offset="1" stop-color="#6E4F16"/>
+</linearGradient>
+<radialGradient id="glow-gold" cx="50%" cy="50%" r="50%">
+  <stop offset="0" stop-color="#D2A03C" stop-opacity="0.55"/>
+  <stop offset="1" stop-color="#D2A03C" stop-opacity="0"/>
+</radialGradient>
+
+<linearGradient id="grad-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0" stop-color="#F2F4F8"/>
+  <stop offset="0.5" stop-color="#8E93A8"/>
+  <stop offset="1" stop-color="#3C3F4A"/>
+</linearGradient>
+<radialGradient id="glow-metal" cx="50%" cy="50%" r="50%">
+  <stop offset="0" stop-color="#8E93A8" stop-opacity="0.55"/>
+  <stop offset="1" stop-color="#8E93A8" stop-opacity="0"/>
+</radialGradient>
+
+<radialGradient id="gem" cx="38%" cy="26%" r="78%">
+  <stop offset="0" stop-color="#FFFFFF"/>
+  <stop offset="0.30" stop-color="#D9B8FF"/>
+  <stop offset="0.62" stop-color="#7343C4"/>
+  <stop offset="1" stop-color="#3A1F70"/>
+</radialGradient>
+<radialGradient id="gem-glow" cx="50%" cy="50%" r="50%">
+  <stop offset="0" stop-color="#B78CFF" stop-opacity="0.65"/>
+  <stop offset="1" stop-color="#B78CFF" stop-opacity="0"/>
+</radialGradient>
+<filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+  <feGaussianBlur stdDeviation="16"/>
+</filter>
+<filter id="softSmall" x="-60%" y="-60%" width="220%" height="220%">
+  <feGaussianBlur stdDeviation="6"/>
+</filter>
+<path id="flameShape" d="M 0,46 C 20,34 27,10 18,-16 C 12,-34 -6,-46 -18,-34
+  C -29,-22 -22,-2 -6,10 C 6,19 9,32 0,46 Z"/>
+<path id="waveShape" d="M -42,18 C -20,-14 20,12 42,-20 C 34,-12 22,-8 10,-2
+  C 22,4 34,8 42,-20 C 20,20 -20,-6 -42,18 Z"/>
+<path id="shardShape" d="M 0,-46 L 12,-4 L 0,46 L -12,-4 Z"/>
+</defs><rect x="0" y="0" width="1024" height="1024" rx="225.3" fill="url(#bg)"/><g transform="translate(512.0,512.0) scale(1.0) translate(-512.0,-512.0)"><g filter="url(#soft)"><circle cx="352.7" cy="352.7" r="204.8" fill="url(#glow-fire)"/><circle cx="671.3" cy="352.7" r="204.8" fill="url(#glow-water)"/><circle cx="352.7" cy="671.3" r="204.8" fill="url(#glow-gold)"/><circle cx="671.3" cy="671.3" r="204.8" fill="url(#glow-metal)"/></g><g transform="translate(361.4,361.4) rotate(-45.0)"><use href="#flameShape" transform="scale(1.15) translate(-6,4) rotate(-8)" fill="url(#grad-fire)"/><use href="#flameShape" transform="scale(0.62) translate(30,26) rotate(14)" fill="url(#grad-fire)" opacity="0.92"/></g><g transform="translate(662.6,361.4) rotate(45.0)"><use href="#waveShape" transform="scale(1.25)" fill="url(#grad-water)"/><use href="#waveShape" transform="scale(0.7) translate(4,42) rotate(6)" fill="url(#grad-water)" opacity="0.9"/></g><g transform="translate(361.4,662.6) rotate(225.0)"><use href="#shardShape" transform="translate(-14,-6) rotate(-10) scale(1.05)" fill="url(#grad-gold)"/><use href="#shardShape" transform="translate(20,22) rotate(16) scale(0.62)" fill="url(#grad-gold)"/><use href="#shardShape" transform="translate(-22,26) rotate(22) scale(0.5)" fill="url(#grad-gold)"/></g><g transform="translate(662.6,662.6) rotate(135.0)"><use href="#shardShape" transform="translate(-14,-6) rotate(-10) scale(1.05)" fill="url(#grad-metal)"/><use href="#shardShape" transform="translate(-14,-6) rotate(-10) scale(0.231,0.9974999999999999)" fill="#FFFFFF" opacity="0.55"/><use href="#shardShape" transform="translate(20,22) rotate(16) scale(0.62)" fill="url(#grad-metal)"/><use href="#shardShape" transform="translate(20,22) rotate(16) scale(0.1364,0.589)" fill="#FFFFFF" opacity="0.55"/><use href="#shardShape" transform="translate(-22,26) rotate(22) scale(0.5)" fill="url(#grad-metal)"/><use href="#shardShape" transform="translate(-22,26) rotate(22) scale(0.11,0.475)" fill="#FFFFFF" opacity="0.55"/></g><circle cx="512.0" cy="512.0" r="147.5" fill="url(#gem-glow)" filter="url(#softSmall)"/><path d="M 512.0,346.1 L 595.6,493.6 L 512.0,653.3 L 428.4,493.6 Z" fill="url(#gem)" stroke="#F0BE55" stroke-width="6.14" stroke-opacity="0.9"/><line x1="512.0" y1="346.1" x2="512.0" y2="653.3" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="4.10"/><line x1="428.4" y1="493.6" x2="595.6" y2="493.6" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="4.10"/></g><rect x="20.5" y="20.5" width="983.0" height="983.0" rx="204.8" fill="none" stroke="#D2A03C" stroke-opacity="0.28" stroke-width="8.19"/></svg>
