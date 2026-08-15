@@ -128,7 +128,7 @@ function intro() {
    ------------------------------------------------------------------------- */
 function boot() {
   // brand mark
-  $('#brandMark').innerHTML = '<img src="icons/favicon-32.png" alt="">';
+  $('#brandMark').innerHTML = '<img src="icons/favicon-32.png?v=9" alt="">';
 
   $('#brandBtn').addEventListener('click', () => go('lab'));
   $('#brandBtn').addEventListener('dblclick', openSettings);
