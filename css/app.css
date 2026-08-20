@@ -49,7 +49,7 @@ p { margin: 0; }
 ::-webkit-scrollbar-thumb:hover { background: var(--neon-purple-deep); }
 
 :focus-visible {
-  outline: 3px solid #C8A24A;
+  outline: 3px solid #5C87BE;
   outline-offset: 3px;
   border-radius: var(--r-sm);
 }
@@ -256,7 +256,7 @@ p { margin: 0; }
 
 /* Cast amber — the primary action. Dark text on a bright fill. */
 .btn--gold {
-  background: linear-gradient(165deg, #E8C878, var(--neon-gold) 50%, #7A5E22);
+  background: linear-gradient(165deg, #5C87BE, var(--neon-gold) 50%, #101B2A);
   color: var(--on-bright);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4),
@@ -342,7 +342,7 @@ p { margin: 0; }
   z-index: 3;
   padding: 2px 6px;
   border-radius: 8px;
-  background: linear-gradient(165deg, #E8C878, var(--neon-gold) 55%, #7A5E22);
+  background: linear-gradient(165deg, #5C87BE, var(--neon-gold) 55%, #101B2A);
   color: var(--on-bright);
   font-family: var(--font-display);
   font-size: 7.5px;
@@ -467,12 +467,12 @@ p { margin: 0; }
   box-shadow: var(--shadow-depth-sm), inset 0 1px 0 rgba(255, 255, 255, .3);
   border-top: 1px solid rgba(255, 255, 255, .3);
 }
-/* wax seals: blood-red for attack, aged brass for defense */
+/* wax seals: blood-red for attack, dark sapphire for defense */
 .card-stats .atk {
   background: linear-gradient(165deg, #A8384A, var(--neon-red) 55%, #4A0F1A);
 }
 .card-stats .def {
-  background: linear-gradient(165deg, #8A6E3A, #5E4A24 55%, #2E2210);
+  background: linear-gradient(165deg, #5C87BE, #2E4E78 55%, #101B2A);
 }
 .card-stats .atk.is-buffed {
   background: linear-gradient(165deg, #6FAE7E, var(--neon-lime-deep) 55%, #16371F);
@@ -575,7 +575,7 @@ p { margin: 0; }
   cursor: pointer;
   transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
 }
-.slot:hover { border-color: var(--gold-lo); background: rgba(210, 160, 60, 0.06); }
+.slot:hover { border-color: var(--gold-lo); background: rgba(46, 78, 120, 0.10); }
 .slot-hint {
   font-size: 10px;
   letter-spacing: var(--track-wide);
@@ -751,7 +751,7 @@ p { margin: 0; }
 .deck-curve { display: flex; align-items: flex-end; gap: 3px; height: 40px; padding: 8px 4px 0; }
 .deck-curve i {
   flex: 1;
-  background: linear-gradient(180deg, var(--gold-lo), rgba(138, 106, 48, 0.2));
+  background: linear-gradient(180deg, var(--gold-lo), rgba(24, 42, 66, 0.35));
   border-radius: 2px 2px 0 0;
   min-height: 2px;
   position: relative;
@@ -1082,8 +1082,8 @@ p { margin: 0; }
 .tabbar button .t-ico { font-size: 17px; line-height: 1; }
 .tabbar button:hover { color: var(--ink-2); }
 .tabbar button.is-on {
-  color: #FFD780;
-  background: linear-gradient(175deg, rgba(224, 169, 58, .16), rgba(158, 119, 44, .08));
+  color: #9CC3EC;
+  background: linear-gradient(175deg, rgba(46, 78, 120, .26), rgba(24, 42, 66, .14));
   box-shadow: inset 0 1px 0 var(--metal-edge);
 }
 
@@ -1116,7 +1116,7 @@ p { margin: 0; }
 }
 .toast.good { border-color: rgba(35, 168, 118, 0.45); color: #6BD6A0; }
 .toast.bad  { border-color: rgba(176, 39, 66, 0.45); color: #EE9A92; }
-.toast.gold { border-color: rgba(224, 169, 58, 0.45); color: #FFD780; }
+.toast.gold { border-color: rgba(46, 78, 120, 0.55); color: #9CC3EC; }
 .toast.is-out { animation: toastOut var(--t-med) var(--ease) both; }
 @keyframes toastIn  { from { opacity: 0; transform: translateY(10px); } }
 @keyframes toastOut { to   { opacity: 0; transform: translateY(8px); } }

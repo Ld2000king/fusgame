@@ -1,8 +1,9 @@
 /* ============================================================================
    THEME — Alchemical Cartography, gothic-grimoire pass
-   Blood-black instead of violet-black, aged gold and bone instead of bright
-   neon, an engraved-serif display face, and a tighter radius scale (carved
-   stone, not soft plastic). Every token below keeps the name it had under
+   Blood-black instead of violet-black, dark sapphire and bone instead of
+   bright neon or gold, an engraved-serif display face, and a tighter radius
+   scale (carved stone, not soft plastic). Every token below keeps the name
+   it had under
    the THE-ARENA palette this replaces, so every rule in app.css that reads
    a token — cards, buttons, glows, the procedural monster art, which paints
    itself in `currentColor` from --el — repaints with it, unchanged.
@@ -19,8 +20,8 @@
   --neon-lime-deep:   #3F7A54;
   --neon-orange:      #8A3A18;   /* ember, gone to embers-under-ash */
   --neon-orange-deep: #602711;
-  --neon-gold:        #C8A24A;   /* antique amber — the one accent that stays bright */
-  --neon-gold-deep:   #96762E;
+  --neon-gold:        #2E4E78;   /* dark sapphire — the primary accent */
+  --neon-gold-deep:   #182A42;
   --neon-purple:      #5A3A6E;   /* abyss violet, deepened to old wine */
   --neon-purple-deep: #402850;
   --neon-red:         #8E2233;   /* crimson, gone to dried blood */
@@ -55,7 +56,7 @@
 
   --glow-cyan:   0 8px 22px rgba(70, 96, 127, 0.30), var(--shadow-depth-sm);
   --glow-green:  0 8px 22px rgba(63, 122, 84, 0.28), var(--shadow-depth-sm);
-  --glow-gold:   0 8px 24px rgba(200, 162, 74, 0.34), var(--shadow-depth-sm);
+  --glow-gold:   0 8px 24px rgba(46, 78, 120, 0.36), var(--shadow-depth-sm);
   --glow-orange: 0 8px 22px rgba(138, 58, 24, 0.30), var(--shadow-depth-sm);
   --glow-purple: 0 8px 22px rgba(90, 58, 110, 0.32), var(--shadow-depth-sm);
   --glow-red:    0 8px 22px rgba(142, 34, 51, 0.32), var(--shadow-depth-sm);
@@ -93,7 +94,7 @@
   --ink-faint: #6B5A47;
 
   --gold:      var(--neon-gold);
-  --gold-hi:   #E8C878;
+  --gold-hi:   #5C87BE;
   --gold-lo:   var(--neon-gold-deep);
 
   --ember:     var(--neon-orange);
@@ -122,7 +123,7 @@
      luminance, and distinct from every neighbour at a glance. */
   --el-fire:   var(--neon-orange);       /* embers under ash */
   --el-water:  var(--neon-cyan);         /* drowned slate */
-  --el-earth:  var(--neon-gold-deep);    /* grave-soil ochre */
+  --el-earth:  #96762E;                  /* derived: grave-soil ochre, no longer tied to the (now blue) accent */
   --el-air:    #7A8478;                  /* derived: graveyard sage */
   --el-life:   var(--neon-lime-deep);    /* moss on stone */
   --el-arcane: var(--neon-purple);       /* old wine */
