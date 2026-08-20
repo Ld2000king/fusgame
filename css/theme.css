@@ -1,74 +1,76 @@
 /* ============================================================================
-   THEME — ported from THE-ARENA (Ld2000king/THE-ARENA, styles.css)
-   Matte obsidian with a violet cast, metallic bevels, and seven saturated
-   accents. Surface, text, metal-edge, shadow, glow, radius, spring and font
-   tokens are copied verbatim from that project so both games read as one
-   family. What is added here — and only here — is the mapping of this game's
-   eight elements and seven tiers onto that palette, since THE-ARENA has no
-   equivalent axis.
+   THEME — Alchemical Cartography, gothic-grimoire pass
+   Blood-black instead of violet-black, aged gold and bone instead of bright
+   neon, an engraved-serif display face, and a tighter radius scale (carved
+   stone, not soft plastic). Every token below keeps the name it had under
+   the THE-ARENA palette this replaces, so every rule in app.css that reads
+   a token — cards, buttons, glows, the procedural monster art, which paints
+   itself in `currentColor` from --el — repaints with it, unchanged.
    ========================================================================= */
 
 :root {
-  /* ---- Accents (verbatim from THE-ARENA) ------------------------------- */
-  --neon-cyan:        #4A79C4;   /* arcane blue */
-  --neon-cyan-deep:   #33578F;
-  --neon-pink:        #B0447A;   /* rose blood */
-  --neon-magenta:     #8E3A80;
-  --neon-lime:        #117B55;   /* verdant */
-  --neon-lime-deep:   #23A876;
-  --neon-orange:      #B14D19;   /* ember */
-  --neon-orange-deep: #8C3A12;
-  --neon-gold:        #D2A03C;   /* antique amber */
-  --neon-gold-deep:   #A87B22;
-  --neon-purple:      #7343C4;   /* abyss violet */
-  --neon-purple-deep: #542D99;
-  --neon-red:         #B02742;   /* crimson */
-  --neon-red-deep:    #7E1A2F;
+  /* ---- Accents: the old neon set, darkened and desaturated toward dried
+     blood, aged brass and candlelit gold ------------------------------- */
+  --neon-cyan:        #46607F;   /* arcane blue, muted to slate */
+  --neon-cyan-deep:   #2E4258;
+  --neon-pink:        #7A3550;   /* rose blood, deepened */
+  --neon-magenta:     #5C2A4E;
+  --neon-lime:        #2A4E36;   /* verdant, gone mossy */
+  --neon-lime-deep:   #3F7A54;
+  --neon-orange:      #8A3A18;   /* ember, gone to embers-under-ash */
+  --neon-orange-deep: #602711;
+  --neon-gold:        #C8A24A;   /* antique amber — the one accent that stays bright */
+  --neon-gold-deep:   #96762E;
+  --neon-purple:      #5A3A6E;   /* abyss violet, deepened to old wine */
+  --neon-purple-deep: #402850;
+  --neon-red:         #8E2233;   /* crimson, gone to dried blood */
+  --neon-red-deep:    #5E1420;
 
-  /* ---- Surfaces: obsidian with a violet lean, never generic grey ------- */
-  --bg-deep:     #0E0C14;
-  --bg-deep-2:   #07060B;
-  --panel-light: #16121F;
-  --surface-2:   #201A2C;
-  --surface-3:   #2B2339;
+  /* ---- Surfaces: matte near-black with a warm blood-red cast, never a
+     cool violet or a generic grey ----------------------------------------- */
+  --bg-deep:     #120C0A;
+  --bg-deep-2:   #08050A;
+  --panel-light: #1B1210;
+  --surface-2:   #241713;
+  --surface-3:   #2E1E17;
 
   /* ---- Text ------------------------------------------------------------ */
-  --text-dark:      #F2EFF7;   /* the bright one; goes ON dark and on fills */
-  --text-secondary: #A79EBC;
-  --text-light:     #ffffff;
-  --on-bright:      #140F1C;   /* for text on amber/light fills */
+  --text-dark:      #EDE2CE;   /* bone / old parchment */
+  --text-secondary: #A8927A;
+  --text-light:     #F2EAD8;
+  --on-bright:      #1A0D0A;   /* for text on amber/light fills */
 
-  /* ---- Metallic edges: top edge catches light, bottom edge sinks -------- */
-  --metal-edge:        rgba(255, 255, 255, 0.13);
-  --metal-edge-strong: rgba(255, 255, 255, 0.22);
-  --metal-shade:       rgba(0, 0, 0, 0.45);
+  /* ---- Metallic edges: top edge catches candlelight, bottom sinks ------- */
+  --metal-edge:        rgba(230, 200, 150, 0.14);
+  --metal-edge-strong: rgba(230, 200, 150, 0.24);
+  --metal-shade:       rgba(0, 0, 0, 0.5);
   --bevel: inset 0 1px 0 var(--metal-edge-strong),
            inset 0 -2px 6px var(--metal-shade);
 
-  --shadow-depth-sm: 0 8px 20px rgba(0, 0, 0, 0.34);
-  --shadow-depth-md: 0 10px 26px rgba(0, 0, 0, 0.42);
-  --shadow-depth-lg: 0 16px 36px rgba(0, 0, 0, 0.52);
-  --shadow-frame:    0 30px 80px rgba(0, 0, 0, 0.7),
-                     0 0 1px rgba(255, 255, 255, 0.07) inset;
+  --shadow-depth-sm: 0 8px 20px rgba(0, 0, 0, 0.4);
+  --shadow-depth-md: 0 10px 26px rgba(0, 0, 0, 0.48);
+  --shadow-depth-lg: 0 16px 36px rgba(0, 0, 0, 0.58);
+  --shadow-frame:    0 30px 80px rgba(0, 0, 0, 0.75),
+                     0 0 1px rgba(230, 200, 150, 0.07) inset;
 
-  --glow-cyan:   0 8px 22px rgba(74, 121, 196, 0.30), var(--shadow-depth-sm);
-  --glow-green:  0 8px 22px rgba(35, 168, 118, 0.28), var(--shadow-depth-sm);
-  --glow-gold:   0 8px 24px rgba(210, 160, 60, 0.34), var(--shadow-depth-sm);
-  --glow-orange: 0 8px 22px rgba(180, 80, 28, 0.30), var(--shadow-depth-sm);
-  --glow-purple: 0 8px 22px rgba(115, 67, 196, 0.32), var(--shadow-depth-sm);
-  --glow-red:    0 8px 22px rgba(176, 39, 66, 0.32), var(--shadow-depth-sm);
+  --glow-cyan:   0 8px 22px rgba(70, 96, 127, 0.30), var(--shadow-depth-sm);
+  --glow-green:  0 8px 22px rgba(63, 122, 84, 0.28), var(--shadow-depth-sm);
+  --glow-gold:   0 8px 24px rgba(200, 162, 74, 0.34), var(--shadow-depth-sm);
+  --glow-orange: 0 8px 22px rgba(138, 58, 24, 0.30), var(--shadow-depth-sm);
+  --glow-purple: 0 8px 22px rgba(90, 58, 110, 0.32), var(--shadow-depth-sm);
+  --glow-red:    0 8px 22px rgba(142, 34, 51, 0.32), var(--shadow-depth-sm);
 
-  --radius-sm:    14px;
-  --radius-tile:  16px;
-  --radius-btn:   18px;
-  --radius-card:  24px;
-  --radius-frame: 28px;
+  /* Carved stone and engraved metal, not soft plastic — every radius is
+     tighter than the alchemy-era scale it replaces. */
+  --radius-sm:    10px;
+  --radius-tile:  11px;
+  --radius-btn:   12px;
+  --radius-card:  14px;
+  --radius-frame: 18px;
 
-  --font-display: 'Rubik', 'Poppins', sans-serif;
-  --font-body:    'Poppins', 'Rubik', sans-serif;
-  /* Poppins carries no Hebrew, so Hebrew glyphs fall through to Rubik —
-     which is exactly how THE-ARENA renders its own Hebrew body text. */
-  --font-num:     'Rubik', 'Poppins', sans-serif;
+  --font-display: 'Frank Ruhl Libre', 'Assistant', serif;
+  --font-body:    'Assistant', 'Frank Ruhl Libre', sans-serif;
+  --font-num:     'Assistant', 'Frank Ruhl Libre', sans-serif;
 
   --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease:   cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -82,16 +84,16 @@
   --panel:     var(--panel-light);
   --panel-2:   var(--surface-2);
   --raised:    var(--surface-3);
-  --line:      rgba(255, 255, 255, 0.07);
-  --line-soft: rgba(255, 255, 255, 0.05);
+  --line:      rgba(230, 200, 150, 0.07);
+  --line-soft: rgba(230, 200, 150, 0.05);
 
   --ink:       var(--text-dark);
-  --ink-2:     #C9C2D9;
+  --ink-2:     #D9C9B4;
   --ink-3:     var(--text-secondary);
-  --ink-faint: #6B6383;
+  --ink-faint: #6B5A47;
 
   --gold:      var(--neon-gold);
-  --gold-hi:   #F0BE55;
+  --gold-hi:   #E8C878;
   --gold-lo:   var(--neon-gold-deep);
 
   --ember:     var(--neon-orange);
@@ -114,30 +116,29 @@
   --gut:   clamp(10px, 2.4vw, 22px);
   --gut-s: clamp(6px, 1.4vw, 12px);
 
-  /* ---- The eight elements, mapped onto THE-ARENA's accents ------------- */
-  /* Six land on an ARENA hue directly. Air and metal have no equivalent
+  /* ---- The eight elements, mapped onto the muted accents above --------- */
+  /* Six land on an accent directly. Air and metal have no equivalent
      there, so they are derived in the same idiom — desaturated, mid-
      luminance, and distinct from every neighbour at a glance. */
-  --el-fire:   var(--neon-orange);       /* ember */
-  --el-water:  var(--neon-cyan);         /* arcane blue */
-  --el-earth:  var(--neon-gold-deep);    /* ochre */
-  --el-air:    #8FA5C9;                  /* derived: pale wind-steel */
-  --el-life:   var(--neon-lime-deep);    /* verdant */
-  --el-arcane: var(--neon-purple);       /* abyss violet */
+  --el-fire:   var(--neon-orange);       /* embers under ash */
+  --el-water:  var(--neon-cyan);         /* drowned slate */
+  --el-earth:  var(--neon-gold-deep);    /* grave-soil ochre */
+  --el-air:    #7A8478;                  /* derived: graveyard sage */
+  --el-life:   var(--neon-lime-deep);    /* moss on stone */
+  --el-arcane: var(--neon-purple);       /* old wine */
   --el-shadow: var(--neon-magenta);      /* nightshade plum */
-  --el-metal:  #8E93A8;                  /* ARENA's common-rarity steel */
+  --el-metal:  #7C7268;                  /* derived: pitted iron */
 
   /* ---- Seven tiers as a rarity ramp ------------------------------------ */
-  /* Anchored on THE-ARENA's five rarity colours, with two intermediate
-     steps derived to stretch the ramp to seven without breaking its
-     grey → blue → violet → amber → crimson progression. */
-  --rar-0: #8E93A8;   /* common   */
-  --rar-1: #6E9BC4;   /* derived  */
-  --rar-2: #4E9FD6;   /* rare     */
-  --rar-3: #A868E8;   /* epic     */
-  --rar-4: #C77BE8;   /* derived  */
-  --rar-5: #E0A93A;   /* legendary*/
-  --rar-6: #E23B6B;   /* ultra    */
+  /* Same grey → blue → violet → amber → crimson progression as before,
+     re-toned to match the muted accents. */
+  --rar-0: #7C7268;   /* common   */
+  --rar-1: #5C7A94;   /* derived  */
+  --rar-2: #46607F;   /* rare     */
+  --rar-3: #6E4A8E;   /* epic     */
+  --rar-4: #8A5AA6;   /* derived  */
+  --rar-5: #C8A24A;   /* legendary*/
+  --rar-6: #A8283F;   /* ultra    */
 }
 
 /* Elemental hue is exposed per-card via [data-el]; every surface that needs

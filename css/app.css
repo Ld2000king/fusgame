@@ -25,11 +25,11 @@ body {
   flex-direction: column;
   min-height: 100dvh;
   overflow-x: hidden;
-  /* arena haze: violet bloom above, crimson below, dark vignette at the edges */
+  /* crypt haze: candle-amber bloom above, old blood below, dark vignette at the edges */
   background:
-    radial-gradient(130% 85% at 50% 50%, transparent 58%, rgba(0, 0, 0, 0.40)),
-    radial-gradient(120% 60% at 50% -10%, rgba(115, 67, 196, 0.16), transparent 60%),
-    radial-gradient(100% 50% at 50% 108%, rgba(176, 39, 66, 0.12), transparent 62%),
+    radial-gradient(130% 85% at 50% 50%, transparent 58%, rgba(0, 0, 0, 0.44)),
+    radial-gradient(120% 60% at 50% -10%, rgba(142, 34, 51, 0.15), transparent 60%),
+    radial-gradient(100% 50% at 50% 108%, rgba(90, 58, 110, 0.12), transparent 62%),
     var(--bg-deep);
   background-attachment: fixed;
 }
@@ -49,12 +49,12 @@ p { margin: 0; }
 ::-webkit-scrollbar-thumb:hover { background: var(--neon-purple-deep); }
 
 :focus-visible {
-  outline: 3px solid #B08CF0;
+  outline: 3px solid #C8A24A;
   outline-offset: 3px;
   border-radius: var(--r-sm);
 }
 
-/* Drifting aurora orbs — the ground is never entirely still. */
+/* Drifting candlelit orbs — the ground is never entirely still. */
 .grain {
   position: fixed;
   inset: 0;
@@ -68,15 +68,15 @@ p { margin: 0; }
   width: 460px; height: 460px;
   border-radius: 50%;
   filter: blur(65px);
-  opacity: 0.55;
+  opacity: 0.5;
 }
 .grain::before {
-  background: radial-gradient(circle, rgba(115, 67, 196, .48), rgba(115, 67, 196, .10) 55%, transparent 70%);
+  background: radial-gradient(circle, rgba(142, 34, 51, .40), rgba(142, 34, 51, .09) 55%, transparent 70%);
   top: -170px; inset-inline-end: -130px;
   animation: auroraDrift 14s ease-in-out infinite alternate;
 }
 .grain::after {
-  background: radial-gradient(circle, rgba(176, 39, 66, .42), rgba(176, 39, 66, .10) 55%, transparent 70%);
+  background: radial-gradient(circle, rgba(90, 58, 110, .36), rgba(90, 58, 110, .09) 55%, transparent 70%);
   bottom: -190px; inset-inline-start: -150px;
   animation: auroraDrift 18s ease-in-out infinite alternate-reverse;
 }
@@ -98,7 +98,7 @@ p { margin: 0; }
   gap: var(--gut-s);
   padding: 10px var(--gut);
   padding-top: max(10px, env(safe-area-inset-top));
-  background: linear-gradient(180deg, rgba(14, 12, 20, 0.96), rgba(14, 12, 20, 0.78));
+  background: linear-gradient(180deg, rgba(10, 7, 6, 0.96), rgba(10, 7, 6, 0.78));
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--metal-edge);
 }
@@ -146,7 +146,7 @@ p { margin: 0; }
   border: 1px solid var(--metal-edge);
   border-top-color: var(--metal-edge-strong);
   border-radius: 999px;
-  background: linear-gradient(175deg, var(--surface-2), #1A1526);
+  background: linear-gradient(175deg, var(--surface-2), #1D140F);
   box-shadow: var(--bevel);
   font-family: var(--font-num);
   font-weight: 700;
@@ -218,7 +218,7 @@ p { margin: 0; }
   min-height: 46px;
   border: none;
   border-radius: var(--radius-btn);
-  background: linear-gradient(175deg, var(--surface-3), var(--surface-2) 60%, #191324);
+  background: linear-gradient(175deg, var(--surface-3), var(--surface-2) 60%, #1A1210);
   color: var(--text-dark);
   font-family: var(--font-display);
   font-size: 15px;
@@ -256,7 +256,7 @@ p { margin: 0; }
 
 /* Cast amber — the primary action. Dark text on a bright fill. */
 .btn--gold {
-  background: linear-gradient(165deg, #F0BE55, var(--neon-gold) 50%, #9E772C);
+  background: linear-gradient(165deg, #E8C878, var(--neon-gold) 50%, #7A5E22);
   color: var(--on-bright);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4),
@@ -264,7 +264,7 @@ p { margin: 0; }
               var(--glow-gold);
 }
 .btn--ghost {
-  background: linear-gradient(175deg, var(--surface-2), #17121F);
+  background: linear-gradient(175deg, var(--surface-2), #170F0C);
   box-shadow: var(--bevel), var(--shadow-depth-sm);
 }
 .btn--sm {
@@ -275,13 +275,13 @@ p { margin: 0; }
 }
 .btn--wide { width: 100%; }
 .btn--danger {
-  background: linear-gradient(165deg, #C1354D, var(--neon-red) 52%, #3D1019);
+  background: linear-gradient(165deg, #A8384A, var(--neon-red) 52%, #350B12);
   box-shadow: var(--bevel), var(--glow-red);
 }
 /* toggle-selected state for pick-one-of-many controls (e.g. class picker) —
    deliberately distinct from .btn--gold, which always means "primary action". */
 .btn--pick-on {
-  background: linear-gradient(165deg, #0F7A50, var(--neon-lime) 52%, #0D5C40);
+  background: linear-gradient(165deg, #1F5C3E, var(--neon-lime) 52%, #123D28);
   box-shadow: var(--bevel), var(--glow-green);
 }
 
@@ -299,8 +299,8 @@ p { margin: 0; }
   border-radius: var(--radius-card);
   padding: 1px;
   background: linear-gradient(160deg,
-    color-mix(in srgb, var(--rar, #6A5A85) 70%, white 12%),
-    color-mix(in srgb, var(--rar, #6A5A85) 34%, transparent) 46%,
+    color-mix(in srgb, var(--rar, #6A5A45) 70%, white 12%),
+    color-mix(in srgb, var(--rar, #6A5A45) 34%, transparent) 46%,
     rgba(255, 255, 255, 0.04));
   box-shadow: var(--shadow-depth-md);
   transition: transform var(--t-fast) var(--spring), box-shadow var(--t-med) ease;
@@ -312,8 +312,8 @@ p { margin: 0; }
   border-radius: calc(var(--radius-card) - 1px);
   background:
     radial-gradient(circle at 50% 40%,
-      color-mix(in srgb, var(--el, #6A5A85) 30%, transparent), transparent 68%),
-    linear-gradient(180deg, #1B1626, var(--panel-light) 55%, #120E1B);
+      color-mix(in srgb, var(--el, #6A5A45) 30%, transparent), transparent 68%),
+    linear-gradient(180deg, #201712, var(--panel-light) 55%, #0F0A08);
   display: grid;
   grid-template-rows: 1fr auto;
   gap: 2px;
@@ -342,7 +342,7 @@ p { margin: 0; }
   z-index: 3;
   padding: 2px 6px;
   border-radius: 8px;
-  background: linear-gradient(165deg, #F0BE55, var(--neon-gold) 55%, #9E772C);
+  background: linear-gradient(165deg, #E8C878, var(--neon-gold) 55%, #7A5E22);
   color: var(--on-bright);
   font-family: var(--font-display);
   font-size: 7.5px;
@@ -401,7 +401,7 @@ p { margin: 0; }
   display: block;
   -webkit-user-drag: none;
   user-select: none;
-  filter: saturate(.88) contrast(1.08) brightness(.9);
+  filter: sepia(.22) hue-rotate(-6deg) saturate(1.02) contrast(1.14) brightness(.82);
   transform: scale(1.025);
 }
 /* with a portrait present the drawing is hidden, and only serves as fallback */
@@ -467,17 +467,18 @@ p { margin: 0; }
   box-shadow: var(--shadow-depth-sm), inset 0 1px 0 rgba(255, 255, 255, .3);
   border-top: 1px solid rgba(255, 255, 255, .3);
 }
+/* wax seals: blood-red for attack, aged brass for defense */
 .card-stats .atk {
-  background: linear-gradient(165deg, #C1354D, var(--neon-red) 55%, #6B1628);
+  background: linear-gradient(165deg, #A8384A, var(--neon-red) 55%, #4A0F1A);
 }
 .card-stats .def {
-  background: linear-gradient(165deg, #5B8FD0, var(--neon-cyan-deep) 55%, #223C63);
+  background: linear-gradient(165deg, #8A6E3A, #5E4A24 55%, #2E2210);
 }
 .card-stats .atk.is-buffed {
-  background: linear-gradient(165deg, #3FD69C, var(--neon-lime-deep) 55%, #0D5C40);
+  background: linear-gradient(165deg, #6FAE7E, var(--neon-lime-deep) 55%, #16371F);
 }
 .card-stats .def.is-buffed {
-  background: linear-gradient(165deg, #3FD69C, var(--neon-lime-deep) 55%, #0D5C40);
+  background: linear-gradient(165deg, #6FAE7E, var(--neon-lime-deep) 55%, #16371F);
 }
 
 .card-tier {
@@ -543,7 +544,7 @@ p { margin: 0; }
   border-radius: var(--radius-frame);
   background:
     radial-gradient(75% 120% at 50% 0%, rgba(115, 67, 196, 0.16), transparent 65%),
-    linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+    linear-gradient(180deg, #241A13, var(--panel-light) 55%, #0F0A08);
   box-shadow: var(--shadow-depth-md);
   position: relative;
   overflow: hidden;
@@ -623,7 +624,7 @@ p { margin: 0; }
   min-height: 40px;
   border: 1px solid var(--metal-edge);
   border-radius: var(--radius-sm);
-  background: linear-gradient(175deg, var(--surface-2), #17121F);
+  background: linear-gradient(175deg, var(--surface-2), #170F0C);
   box-shadow: var(--bevel);
 }
 .field input, .field select {
@@ -699,7 +700,7 @@ p { margin: 0; }
   border: 1px solid var(--line);
   border-top-color: var(--metal-edge);
   border-radius: var(--radius-card);
-  background: linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+  background: linear-gradient(180deg, #241A13, var(--panel-light) 55%, #0F0A08);
   box-shadow: var(--shadow-depth-md);
   padding: var(--gut-s);
 }
@@ -782,7 +783,7 @@ p { margin: 0; }
   border: 1px solid var(--line);
   border-top-color: var(--metal-edge);
   border-radius: var(--radius-card);
-  background: linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+  background: linear-gradient(180deg, #241A13, var(--panel-light) 55%, #0F0A08);
   box-shadow: var(--shadow-depth-md);
   text-align: start;
   width: 100%;
@@ -827,7 +828,7 @@ p { margin: 0; }
   border: 1px solid var(--line);
   border-top-color: var(--metal-edge);
   border-radius: var(--radius-card);
-  background: linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+  background: linear-gradient(180deg, #241A13, var(--panel-light) 55%, #0F0A08);
   box-shadow: var(--shadow-depth-md);
 }
 .hero-bar.is-active { border-color: var(--gold-lo); box-shadow: var(--glow-gold); }
@@ -960,7 +961,7 @@ p { margin: 0; }
   border: 1px solid var(--line);
   border-top-color: var(--metal-edge);
   border-radius: var(--radius-card);
-  background: linear-gradient(180deg, #1C1729, var(--panel-light) 55%, #120E1B);
+  background: linear-gradient(180deg, #241A13, var(--panel-light) 55%, #0F0A08);
   box-shadow: var(--shadow-depth-md);
   min-height: 52px;
 }
@@ -1106,7 +1107,7 @@ p { margin: 0; }
   border-radius: var(--radius-sm);
   border: 1px solid var(--metal-edge);
   border-top-color: var(--metal-edge-strong);
-  background: linear-gradient(175deg, var(--surface-2), #1A1526);
+  background: linear-gradient(175deg, var(--surface-2), #1D140F);
   color: var(--text-dark);
   font-size: 13.5px;
   font-weight: 500;
@@ -1142,7 +1143,7 @@ p { margin: 0; }
   border: 1px solid rgba(155, 127, 216, 0.16);
   border-top-color: rgba(180, 150, 235, 0.32);
   border-radius: var(--radius-card);
-  background: linear-gradient(180deg, #1E1830, var(--panel-light) 40%, #120E1B);
+  background: linear-gradient(180deg, #2A1E14, var(--panel-light) 40%, #0F0A08);
   box-shadow: var(--shadow-depth-lg), inset 0 0 40px rgba(0, 0, 0, .35);
   animation: sheetIn var(--t-med) var(--spring) both;
   text-align: center;
@@ -1238,7 +1239,7 @@ p { margin: 0; }
   padding: 12px 14px;
   border: 1px solid var(--metal-edge);
   border-radius: var(--radius-sm);
-  background: linear-gradient(175deg, var(--surface-2), #1A1526);
+  background: linear-gradient(175deg, var(--surface-2), #1D140F);
   box-shadow: var(--bevel);
   margin-bottom: 8px;
 }

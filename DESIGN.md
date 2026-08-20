@@ -69,6 +69,17 @@ Material is suggested, never simulated. A hairline gold rule
 where two planes meet. Glow used as evidence of energy, not as ornament — and always
 earned, never sprayed. Master-level execution means knowing which effect to leave out.
 
+*A second amendment*: the palette ported from THE-ARENA has itself been re-toned once, into a
+gothic-grimoire key. Every surface, accent and rarity-ramp token kept its name and its relative
+relationships — same seven accents, same eight elements each holding one hue, same grey → blue →
+violet → amber → crimson tier progression — but the values underneath shifted from bright neon
+on violet-black to dried blood, aged brass and candlelit gold on a warmer, redder black. Corners
+tightened from the 14–28px range to 10–18px, trading the softer "cast metal" read for something
+closer to carved stone. Display type moved from Rubik to Frank Ruhl Libre, an engraved-serif hand
+that reads as illuminated manuscript rather than app chrome; body and numerals moved to Assistant.
+The principle that survived twice now: colour still carries elemental identity first, and every
+accent still traces back to exactly one hue no matter how far the surrounding palette darkens.
+
 ## Scale and Rhythm
 
 Rhythm comes from the grid: cards in even ranks, stats in fixed corners, the board a stable
